@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config');
+// var config = require('../config');
 var server = require('../server');
 const app = express();
 
@@ -11,7 +11,7 @@ const CourseSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    decription: {
+    description: {
       type: String,
       required: true,
     },
@@ -35,4 +35,4 @@ const CourseSchema = new mongoose.Schema({
   });
 
   const Course = mongoose.model("Course", CourseSchema);
-  module.exports = Course;
+  module.exports = {Course};

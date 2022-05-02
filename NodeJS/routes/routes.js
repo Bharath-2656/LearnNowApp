@@ -1,7 +1,7 @@
 const express = require("express");
 const userModel = require("../models/UserModel");
 const userController = require("../controllers/UserController");
-// const courseController = require("../controllers")
+const courseController = require("../controllers/CourseController")
 const cors = require("cors");
 var bodyParser = require('body-parser');
 var router = express.Router();
@@ -31,7 +31,7 @@ app.listen(9000, () => {
 
 
 app.use('/admin', userController);
-// app.use('/instructor', cou)
+app.use('/instructor', courseController)
  
 
 module.exports = app;
