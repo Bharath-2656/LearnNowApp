@@ -83,6 +83,10 @@ UserSchema.methods.generateJwt = function () {
   module.exports = {User};
   
 
+
+
+
+  
   //SQL
 
 // const Sequelize= require('sequelize');

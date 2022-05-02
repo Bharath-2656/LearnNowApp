@@ -11,6 +11,10 @@ const CourseSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    decription: {
+      type: String,
+      required: true,
+    },
     author: {
       type: String,
       required: true,
@@ -19,12 +23,11 @@ const CourseSchema = new mongoose.Schema({
       type: Number,
       default: 0,
     },
-    rating: {
-        type: Number,
-        required: true,
-        
-    },
-    id: {
+    // rating: {
+    //     type: Number,
+    //     required: true,
+    // },
+    courseid: {
       type: Number,
       required: true,
       primaryKey: true,

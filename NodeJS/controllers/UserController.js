@@ -7,12 +7,13 @@ const passport = require('passport');
 const jwtHelper = require('../Config/jwtHelper');
 var router  = express.Router();
 const app = express();
-const _ = require('lodash');
+const loadash = require('lodash');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(router);
-router.get('/users', async (req,res) => {
+
+app.get('/users', async (req,res) => {
     User.find((err,data) => {
         if(!err){ res.send(data);
         console.log("data collected")}
@@ -71,13 +72,9 @@ app.delete('/users/:userid',(req,res) => {
 });
 
 app.post('/authenticate',(req, res, next) => {
-    // call for passport authentication
     passport.authenticate('local', (err, user, info) => {       
-        // error from passport middleware
         if (err) return res.status(400).json(err);
-        // registered user
         else if (user) return res.status(200).json({ "token": user.generateJwt() });
-        // unknown user or wrong password
         else return res.status(404).json(info);
     })(req, res);
 });
@@ -88,7 +85,7 @@ app.get('/userprofile', jwtHelper.verifyJwtToken, (req, res, next) =>{
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : _.pick(user,['name','email']) });
+                return res.status(200).json({ status: true, user : loadash.pick(user,['name','email']) });
         }
     );
 });
