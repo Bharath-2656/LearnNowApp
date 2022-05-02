@@ -12,14 +12,34 @@ app.use(router);
 app.use(cors());
 app.use(bodyParser.json());
 
-
-
+const mongoose = require('mongoose');
+const { User} = require("../models/UserModel");
+const { Course} = require("../models/CourseModel");
 // app.use((req,res,next)=>{
 //   res.setHeader("Access-Control-Allow-Origin","*")
 //   res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,PATCH,DELETE")
 //   res.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization")
 //   next()
 // })
+Course.aggregate([
+  {
+    $lookup: {
+      from: "users",
+      localField: "courseid",
+      foreignField: "courseid",
+      as: "user_courses",
+    },
+  },
+  {
+    $unwind: "$user_courses",
+  },
+])
+.then((result) => {
+  //console.log(JSON.stringify(result));
+})
+.catch((error) => {
+  console.log(error);
+});
 
 app.get('/home',(req,res)=>{
   res.send("Hii")

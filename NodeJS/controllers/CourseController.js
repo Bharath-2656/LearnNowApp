@@ -2,9 +2,9 @@ const express = require('express');
 var router  = express.Router();
 const bodyParser = require('body-parser');
 var {Course} = require('../models/CourseModel');
-const app = require('./UserController');
-
-// app.use(bodyParser.urlencoded({ extended: true }));
+// const app = require('./UserController');
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
 

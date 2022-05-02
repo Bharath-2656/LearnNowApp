@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-// var config = require('../config');
-var server = require('../server');
+
 const app = express();
 
 const mongoose = require("mongoose");
@@ -15,9 +14,15 @@ const CourseSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    duration: {
+      type: String,
+    },
     author: {
       type: String,
       required: true,
+    },
+    category: {
+      type: String,
     },
     price: {
       type: Number,

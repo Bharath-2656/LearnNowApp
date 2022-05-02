@@ -46,6 +46,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: 'Confirm password cannot be empty',
     },
+    courseid: {
+      type: Number,
+    },
     saltSecret:String,
   });
  UserSchema.plugin(uniqueValidator);

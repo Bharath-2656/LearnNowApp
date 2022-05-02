@@ -2,7 +2,8 @@ const express = require('express');
 var ObjectId = require('mongoose').Types.ObjectId;
 var {User} = require('../models/UserModel');
 const bodyParser = require("body-parser");
-const { $where } = require('../models/UserModel');
+// const { $where } = require('../models/UserModel');
+var {AreaOfInterest} = require('../models/areaOfInterestModel');
 const passport = require('passport');
 const jwtHelper = require('../Config/jwtHelper');
 var router  = express.Router();
@@ -30,6 +31,7 @@ app.post('/users', (req,res) => {
         email: req.body.email,
         password: req.body.password,
         confirm_password: req.body.confirm_password,
+        courseid: req.body.courseid,
     });
     user.save((err,doc) => {
         if(!err) { res.send(doc);
@@ -88,6 +90,31 @@ app.get('/userprofile', jwtHelper.verifyJwtToken, (req, res, next) =>{
                 return res.status(200).json({ status: true, user : loadash.pick(user,['name','email']) });
         }
     );
+});
+
+app.post('/areaofinterest', (req,res) => {
+    var areaofinterest = new AreaOfInterest({
+        name: req.body.name,
+        imagesrc: req.body.imagesrc,
+        routerlink: req.body.name.replace(/\s+/g, '').toLowerCase(),
+    });
+    areaofinterest.save((err,doc) => {
+        if(!err) { res.send(doc);
+        console.log("Data saved");
+     }
+        else { 
+            console.log('Error in saving data :' + err);
+            res.send(err.message);
+        }
+    });
+});
+
+app.get('/areaofinterest', async (req,res) => {
+     AreaOfInterest.find((err,data) => {
+        if(!err){ res.send(data);
+        console.log("data collected")}
+        else { console.log("Error in getting data : " + err);}
+    });
 });
 
 module.exports = app;
