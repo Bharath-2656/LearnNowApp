@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
-app.post('/courses', (req,res) => {
+app.post('/usercourse', (req,res) => {
     var course = new Course({
         // courseid: Course.find().count()+1,
         name: req.body.name,
@@ -31,7 +31,7 @@ app.post('/courses', (req,res) => {
     });
 });
 
-app.get('/courses', async (req,res) => {
+app.get('/usercourse', async (req,res) => {
     Course.find((err,data) => {
         if(!err){
             res.send(data);
@@ -40,14 +40,14 @@ app.get('/courses', async (req,res) => {
     });
 });
 
-app.get('/courses/:courseid', (req,res) => {
+app.get('/usercourse/:courseid', (req,res) => {
     Course.findOne({ userid: req.params.userid },`name description author price`, (err,doc) => {
         if(!err) { res.send(doc);}
         else { console.log("Error in retreiving data")}
     });
 });
 
-app.put('/courses/:courseid', (req,res) => {
+app.put('/usercourse/:courseid', (req,res) => {
     var course = {
         name: req.body.name,
         description: req.body.description,
@@ -62,7 +62,7 @@ app.put('/courses/:courseid', (req,res) => {
     });
 });
 
-app.delete('/courses/:courseid',(req,res) => {
+app.delete('/usercourse/:courseid',(req,res) => {
     Course.findOneAndRemove(req.params.userid, (err,doc) => {
         if(!err) { res.send(doc);}
         else { console.log("Error in deleting user");}
@@ -86,7 +86,7 @@ app.get('/areaofinterestcourse', async (req, res) =>
     ])
         .then((result) =>
         {
-             //console.log(JSON.stringify(result));
+            //console.log(JSON.stringify(result));
             res.send(result);
         })
         .catch((error) =>

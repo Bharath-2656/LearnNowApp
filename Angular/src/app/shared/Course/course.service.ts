@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CourseService {
-  readonly baseURL = 'http://localhost:9000/instructor/';
+  readonly baseURL = 'http://localhost:9000/course/';
 
   constructor(private http: HttpClient) { }
 
@@ -13,6 +13,6 @@ export class CourseService {
     return this.http.get(this.baseURL + 'areaofinterestcourse' )
   }
   getCourse(){
-    return this.http.get(this.baseURL + 'courses')
+    return this.http.get(this.baseURL + 'usercourse')
   }
 }

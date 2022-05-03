@@ -19,7 +19,7 @@
               </h2>
               <p>{{ course.description }}</p>
               <p>Duration : {{ course.duration}}</p>
-              <a id="b"  [routerLink]="['/course', course.author]" routerLinkActive="active"><p>Instructor : {{course.author}}</p></a> 
+              <a id="b"  [routerLink]="['/instructor', course.author]" routerLinkActive="active"><p>Instructor : {{course.author}}</p></a> 
               <p id="price">Rs. {{course.price}}</p>
               <!-- <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating> -->
               <h3>Course Contents:</h3>

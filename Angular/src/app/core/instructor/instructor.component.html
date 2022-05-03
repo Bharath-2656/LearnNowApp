@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style></style>
+</head>
+
+<body>
+  <h1 id="heading">Courses based on your choice</h1>
+  <div class="row">
+    <ng-container *ngFor="let instructor of instructors">
+      <div class="column">
+       
+          <!-- <ng-container *ngIf="instructor.routerlink=== id"> -->
+            <div class="card">
+              <h2>
+                <b id="b">{{ instructor.name}}</b>
+              </h2>
+              <p>{{ instructor.description }}</p>
+              
+              <!-- <a id="b"  [routerLink]="['/course', course.author]" routerLinkActive="active"><p>Instructor : {{course.author}}</p></a>  -->
+              <!-- <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating> -->
+              <!-- <h3>Course Contents:</h3>
+              <ng-container *ngFor="let content of course.contents">
+                  <p>{{content}}</p> -->
+              <!-- </ng-container> -->
+            </div>
+            
+          <!-- </ng-container> -->
+        <!-- </ng-container> -->
+      </div>
+    </ng-container>
+  </div>
+</body>
+
+</html>

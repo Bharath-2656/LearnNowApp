@@ -23,7 +23,6 @@ app.get('/users', async (req, res) =>
         if (!err)
         {
             res.send(data);
-            console.log("data collected")
         }
         else { console.log("Error in getting data : " + err); }
     });

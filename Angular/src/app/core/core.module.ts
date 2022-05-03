@@ -11,6 +11,7 @@ import { UserService } from '../shared/User/user.service';
 import { UserprofileComponent } from './admin-routes/userprofile/userprofile.component';
 import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinterest.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { InstructorComponent } from './instructor/instructor.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { BrowserModule } from '@angular/platform-browser';
     RegisterComponent,
     UserprofileComponent,
     AreaofinterestComponent,
+    InstructorComponent,
     
   ],
   imports: [

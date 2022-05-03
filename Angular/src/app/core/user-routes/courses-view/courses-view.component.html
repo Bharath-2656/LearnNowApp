@@ -11,15 +11,18 @@
   <div class="row">
     <ng-container *ngFor="let courseservice of courseservices">
       <div class="column">
+        
         <ng-container *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses">
+
           <ng-container *ngIf="areaofinterest_course.category === id">
             <div class="card">
+  
               <h3>
                 <a id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{ areaofinterest_course.name | json }}</b></a>
               </h3>
               <p>{{ areaofinterest_course.description }}</p>
               <p>Duration : {{ areaofinterest_course.duration}}</p>
-              <a id="b"  [routerLink]="['/course', areaofinterest_course.author]" routerLinkActive="active"><p>Instructor : {{areaofinterest_course.author}}</p></a>
+              <a id="b"  [routerLink]="['/instructor', areaofinterest_course.author]" routerLinkActive="active"><p>Instructor : {{areaofinterest_course.author}}</p></a>
             </div>
           </ng-container>
         </ng-container>
