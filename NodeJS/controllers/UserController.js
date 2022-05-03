@@ -154,10 +154,10 @@ app.get('/areaofinterest', async (req, res) =>
     Course.aggregate([
         {
             $lookup: {
-                from: "areaofinterests",
-                localField: "routrelink",
-                foreignField: "category",
-                as: "areaofinterest_courses",
+                from: "users",
+                localField: "courseid",
+                foreignField: "courseid",
+                as: "user_courses",
             },
         },
         // {

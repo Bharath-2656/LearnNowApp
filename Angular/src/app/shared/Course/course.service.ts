@@ -9,7 +9,7 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  getAreaOfInterest() {
-    return this.http.get(this.baseURL + 'courses' )
+  getAreaOfInterestCourse() {
+    return this.http.get(this.baseURL + 'areaofinterestcourse' )
   }
 }

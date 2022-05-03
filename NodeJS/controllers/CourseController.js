@@ -51,6 +51,8 @@ app.put('/courses/:courseid', (req,res) => {
     var course = {
         name: req.body.name,
         description: req.body.description,
+        duration: req.body.duration,
+        category: req.body.category.replace(/\s+/g, '').toLowerCase(),
         price: req.body.price,
     };
     Course.findOneAndUpdate({courseid:req.params.courseid}, {$set: course}, {new:true}, (err,doc) => {
@@ -68,22 +70,22 @@ app.delete('/courses/:courseid',(req,res) => {
 
 app.get('/areaofinterestcourse', async (req, res) =>
 {
-    Course.aggregate([
+    AreaOfInterest.aggregate([
         {
             $lookup: {
-                from: "",
-                localField: "courseid",
-                foreignField: "courseid",
-                as: "user_courses",
+                from: "courses",
+                localField: "routerlink",
+                foreignField: "category",
+                as: "areaofinterest_courses",
             },
         },
         // {
-        //     $unwind: "$user_courses",
+        //     $unwind: "$areaofinterest_courses",
         // },
     ])
         .then((result) =>
         {
-            // console.log(JSON.stringify(result));
+             //console.log(JSON.stringify(result));
             res.send(result);
         })
         .catch((error) =>

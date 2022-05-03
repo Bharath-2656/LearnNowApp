@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../shared/User/user.service';
 import { UserprofileComponent } from './admin-routes/userprofile/userprofile.component';
 import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinterest.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinte
     CommonModule,
     CoreRoutingModule,
     FormsModule,
-    
+    BrowserModule
   
   ],
   exports: [

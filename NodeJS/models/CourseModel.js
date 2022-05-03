@@ -37,6 +37,9 @@ const CourseSchema = new mongoose.Schema({
       // required: true,
       primaryKey: true,
     },
+    routerlink: {
+      type: String,
+    }
   });
 
   CourseSchema.pre("save", function (next) {

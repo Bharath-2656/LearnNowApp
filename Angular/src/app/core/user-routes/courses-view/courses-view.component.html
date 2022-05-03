@@ -1,1 +1,31 @@
-<p>courses-view works!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style></style>
+</head>
+
+<body>
+  <h1 id="heading">Courses based on your choice</h1>
+  <div class="row">
+    <ng-container *ngFor="let courseservice of courseservices">
+      <div class="column">
+        <ng-container *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses">
+          <ng-container *ngIf="areaofinterest_course.category === id">
+            <div class="card">
+              <h3>
+                <b>{{ areaofinterest_course.name | json }}</b>
+              </h3>
+              <p>{{ areaofinterest_course.description }}</p>
+              <p>Duration : {{ areaofinterest_course.duration}}</p>
+              <a  [routerLink]="['/user/course', areaofinterest_course.name]" routerLinkActive="active"><p>Instructor : {{areaofinterest_course.author}}</p></a>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</body>
+
+</html>
