@@ -20,7 +20,7 @@ const { JWT_EXP, JWT_SECRET } = require('../Config/config');
 const UserSchema = new mongoose.Schema({
     userid:{
       type:String,
-      required:true,
+      // required:true,
       unique:true,
     },
     name: {
@@ -57,6 +57,19 @@ const UserSchema = new mongoose.Schema({
     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
+
+
+UserSchema.pre("save", function (next) {
+  var docs = this;
+  mongoose
+    .model("User", UserSchema)
+    .countDocuments({ account: docs.name }, function (error, counter) {
+      if (error) return next(error);
+      docs.userid = counter + 1;
+      next();
+    });
+});
+
 
 UserSchema.pre('save', function(next){
   bcrypt.genSalt(10,(err,salt) => {

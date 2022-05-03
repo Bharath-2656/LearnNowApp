@@ -21,25 +21,8 @@ const { Course} = require("../models/CourseModel");
 //   res.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization")
 //   next()
 // })
-Course.aggregate([
-  {
-    $lookup: {
-      from: "users",
-      localField: "courseid",
-      foreignField: "courseid",
-      as: "user_courses",
-    },
-  },
-  {
-    $unwind: "$user_courses",
-  },
-])
-.then((result) => {
-  //console.log(JSON.stringify(result));
-})
-.catch((error) => {
-  console.log(error);
-});
+// app.get('/areaofinterest',async (req,res) => {
+
 
 app.get('/home',(req,res)=>{
   res.send("Hii")

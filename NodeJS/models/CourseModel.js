@@ -34,10 +34,22 @@ const CourseSchema = new mongoose.Schema({
     // },
     courseid: {
       type: Number,
-      required: true,
+      // required: true,
       primaryKey: true,
     },
   });
+
+  CourseSchema.pre("save", function (next) {
+    var docs = this;
+    mongoose
+      .model("Course", CourseSchema)
+      .countDocuments({ account: docs.name }, function (error, counter) {
+        if (error) return next(error);
+        docs.courseid = counter + 1;
+        next();
+      });
+  });
+
 
   const Course = mongoose.model("Course", CourseSchema);
   module.exports = {Course};
