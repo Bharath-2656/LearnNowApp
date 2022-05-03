@@ -15,11 +15,11 @@
           <ng-container *ngIf="areaofinterest_course.category === id">
             <div class="card">
               <h3>
-                <b>{{ areaofinterest_course.name | json }}</b>
+                <a id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{ areaofinterest_course.name | json }}</b></a>
               </h3>
               <p>{{ areaofinterest_course.description }}</p>
               <p>Duration : {{ areaofinterest_course.duration}}</p>
-              <a  [routerLink]="['/user/course', areaofinterest_course.name]" routerLinkActive="active"><p>Instructor : {{areaofinterest_course.author}}</p></a>
+              <a id="b"  [routerLink]="['/course', areaofinterest_course.author]" routerLinkActive="active"><p>Instructor : {{areaofinterest_course.author}}</p></a>
             </div>
           </ng-container>
         </ng-container>

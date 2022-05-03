@@ -12,4 +12,7 @@ export class CourseService {
   getAreaOfInterestCourse() {
     return this.http.get(this.baseURL + 'areaofinterestcourse' )
   }
+  getCourse(){
+    return this.http.get(this.baseURL + 'courses')
+  }
 }

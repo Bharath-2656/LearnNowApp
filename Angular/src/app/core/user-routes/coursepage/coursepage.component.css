@@ -58,6 +58,14 @@
     clear: both;
 }
 #b{
-    
     text-decoration: none;
+}
+#price
+{
+    text-align: right;
+    font-size: 19px;
+}
+ngb-rating {
+    color: #FFC107;
+    font-size: 80px;
 }

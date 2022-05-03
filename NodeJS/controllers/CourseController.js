@@ -54,6 +54,7 @@ app.put('/courses/:courseid', (req,res) => {
         duration: req.body.duration,
         category: req.body.category.replace(/\s+/g, '').toLowerCase(),
         price: req.body.price,
+        contents: req.body.contents,
     };
     Course.findOneAndUpdate({courseid:req.params.courseid}, {$set: course}, {new:true}, (err,doc) => {
         if(!err) {res.send(doc);}

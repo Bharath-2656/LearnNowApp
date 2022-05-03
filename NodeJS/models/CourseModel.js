@@ -39,6 +39,9 @@ const CourseSchema = new mongoose.Schema({
     },
     routerlink: {
       type: String,
+    },
+    contents : {
+      type: [],
     }
   });
 
@@ -49,6 +52,17 @@ const CourseSchema = new mongoose.Schema({
       .countDocuments({ account: docs.name }, function (error, counter) {
         if (error) return next(error);
         docs.courseid = counter + 1;
+        next();
+      });
+  });
+
+  CourseSchema.pre("save", function (next) {
+    var docs = this;
+    mongoose
+      .model("Course", CourseSchema)
+      .countDocuments({ account: docs.name }, function (error, counter) {
+        if (error) return next(error);
+        docs.routerlink = docs.name.replace(/\s+/g, '').toLowerCase();
         next();
       });
   });
