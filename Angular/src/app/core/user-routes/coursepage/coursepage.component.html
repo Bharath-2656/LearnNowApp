@@ -14,6 +14,7 @@
        
           <ng-container *ngIf="course.routerlink=== id">
             <div class="card">
+              <form class="formOne" #showForm="ngForm" (ngSubmit)="onSubmit(showForm)">
               <h2>
                 <b id="b">{{ course.name | json }}</b>
               </h2>
@@ -25,9 +26,10 @@
               <h3>Course Contents:</h3>
               <ng-container *ngFor="let content of course.contents">
                   <p>{{content}}</p>
-              </ng-container></div>
-            
-          <!-- </ng-container> -->
+              </ng-container>
+            <input type="submit" id="enroll" value="Enroll" >
+            </form>
+          </div>
         </ng-container>
       </div>
     </ng-container>

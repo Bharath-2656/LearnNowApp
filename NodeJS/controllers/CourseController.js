@@ -35,7 +35,7 @@ app.get('/usercourse', async (req,res) => {
     Course.find((err,data) => {
         if(!err){
             res.send(data);
-        console.log("data collected")}
+        }
         else { console.log("Error in getting data : " + err);}
     });
 });

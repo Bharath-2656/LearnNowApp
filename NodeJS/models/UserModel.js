@@ -25,29 +25,29 @@ const UserSchema = new mongoose.Schema({
     },
     name: {
       type: String,
-      required: 'Name cannot be empty',
+      //required: 'Name cannot be empty',
     },
     age: {
       type: Number,
-      required:'age cannot be empty'
+      //required:'age cannot be empty'
     },
     email: {
         type: String,
         unique: true,
         primaryKey: true,
-        required:'email cannot be empty',
+        //required:'email cannot be empty',
     },
     password: {
         type: String,
-        required:'Password cannot be empty',
+        //required:'Password cannot be empty',
         minlength: [4, 'Password must be atleast 4 character long'],
     },
     confirm_password: {
         type: String,
-        required: 'Confirm password cannot be empty',
+        //required: 'Confirm password cannot be empty',
     },
     courseid: {
-      type: Number,
+      type: String,
     },
     saltSecret:String,
   });
@@ -58,6 +58,16 @@ const UserSchema = new mongoose.Schema({
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
 
+UserSchema.pre('save', function(next){
+  bcrypt.genSalt(10,(err,salt) => {
+    bcrypt.hash(this.password,salt,(err, hash) => {
+      this.password=hash;
+      this.confirm_password=hash;
+      this.saltSecret=this.salt;
+      next();
+    });
+  });
+});
 
 UserSchema.pre("save", function (next) {
   var docs = this;
@@ -71,16 +81,6 @@ UserSchema.pre("save", function (next) {
 });
 
 
-UserSchema.pre('save', function(next){
-  bcrypt.genSalt(10,(err,salt) => {
-    bcrypt.hash(this.password,salt,(err, hash) => {
-      this.password=hash;
-      this.confirm_password=hash;
-      this.saltSecret=this.salt;
-      next();
-    });
-  });
-});
 
 UserSchema.methods.verifyPassword = function (password) {
   return bcrypt.compareSync(password, this.password);

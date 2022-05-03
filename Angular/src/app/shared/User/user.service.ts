@@ -64,4 +64,8 @@ export class UserService {
       return false;
   }
 
+  postUserCourse(courseid: String,userid:Number){
+    return this.http.put(this.baseURL + 'usercourse' + `/${userid}`, this.noAuthHeader);
+  }
+
 }

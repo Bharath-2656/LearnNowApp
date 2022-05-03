@@ -5,7 +5,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './user-routes/login/login.component';
 import { RegisterComponent } from './user-routes/register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../shared/User/user.service';
 import { UserprofileComponent } from './admin-routes/userprofile/userprofile.component';
@@ -28,7 +28,8 @@ import { InstructorComponent } from './instructor/instructor.component';
     CommonModule,
     CoreRoutingModule,
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule,
   
   ],
   exports: [

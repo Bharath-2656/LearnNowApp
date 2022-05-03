@@ -3,7 +3,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 const { User} = require("../models/UserModel");
 const { Course} = require("../models/CourseModel");
 const bodyParser = require("body-parser");
-// const { $where } = require('../models/UserModel');
+
 var { AreaOfInterest } = require('../models/areaOfInterestModel');
 const courseController = require("../controllers/CourseController")
 const passport = require('passport');
@@ -72,6 +72,19 @@ app.put('/users/:userid', (req, res) =>
         age: req.body.age,
         password: req.body.password,
         confirm_password: req.body.confirm_password,
+        courseid: req.body.courseid,
+    };
+    User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
+    {
+        if (!err) { res.send(doc); }
+        else { console.log(`Error in updating user`); }
+    });
+});
+
+app.put('/usercourse/:userid', (req, res) =>
+{
+    var user = {
+        courseid: req.body.courseid,
     };
     User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
     {
@@ -141,7 +154,6 @@ app.get('/areaofinterest', async (req, res) =>
         if (!err)
         {
             res.send(data);
-            console.log("data collected")
         }
         else { console.log("Error in getting data : " + err); }
     });

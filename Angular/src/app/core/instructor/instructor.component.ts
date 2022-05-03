@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InstructorService } from 'src/app/shared/Instructor/instructor.service';
 
@@ -29,5 +30,6 @@ export class InstructorComponent implements OnInit {
       });
 
   };
+
 
 }
