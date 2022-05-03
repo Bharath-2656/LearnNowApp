@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h1 id="heading">Choose your area of interest</h1>
+    <div class="row">
+        
+        <ng-container *ngFor="let areaOfInterest of areaOfInterests">
+        <div class="column">
+            <div class="card">
+                <!-- <img src="https://i.ibb.co/0MTN4KN/web-devolpment.jpg" alt="web-devolpment"> -->
+                <img src={{areaOfInterest.imagesrc}} alt="web-devolpment" class="img" style="width:100%">
+                <div class="container">
+                    <h3><b><a  id="b" [routerLink]="['/user/course', areaOfInterest.routerlink]" routerLinkActive="active">{{areaOfInterest.name}}</a></b></h3>
+                    <!-- <p></p>  -->
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    </div>
+
+</body>
+
+</html>
