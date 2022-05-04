@@ -14,7 +14,9 @@
        
           <ng-container *ngIf="course.routerlink=== id">
             <div class="card">
-              <form class="formOne" #showForm="ngForm" (ngSubmit)="onSubmit(showForm)">
+              <form #showForm="ngForm" (ngSubmit)="onSubmit(showForm)">
+                <input type="hidden" name="courseid"  [(ngModel)]="courseid" >
+                <input type="hidden" name="userid" [(ngModel)]="userid" >
               <h2>
                 <b id="b">{{ course.name | json }}</b>
               </h2>

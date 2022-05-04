@@ -13,6 +13,7 @@ export class CoursepageComponent implements OnInit {
 
   public id!: any;
   public userid!: any;
+  courseid!: any;
   courses: any[] = [];
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
@@ -34,10 +35,12 @@ export class CoursepageComponent implements OnInit {
 
   };
   onSubmit(formOne : NgForm){
-    this.userid = this.userService.getUserPayload().userid;
-    this.userService.postUserCourse(this.id,this.userid).subscribe((res) => {
+    formOne.value.courseid=this.id;
+    formOne.value.userid = this.userService.getUserPayload().userid;
+    this.userService.postUserCourse(formOne.value).subscribe((res) => {
       this.showSuccessMessage = true;
     setTimeout(() => this.showSuccessMessage = false, 4000);
+    this.router.navigate(['/user/areaofinterest']);
   },
   err => {
     if (err.status === 422) {

@@ -80,9 +80,6 @@ app.get('/areaofinterestcourse', async (req, res) =>
                 as: "areaofinterest_courses",
             },
         },
-        // {
-        //     $unwind: "$areaofinterest_courses",
-        // },
     ])
         .then((result) =>
         {

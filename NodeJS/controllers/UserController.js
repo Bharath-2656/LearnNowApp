@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(router);
 
+
+
 app.get('/users', async (req, res) =>
 {
     User.find((err, data) =>
@@ -80,13 +82,15 @@ app.put('/users/:userid', (req, res) =>
         else { console.log(`Error in updating user`); }
     });
 });
-
+// app.use(bodyParser).json;
 app.put('/usercourse/:userid', (req, res) =>
 {
+    console.log("hi");
     var user = {
-        courseid: req.body.courseid,
+        courseid: req.body.courseid
     };
-    User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
+    console.log(req.body);
+    User.findOneAndUpdate({ userid: req.params.userid }, { $push: user }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }
         else { console.log(`Error in updating user`); }

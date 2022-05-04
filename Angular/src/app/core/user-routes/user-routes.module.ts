@@ -4,6 +4,7 @@ import { UserRoutesRoutingModule } from './user-routes-routing.module';
 import { CoursesViewComponent } from './courses-view/courses-view.component';
 import { CoursepageComponent } from './coursepage/coursepage.component';
 import { FormsModule } from '@angular/forms';
+import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollment.component';
 
 
 
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     CoursesViewComponent,
     CoursepageComponent,
+    ConfirmenrollmentComponent,
   ],
   imports: [
     CommonModule,

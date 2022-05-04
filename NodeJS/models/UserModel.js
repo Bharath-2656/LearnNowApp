@@ -47,7 +47,7 @@ const UserSchema = new mongoose.Schema({
         //required: 'Confirm password cannot be empty',
     },
     courseid: {
-      type: String,
+      type: [],
     },
     saltSecret:String,
   });
