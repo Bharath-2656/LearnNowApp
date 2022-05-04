@@ -42,6 +42,9 @@ const CourseSchema = new mongoose.Schema({
     },
     contents : {
       type: [],
+    },
+    courseincludes: {
+      type: [],
     }
   });
 

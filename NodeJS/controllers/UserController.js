@@ -105,7 +105,11 @@ app.delete('/users/:userid', (req, res) =>
         else { console.log("Error in deleting user"); }
     });
 });
-
+// const response = {
+//     "status": "Logged in",
+//     "token": t,
+//     "refreshToken": refreshToken,
+// }
 app.post('/authenticate', (req, res, next) =>
 {
     passport.authenticate('local', (err, user, info) =>
@@ -129,7 +133,7 @@ app.get('/userprofile', jwtHelper.verifyJwtToken, (req, res, next) =>
     );
 });
 
-app.post('/areaofinterest', (req, res) =>
+app.post('/areaofinterest',  (req, res) =>
 {
     var areaofinterest = new AreaOfInterest({
         name: req.body.name,
@@ -151,7 +155,7 @@ app.post('/areaofinterest', (req, res) =>
     });
 });
 
-app.get('/areaofinterest', async (req, res) =>
+app.get('/areaofinterest',  async (req, res) =>
 {
     AreaOfInterest.find((err, data) =>
     {

@@ -24,11 +24,13 @@
               <p>Duration : {{ course.duration}}</p>
               <a id="b"  [routerLink]="['/instructor', course.author]" routerLinkActive="active"><p>Instructor : {{course.author}}</p></a> 
               <p id="price">Rs. {{course.price}}</p>
+              <button id="addtocart" >Add to Cart</button>
               <!-- <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating> -->
               <h3>Course Contents:</h3>
               <ng-container *ngFor="let content of course.contents">
                   <p>{{content}}</p>
               </ng-container>
+              
             <input type="submit" id="enroll" value="Enroll" >
             </form>
           </div>
