@@ -40,7 +40,7 @@ export class CoursepageComponent implements OnInit {
     this.userService.postUserCourse(formOne.value).subscribe((res) => {
       this.showSuccessMessage = true;
     setTimeout(() => this.showSuccessMessage = false, 4000);
-    this.router.navigate(['/user/areaofinterest']);
+    this.router.navigate(['user/confirmenrollment']);
   },
   err => {
     if (err.status === 422) {

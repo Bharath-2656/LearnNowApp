@@ -1,1 +1,25 @@
-<p>confirmenrollment works!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style></style>
+</head>
+
+<body>
+    <div class="row">
+        <ng-container *ngFor="let userDetail of userDetails">
+            <div class="column">
+                <ng-container *ngIf="userDetail.userid==userid">
+                    <div class="card">
+                        <p>{{userDetail.name}} your enrollment is confirmed</p>
+                        <p id="b">Go to dashboard to see all your courses</p>
+                    </div>
+                </ng-container>
+
+            </div>
+        </ng-container>
+    </div>
+</body>
+
+</html>

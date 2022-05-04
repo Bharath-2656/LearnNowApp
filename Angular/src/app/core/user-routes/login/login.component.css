@@ -1,6 +1,45 @@
 *{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.nav-right {
+     
+    align-items: center;
+    margin-left: 900px;
+    position:fixed; 
+    z-index: 100;
+}
+
+
+
+.nav-right ul a {
+    list-style: none;
+    display: inline-block;
+    margin: 0px;
+    margin-top: -19px;
+}
+
+.nav-right a:hover{
+   
+    background-color: #906387;
+    transition: 0.7s;
+}
+.nav-right a{
+    width: auto;
+    /* margin-right: 10px; */
+    font-size: 20px;
+    font-weight: 500;
+    color: #5b446a;
+    background-color: #7dd87d;
+    outline: none;
+    border: #7dd87d;
+    white-space: normal;
+    text-decoration: none;
+    padding: 10px;
+    list-style: none;
+    display: inline-block;
+}   
+
 .formOne{
     font-weight: 500;
     font-size: 19px;

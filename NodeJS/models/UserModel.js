@@ -7,16 +7,9 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 var uniqueValidator = require('mongoose-unique-validator');
-const { JWT_EXP, JWT_SECRET } = require('../Config/config');
-// var mongoDB = 'config.dbUrl';
-// mongoose.connect(config.dbUrl, {useNewUrlParser: true, useUnifiedTopology: true});
+const { JWT_EXP, JWT_SECRET, Refresh_token_secret, Refresh_token_expiry} = require('../Config/config');
 
-// //Get the default connection
-// var db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error: "));
-// db.once("open", function () {
-//   console.log("Connected successfully");
-// });
+
 const UserSchema = new mongoose.Schema({
     userid:{
       type:String,
@@ -92,6 +85,11 @@ UserSchema.methods.generateJwt = function () {
   {
       expiresIn: JWT_EXP
   });
+}
+
+UserSchema.methods.generateRefreshToken = function() {
+  console.log();
+  return jwt.sign({ userid: this.userid}, "RefreshToken", { expiresIn:"30m" });
 }
 
   const User = mongoose.model("User", UserSchema);

@@ -13,19 +13,18 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 0;
     height: 50px;
 }
 .nav-right {
      
     align-items: center;
-    margin-left: 00px;
+    margin-left: 850px;
     margin-top: 00px;
+    position:fixed;
 }
 
-.nav-right ul{  
-    margin-right: 100px;
-}
+
 
 .nav-right ul a {
     list-style: none;
