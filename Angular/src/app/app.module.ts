@@ -7,16 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LoginComponent } from './core/user-routes/login/login.component';
-import { UserService } from './shared/User/user.service';
+import { UserService } from './shared/services/User/user.service';
 import { AuthGuard } from './shared/Auth/auth.guard';
 import { AuthInterceptor } from './shared/Auth/auth.interceptor';
 import { UserRoutesModule } from './core/user-routes/user-routes.module';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilterPipe,
 
   ],
   imports: [

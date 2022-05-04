@@ -7,7 +7,7 @@ import { LoginComponent } from './user-routes/login/login.component';
 import { RegisterComponent } from './user-routes/register/register.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { UserService } from '../shared/User/user.service';
+import { UserService } from '../shared/services/User/user.service';
 import { UserprofileComponent } from './admin-routes/userprofile/userprofile.component';
 import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinterest.component';
 import { BrowserModule } from '@angular/platform-browser';

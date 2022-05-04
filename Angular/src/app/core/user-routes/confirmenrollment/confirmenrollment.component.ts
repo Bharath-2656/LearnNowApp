@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserService } from 'src/app/shared/User/user.service';
+import { UserService } from 'src/app/shared/services/User/user.service';
 
 @Component({
   selector: 'app-confirmenrollment',

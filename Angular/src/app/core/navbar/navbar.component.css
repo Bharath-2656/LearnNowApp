@@ -11,7 +11,7 @@ nav {
     list-style: none;
     width: 1349px;
     position: fixed;
-    display: none;
+    /* display: none; */
     top: 0;
     left: 0;
     z-index: 0;
@@ -78,7 +78,13 @@ nav {
     width: 180px;
     height: 55px;
 }
+#hamburger{
+    display: none;
+}
+.w3-sidebar{
+    display: none;
+}
 @media (max-width: 768px) {
 
-   
+  
 }

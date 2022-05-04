@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { InstructorService } from 'src/app/shared/Instructor/instructor.service';
+import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 
 @Component({
   selector: 'app-instructor',

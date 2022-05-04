@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AreaofinterestService } from 'src/app/shared/AreaOfIntrest/areaofinterest.service';
-import { UserService } from 'src/app/shared/User/user.service';
+import { AreaofinterestService } from 'src/app/shared/services/AreaOfIntrest/areaofinterest.service';
+import { UserService } from 'src/app/shared/services/User/user.service';
 
 @Component({
   selector: 'app-areaofinterest',
