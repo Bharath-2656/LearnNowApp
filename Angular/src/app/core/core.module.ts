@@ -13,6 +13,13 @@ import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinte
 import { BrowserModule } from '@angular/platform-browser';
 import { InstructorComponent } from './instructor/instructor.component';
 import { HomepageComponent } from './Homepage/homepage/homepage.component';
+import { MynavbarComponent } from './mynavbar/mynavbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -25,7 +32,7 @@ import { HomepageComponent } from './Homepage/homepage/homepage.component';
     AreaofinterestComponent,
     InstructorComponent,
     HomepageComponent,
-    
+    MynavbarComponent,
     
   ],
   imports: [
@@ -34,12 +41,19 @@ import { HomepageComponent } from './Homepage/homepage/homepage.component';
     FormsModule,
     BrowserModule,
     FormsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   
   ],
   exports: [
     NavbarComponent,
     LoginComponent,
     AreaofinterestComponent,
+    MynavbarComponent,
   ],
   providers: [UserService],
 })

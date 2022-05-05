@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 var uniqueValidator = require('mongoose-unique-validator');
 const { JWT_EXP, JWT_SECRET, Refresh_token_secret, Refresh_token_expiry} = require('../Config/config');
-
+const dotenv = require("dotenv").config();
 
 const UserSchema = new mongoose.Schema({
     userid:{
@@ -81,15 +81,15 @@ UserSchema.methods.verifyPassword = function (password) {
 
 UserSchema.methods.generateJwt = function () {
   return jwt.sign({ userid: this.userid},
-      JWT_SECRET,
+      process.env.JWT_SECRET,
   {
-      expiresIn: JWT_EXP
+      expiresIn: process.env.JWT_EXP
   });
 }
 
 UserSchema.methods.generateRefreshToken = function() {
   console.log();
-  return jwt.sign({ userid: this.userid}, "RefreshToken", { expiresIn:"30m" });
+  return jwt.sign({ userid: this.userid}, process.env.Refresh_token_secret, { expiresIn:process.env.Refresh_token_expiry });
 }
 
   const User = mongoose.model("User", UserSchema);

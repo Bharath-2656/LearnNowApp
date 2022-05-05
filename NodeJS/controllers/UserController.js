@@ -115,7 +115,7 @@ app.post('/authenticate', (req, res, next) =>
     passport.authenticate('local', (err, user, info) =>
     {
         if (err) return res.status(400).json(err);
-        else if (user) return res.status(200).json({ "token": user.generateJwt(), "refreshToken": user.generateRefreshToken()});
+        else if (user) return res.status(200).json({ "token": user.generateJwt(), });
         else return res.status(404).json(info);
     })(req, res);
 });
@@ -196,11 +196,12 @@ app.get('/areaofinterest',  async (req, res) =>
 
 app.post('/course_mail', async (req, res) =>
 {
+    console.log(req.params.courseid);
 let transprter = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "bharathstarck@gmail.com",
-        pass: "appleisred",
+        pass: process.env.pass,
     },
     tls: {
         rejectUnauthorized:false,
@@ -212,29 +213,30 @@ let mailOptions = {
     to: "bharath2000madhu@gmail.com",
     subject: "Confirmation of enrollemnt",
     // html:{path: `http://localhost:4200/user/confirmenrollment`}
-    text: "You have successfully enrolled in the course on the LearnNow application"
+    text: "You have successfully enrolled in the" + req.body.courseid + "on the LearnNow application"
 }
-transprter.sendMail(mailOptions,function(err,success){
-    if(err)
-    {
-        console.log(err);
-    }
-    else 
-    {
-        console.log("Email has been sent sucessfully");
-    }
-});
+// transprter.sendMail(mailOptions,function(err,success){
+//     if(err)
+//     {
+//         console.log(err);
+//     }
+//     else 
+//     {
+//         console.log("Email has been sent sucessfully");
+//     }
+// });
     res.send("Email sent")
 });
 
 
 app.post('/user_mail', async (req, res) =>
 {
+    console.log(req.body.name);
 let transprter = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "bharathstarck@gmail.com",
-        pass: "appleisred",
+        pass: process.env.pass,
     },
     tls: {
         rejectUnauthorized:false,
@@ -243,10 +245,10 @@ let transprter = nodemailer.createTransport({
 
 let mailOptions = {
     from: "bharathstarck@gmail.com", 
-    to: "bharath2000madhu@gmail.com",
-    subject: "Confirmation of enrollemnt",
+    to: "bharath2000madhu@gmail.com",//to be changed
+    subject: "Confirmation of Registration",
     // html:{path: `http://localhost:4200/user/confirmenrollment`}
-    text: "You have successfully registered on the LearnNow application. Please login to continue"
+    text: "Dear " + req.body.name +  " you have successfully registered on the LearnNow application. Please login to continue"
 }
 transprter.sendMail(mailOptions,function(err,success){
     if(err)

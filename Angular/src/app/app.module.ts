@@ -10,15 +10,13 @@ import { UserService } from './shared/services/User/user.service';
 import { AuthGuard } from './shared/Auth/auth.guard';
 import { AuthInterceptor } from './shared/Auth/auth.interceptor';
 import { UserRoutesModule } from './core/user-routes/user-routes.module';
-import { FilterPipe } from './shared/pipes/filter.pipe';
-import { SortPipe } from './shared/pipes/sort.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
   
   ],
   imports: [
@@ -28,6 +26,8 @@ import { SortPipe } from './shared/pipes/sort.pipe';
     HttpClientModule,
     FormsModule,
     UserRoutesModule,
+    BrowserAnimationsModule,
+ 
   ],
   providers: [UserService,AuthGuard,AuthInterceptor ],
   bootstrap: [AppComponent]

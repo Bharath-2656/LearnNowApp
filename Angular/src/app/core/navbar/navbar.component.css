@@ -1,17 +1,17 @@
-*{
+/* *{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: rgb(67, 177, 100); */
+    /* background-color: rgb(67, 177, 100); */ /*
     background-color: #7dd87d;
     padding: 5px 5%;
     list-style: none;
     width: 1349px;
     position: fixed;
-    /* display: none; */
+    /* display: none; */ /*
     top: 0;
     left: 0;
     z-index: 0;
@@ -36,7 +36,7 @@ nav {
 
 .nav-right ul li button {
     width: auto;
-    /* margin-right: 10px; */
+    /* margin-right: 10px; */ /*
     font-size: 20px;
     font-weight: 500;
     color: #7f67c0;
@@ -53,7 +53,7 @@ nav {
 }
 .nav-right a{
     width: auto;
-    /* margin-right: 10px; */
+    /* margin-right: 10px; */ /*
     font-size: 20px;
     font-weight: 500;
     color: #5b446a;
@@ -84,7 +84,172 @@ nav {
 .w3-sidebar{
     display: none;
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+    .nav-right a:not(:first-child)
+    {
+        display:none;
+    }
+    .nav-right a.icon {
+        float: right;
+        display: block;
+      }
 
-  
+    }
+
+    @media screen and (max-width: 1300px) and (min-width: 700px){
+        .nav-right {
+            background-color:#7dd87d ;
+            overflow: hidden;
+          }
+          
+          /* Style the links inside the navigation bar */ /*
+          .nav-right a {
+            float: left;
+            display: block;
+            color: #5b446a;
+            text-align: center;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 20px;
+          }
+          
+          /* Change the color of links on hover */  /*
+          .nav-right a:hover {
+            background-color: #ddd;
+            color: black;
+          }
+          
+          /* Add an active class to highlight the current page */ /*
+          .nav-right a.active {
+            background-color: #04AA6D;
+            color: #5b446a;
+          }
+          
+          /* Hide the link that should open and close the topnav on small screens */ /*
+          .nav-right .icon {
+            display: none;
+          }
+    }
+    @media screen and (max-width: 600px) {
+    .nav-right.responsive {position: relative;}
+  .nav-right.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .nav-right.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+} */
+
+
+.navbar{
+  height: 40px;
+  width: 95.8%;
+  margin-left: 0px;
+  padding: 14px 30px;
+  vertical-align:middle;
+  background-color: #7dd87d;
+  /* position: relative; */
+  margin-top: 0px;
+}
+.navbar .nav-header{
+  display: inline;
+}
+.navbar .nav-header .nav-logo{
+  display: inline-block;
+  margin-top: -7px;
+}
+.navbar .nav-links{
+  display: inline;
+  float: right;
+  font-size: 18px;
+  margin-top: 10px;
+}
+#logo{
+  margin-top: 5px;
+  width: 180px;
+  height: 55px;
+}
+.navbar .nav-links .loginBtn{
+  display: inline-block;
+  padding: 5px 15px;
+  margin-left: 20px;
+  font-size: 17px;
+  color: rgb(9, 14, 90);
+}
+.navbar .nav-links a{
+  padding: 10px 12px;
+  text-decoration: none;
+  font-weight: 550;
+  color: #5b446a;
+}
+/* Hover effects */
+.navbar .nav-links a:hover{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+ 
+/* responsive navbar toggle button */
+.navbar #nav-check, .navbar .nav-btn{
+  display: none;
+}
+ 
+@media (max-width:700px) {
+  .navbar .nav-btn{
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+  .navbar .nav-btn label {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
+  .navbar .nav-btn label span {
+    display: block;
+    height: 7px;
+    width: 20px;
+    border-top: 3px solid #eee;
+  }
+  .navbar .nav-btn label:hover, .navbar #nav-check:checked ~ .nav-btn label {
+    background-color:#5b446a ;
+  }
+  .navbar .nav-links{
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 50%;
+    background-color: #7dd87d;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 70px;  
+    right: 0px;
+  }
+  .navbar .nav-links a {
+    display: block;
+  }
+ 
+  /* when nav toggle button not checked */
+  .navbar #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+ 
+  /* when nav toggle button is checked */
+  .navbar #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  .navbar .nav-links .loginBtn {
+    padding: 10px 40px ;
+    margin: 20px;
+    font-size:  18px;
+    font-weight: bold;
+    color: #7dd87d;
+  }
+   
+ 
 }

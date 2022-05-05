@@ -11,51 +11,66 @@
 
 <body>
   <h1 id="heading">Courses based on your choice</h1>
-  <div class="column">
-    <label>Filter Course: &nbsp; </label>
-<input [(ngModel)]='Course'>
-<select id="params" [(ngModel)]="Parameter" name="select">
-  <option value="name">Name</option>
-    <option value="author">Author</option>
-    <option value="price">Price</option>
-</select>
-<button type="button" (click)="onCourseFilter()">Search</button>
-<button type="button" (click)="onCourseFilterClear()">Clear</button>
-<br><br>
-<label>Sort by </label>
-<select [(ngModel)] = 'SortbyParam'>
-  <option value="course">Course</option>
-  <option value="author">Author</option>
-  <option value="price">Price</option>
-</select>
+  <div class="grid">
+    <div id="one">
+      <div class="card">
+      <label class="label">Filter Course: &nbsp; </label>
+      <input [(ngModel)]='Course'>
+      <select id="params" [(ngModel)]="Parameter" name="select">
+        <option value="name">Name</option>
+        <option value="author">Author</option>
+        <option value="price">Price</option>
+      </select>
+      <div id="buttons">
+      <div id="inner"><button type="button" class="button" (click)="onCourseFilter()">Search</button></div>
+      <div id="inner"><button type="button" class="button" (click)="onCourseFilterClear()">Clear</button></div>
+    </div>
+      <br><br>
+      </div>
+      <div class="card">
+      <label>Sort by </label>
+      <select [(ngModel)]='SortbyParam'>
+        <option value="course">Course</option>
+        <option value="author">Author</option>
+        <option value="price">Price</option>
+      </select>
 
-<button type="button" (click) = "onSortDirection()">
-  <i class="fa fa-fw fa-sort"></i>
-  <!-- <i *ngIf="SortDirection==='desc'" class="fa fa-fw fa-sort"></i> -->
-</button>
-<br><br>
-  <div class="row">
-    <ng-container *ngFor="let courseservice of courseservices">
+      <button type="button" (click)="onSortDirection()">
+        <i class="fa fa-fw fa-sort"></i>
+        <!-- <i *ngIf="SortDirection==='desc'" class="fa fa-fw fa-sort"></i> -->
+      </button>
+    </div>
+  </div>
+ 
+    <div id="two">
       
-        <ng-container *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses | filter:SearchCourse:Parameter | sort:SortbyParam:SortDirection ">
+      <ng-container *ngFor="let courseservice of courseservices">
+
+        <ng-container
+          *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses | filter:SearchCourse:Parameter | sort:SortbyParam:SortDirection ">
 
           <ng-container *ngIf="areaofinterest_course.category === id">
             <div class="card">
-  
+
               <h3>
-                <a id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{ areaofinterest_course.name}}</b></a>
+                <a id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{
+                    areaofinterest_course.name}}</b></a>
               </h3>
               <p>{{ areaofinterest_course.description}}</p>
               <p>Duration : {{ areaofinterest_course.duration}}</p>
-              <a id="b"  [routerLink]="['/instructor', areaofinterest_course.author]" routerLinkActive="active"><p>Instructor : {{areaofinterest_course.author}}</p></a>
+              <a id="b" [routerLink]="['/instructor', areaofinterest_course.author]" routerLinkActive="active">
+                <p>Instructor : {{areaofinterest_course.author}}</p>
+              </a>
               <p id="price">Price : {{areaofinterest_course.price}}</p>
             </div>
           </ng-container>
         </ng-container>
-      
-    </ng-container>
+
+      </ng-container>
+    
     </div>
   </div>
+
 </body>
 
 </html>
