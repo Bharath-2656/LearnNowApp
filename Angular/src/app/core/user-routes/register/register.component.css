@@ -206,11 +206,11 @@ button {
     /* position:fixed; */
 }
 #logo{
-    width: 200px;
+    width: 300px;
     align-self: center;
-    margin-right: 120px;
+    margin-right: 18%;
     margin-bottom: 15px;
-  
+    
 }
 #submit{
     align-items: center;

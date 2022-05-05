@@ -11,12 +11,14 @@ import { AuthGuard } from './shared/Auth/auth.guard';
 import { AuthInterceptor } from './shared/Auth/auth.interceptor';
 import { UserRoutesModule } from './core/user-routes/user-routes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './core/user-routes/footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FooterComponent,
   
   ],
   imports: [

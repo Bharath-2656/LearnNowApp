@@ -29,7 +29,7 @@
       </div>
       <div class="card">
       <label>Sort by </label>
-      <select [(ngModel)]='SortbyParam'>
+      <select id="sort" [(ngModel)]='SortbyParam'>
         <option value="course">Course</option>
         <option value="author">Author</option>
         <option value="price">Price</option>
@@ -53,7 +53,7 @@
             <div class="card">
 
               <h3>
-                <a id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{
+                <a style="font-size: 23px;" id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{
                     areaofinterest_course.name}}</b></a>
               </h3>
               <p>{{ areaofinterest_course.description}}</p>

@@ -122,9 +122,9 @@
     border-radius: 3%;
 }
 #logo{
-    width: 200px;
+    width: 300px;
     align-self: center;
-    margin-right: 130px;
+    margin-right: 20%;
     margin-bottom: 20px;
 }
 .error
@@ -182,4 +182,10 @@
 body{
     margin: 0;
     /* margin-top: -595px; */
+}
+@media screen and (max-width:750px) {
+#image
+    {
+        margin-top: 2%;
+    }
 }

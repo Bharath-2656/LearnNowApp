@@ -10,7 +10,6 @@ import { UserprofileComponent } from './admin-routes/userprofile/userprofile.com
 import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinterest.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { InstructorComponent } from './instructor/instructor.component';
-import { HomepageComponent } from './Homepage/homepage/homepage.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,7 +27,6 @@ import { MatListModule } from '@angular/material/list';
     UserprofileComponent,
     AreaofinterestComponent,
     InstructorComponent,
-    HomepageComponent,
   ],
   imports: [
     CommonModule,

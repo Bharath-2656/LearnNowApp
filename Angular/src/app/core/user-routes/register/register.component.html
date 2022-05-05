@@ -22,7 +22,7 @@
 
         <form #userform="ngForm" class="formOne" (ngSubmit)="onSubmit(userform)">
 
-            <div><img id="logo" src="https://i.ibb.co/W0STDV1/Screenshot-725.png"></div>
+            <div><img id="logo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUsers.userid">
             <label>NAME</label><input id="name" type="text" name="name" autocapitalize="sentences" pattern="^[a-zA-Z]+$" required #name="ngModel" [(ngModel)]="userService.selectedUsers.name" [ngClass]="!name.valid && name.touched? 'invalid-textbox':'name'"><br>
             <div> <span *ngIf="name.invalid && name.touched" style="color: red;" class="error">Invalid Name</span></div>

@@ -7,8 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollment.component';
 import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 
 @NgModule({
@@ -23,7 +21,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     UserRoutesRoutingModule,
     FormsModule,
-    FontAwesomeModule,
   ],
 })
 export class UserRoutesModule { }
