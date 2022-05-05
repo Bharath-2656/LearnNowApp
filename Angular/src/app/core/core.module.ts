@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CoreRoutingModule } from './core-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './user-routes/login/login.component';
 import { RegisterComponent } from './user-routes/register/register.component';
 import { FormsModule, NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { UserService } from '../shared/services/User/user.service';
 import { UserprofileComponent } from './admin-routes/userprofile/userprofile.component';
 import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinterest.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { InstructorComponent } from './instructor/instructor.component';
 import { HomepageComponent } from './Homepage/homepage/homepage.component';
-import { MynavbarComponent } from './mynavbar/mynavbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,8 +29,6 @@ import { MatListModule } from '@angular/material/list';
     AreaofinterestComponent,
     InstructorComponent,
     HomepageComponent,
-    MynavbarComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -47,13 +42,11 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-  
   ],
   exports: [
     NavbarComponent,
     LoginComponent,
     AreaofinterestComponent,
-    MynavbarComponent,
   ],
   providers: [UserService],
 })

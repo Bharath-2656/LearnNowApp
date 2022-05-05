@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from 'src/app/shared/services/User/user.service'
 import { NgForm } from '@angular/forms';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
-// import { User } from 'src/app/shared/user.model';
+
 
 
 var M: any;
