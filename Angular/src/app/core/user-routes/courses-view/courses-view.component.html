@@ -6,28 +6,55 @@
   <style></style>
 </head>
 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
+
 <body>
   <h1 id="heading">Courses based on your choice</h1>
+  <div class="column">
+    <label>Filter Course: &nbsp; </label>
+<input [(ngModel)]='Course'>
+<select id="params" [(ngModel)]="Parameter" name="select">
+  <option value="name">Name</option>
+    <option value="author">Author</option>
+    <option value="price">Price</option>
+</select>
+<button type="button" (click)="onCourseFilter()">Search</button>
+<button type="button" (click)="onCourseFilterClear()">Clear</button>
+<br><br>
+<label>Sort by </label>
+<select [(ngModel)] = 'SortbyParam'>
+  <option value="course">Course</option>
+  <option value="author">Author</option>
+  <option value="price">Price</option>
+</select>
+
+<button type="button" (click) = "onSortDirection()">
+  <i class="fa fa-fw fa-sort"></i>
+  <!-- <i *ngIf="SortDirection==='desc'" class="fa fa-fw fa-sort"></i> -->
+</button>
+<br><br>
   <div class="row">
     <ng-container *ngFor="let courseservice of courseservices">
-      <div class="column">
-        
-        <ng-container *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses|filter:'':''">
+      
+        <ng-container *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses | filter:SearchCourse:Parameter | sort:SortbyParam:SortDirection ">
 
           <ng-container *ngIf="areaofinterest_course.category === id">
             <div class="card">
   
               <h3>
-                <a id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{ areaofinterest_course.name | json }}</b></a>
+                <a id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{ areaofinterest_course.name}}</b></a>
               </h3>
               <p>{{ areaofinterest_course.description}}</p>
               <p>Duration : {{ areaofinterest_course.duration}}</p>
               <a id="b"  [routerLink]="['/instructor', areaofinterest_course.author]" routerLinkActive="active"><p>Instructor : {{areaofinterest_course.author}}</p></a>
+              <p id="price">Price : {{areaofinterest_course.price}}</p>
             </div>
           </ng-container>
         </ng-container>
-      </div>
+      
     </ng-container>
+    </div>
   </div>
 </body>
 

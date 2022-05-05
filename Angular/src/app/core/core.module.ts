@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { InstructorComponent } from './instructor/instructor.component';
 
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -22,6 +23,7 @@ import { InstructorComponent } from './instructor/instructor.component';
     UserprofileComponent,
     AreaofinterestComponent,
     InstructorComponent,
+    
     
   ],
   imports: [

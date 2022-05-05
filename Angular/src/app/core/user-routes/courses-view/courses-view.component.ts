@@ -13,7 +13,11 @@ export class CoursesViewComponent implements OnInit {
   public id!: any;
   courseservices: any[] = [];
   course: any[] = [];
-
+  Course: any = '';
+  SearchCourse: string= '';
+  Parameter: string='';
+  SortbyParam: string='';
+  SortDirection = 'asc';
   constructor(private courseService: CourseService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -31,5 +35,22 @@ export class CoursesViewComponent implements OnInit {
       });
 
   };
+  onCourseFilter() {
+    this.SearchCourse = this.Course;
+    
+  }
+
+  onCourseFilterClear() {
+    this.SearchCourse = '';
+    this.Course = '';
+  }
+
+  onSortDirection() {
+    if (this.SortDirection === 'desc') {
+      this.SortDirection = 'asc';
+    } else {
+      this.SortDirection = 'desc';
+    }
+  }
 
 }
