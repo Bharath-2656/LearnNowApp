@@ -45,6 +45,24 @@ const CourseSchema = new mongoose.Schema({
     },
     courseincludes: {
       type: [],
+    },
+    couponcode: {
+      type: String,
+    },
+    language: {
+      type: String,
+    },
+    rating: {
+      type: Number,
+    },
+    enrolledstudents: {
+      type: Number,
+    },
+    requirements: {
+      type: [],
+    },
+    reviews: {
+      type: [],
     }
   });
 

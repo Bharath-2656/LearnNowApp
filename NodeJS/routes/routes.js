@@ -3,6 +3,7 @@ const userModel = require("../models/UserModel");
 const userController = require("../controllers/UserController");
 const courseController = require("../controllers/CourseController");
 const instructorController = require("../controllers/InstructorController");
+// const mailer = require("../models/mailer");
 const cors = require("cors");
 var bodyParser = require('body-parser');
 var router = express.Router();
@@ -37,6 +38,6 @@ app.listen(9000, () => {
 app.use('/admin', userController);
 app.use('/course', courseController)
 app.use('/instructor', instructorController);
- 
+// app.use('/mailer', mailer);
 
 module.exports = app;
