@@ -37,6 +37,9 @@ export class CoursepageComponent implements OnInit {
   onSubmit(formOne : NgForm){
     formOne.value.courseid=this.id;
     formOne.value.userid = this.userService.getUserPayload().userid;
+    this.courseService.sendConfirmationMail(this.courses).subscribe((res) => {
+        
+    });
     this.userService.postUserCourse(formOne.value).subscribe((res) => {
       this.showSuccessMessage = true;
     setTimeout(() => this.showSuccessMessage = false, 4000);

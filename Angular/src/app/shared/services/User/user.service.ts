@@ -70,4 +70,12 @@ export class UserService {
     return this.http.put(this.baseURL + 'usercourse' + `/${user.userid}`,user);
   }
 
+  sendConfirmationMail(user: User)
+  {
+    console.log("presidio");
+    
+    return this.http.post('http://localhost:9000/admin/user_mail', user);
+  }
+
+
 }

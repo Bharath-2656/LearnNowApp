@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from 'src/app/shared/services/User/user.service'
 import { NgForm } from '@angular/forms';
+import { CourseService } from 'src/app/shared/services/Course/course.service';
 // import { User } from 'src/app/shared/user.model';
 
 
@@ -15,7 +16,7 @@ var M: any;
 export class RegisterComponent implements OnInit {
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.resetForm(); 
@@ -40,6 +41,8 @@ export class RegisterComponent implements OnInit {
         this.userService.postUser(form.value).subscribe((res) => {
           this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
+        this.userService.sendConfirmationMail(form.value).subscribe((res) => {
+        });
         this.resetForm(form);
       },
       err => {

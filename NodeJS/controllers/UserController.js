@@ -3,7 +3,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 const { User} = require("../models/UserModel");
 const { Course} = require("../models/CourseModel");
 const bodyParser = require("body-parser");
-
+const nodemailer = require('nodemailer');
 var { AreaOfInterest } = require('../models/areaOfInterestModel');
 const courseController = require("../controllers/CourseController")
 const passport = require('passport');
@@ -192,6 +192,73 @@ app.get('/areaofinterest',  async (req, res) =>
         {
             console.log(error);
         });
+});
+
+app.post('/course_mail', async (req, res) =>
+{
+let transprter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "bharathstarck@gmail.com",
+        pass: "appleisred",
+    },
+    tls: {
+        rejectUnauthorized:false,
+    }
+});
+
+let mailOptions = {
+    from: "bharathstarck@gmail.com", 
+    to: "bharath2000madhu@gmail.com",
+    subject: "Confirmation of enrollemnt",
+    // html:{path: `http://localhost:4200/user/confirmenrollment`}
+    text: "You have successfully enrolled in the course on the LearnNow application"
+}
+transprter.sendMail(mailOptions,function(err,success){
+    if(err)
+    {
+        console.log(err);
+    }
+    else 
+    {
+        console.log("Email has been sent sucessfully");
+    }
+});
+    res.send("Email sent")
+});
+
+
+app.post('/user_mail', async (req, res) =>
+{
+let transprter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "bharathstarck@gmail.com",
+        pass: "appleisred",
+    },
+    tls: {
+        rejectUnauthorized:false,
+    }
+});
+
+let mailOptions = {
+    from: "bharathstarck@gmail.com", 
+    to: "bharath2000madhu@gmail.com",
+    subject: "Confirmation of enrollemnt",
+    // html:{path: `http://localhost:4200/user/confirmenrollment`}
+    text: "You have successfully registered on the LearnNow application. Please login to continue"
+}
+transprter.sendMail(mailOptions,function(err,success){
+    if(err)
+    {
+        console.log(err);
+    }
+    else 
+    {
+        console.log("Email has been sent sucessfully");
+    }
+});
+    res.send("Email sent")
 });
 
 module.exports = app;

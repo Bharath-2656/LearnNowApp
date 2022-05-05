@@ -15,4 +15,8 @@ export class CourseService {
   getCourse(){
     return this.http.get(this.baseURL + 'usercourse')
   }
+  sendConfirmationMail(courses:any)
+  {
+    return this.http.post('http://localhost:9000/admin/course_mail', courses);
+  }
 }
