@@ -1,9 +1,11 @@
-export class User {
+export class Course {
     name!: String;
     description!: String;
-    duration!: Number;
+    duration!: String;
     author!: String;
     category!: String;
     price!: Number;
+    contents: String[] =[];
+    language!: String;
     courseid!: Number;
 }

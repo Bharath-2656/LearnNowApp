@@ -1,10 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Course } from './course.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
+  [x: string]: any;
+
+  selectedCourses!: Course;
+  courses!: Course[];
   readonly baseURL = 'http://localhost:9000/course/';
 
   constructor(private http: HttpClient) { }
@@ -15,6 +20,18 @@ export class CourseService {
   getCourse(){
     return this.http.get(this.baseURL + 'usercourse')
   }
+  postCourse(course: Course) {
+    return this.http.post(this.baseURL + 'usercourse', course);
+  }
+
+  putCourse(course: Course) {
+    return this.http.put(this.baseURL + 'usercourse' + `/${course.courseid}`, course);
+  }
+
+  deleteCourse(course: Course) {
+    return this.http.delete(this.baseURL + 'usercourse' + `/${course.courseid}`);
+  }
+
   sendConfirmationMail(courses:any)
   {
     return this.http.post('http://localhost:9000/admin/course_mail', courses);

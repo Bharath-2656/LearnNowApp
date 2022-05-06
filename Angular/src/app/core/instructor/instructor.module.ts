@@ -4,12 +4,14 @@ import { InstructorRoutingModule } from './instructor-routing.module';
 import { InstructorProfileComponent } from './instructor-profile/instructor-profile.component';
 import { FormsModule } from '@angular/forms';
 import { InstructorRegisterComponent } from './instructor-register/instructor-register.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 
 @NgModule({
   declarations: [
     InstructorProfileComponent,
-    InstructorRegisterComponent
+    InstructorRegisterComponent,
+    AddCourseComponent
   ],
   imports: [
     CommonModule,

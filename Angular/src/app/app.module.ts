@@ -14,6 +14,8 @@ import { FooterComponent } from './core/user-routes/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { InstructorLoginComponent } from './core/instructor/instructor-login/instructor-login.component';
 import { InstructorModule } from './core/instructor/instructor.module';
+import { CourseService } from './shared/services/Course/course.service';
+import { InstructorService } from './shared/services/Instructor/instructor.service';
 
 
 @NgModule({
@@ -33,7 +35,7 @@ import { InstructorModule } from './core/instructor/instructor.module';
     BrowserAnimationsModule,
     InstructorModule,
   ],
-  providers: [UserService,AuthGuard,AuthInterceptor ],
+  providers: [UserService,AuthGuard,AuthInterceptor,CourseService,InstructorService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

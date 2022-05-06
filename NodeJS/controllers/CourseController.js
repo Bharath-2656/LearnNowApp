@@ -15,14 +15,14 @@ app.post('/usercourse', (req,res) => {
         name: req.body.name,
         description: req.body.description,
         duration: req.body.duration,
-        author: req.body.author,
-        category: req.body.category.replace(/\s+/g, '').toLowerCase(),
+        // author: req.body.author,
+        category: req.body.category,//.replace(/\s+/g, '').toLowerCase(),
         price: req.body.price,
         contents: req.body.contents,
-        courseincludes: req.body.courseincludes,
+        // courseincludes: req.body.courseincludes,
         language: req.body.language,
-        enrolledstudents: req.body.enrolledstudents,
-        reviews: req.body.reviews
+        // enrolledstudents: req.body.enrolledstudents,
+        // reviews: req.body.reviews
     });
     course.save((err,doc) => {
         if(!err) { res.send(doc);

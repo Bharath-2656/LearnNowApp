@@ -194,7 +194,8 @@ button {
     color: rgb(63, 58, 58);
     font-size: 19px;
     font-weight: 500;
-    
+    vertical-align: middle;
+    border-width: 2px;
 }
 #image{
     /* width: 400px;

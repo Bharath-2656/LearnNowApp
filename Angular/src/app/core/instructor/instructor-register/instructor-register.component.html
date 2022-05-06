@@ -25,7 +25,7 @@
             <div> <span *ngIf="age.invalid && age.touched" style="color: red;" class="error">Invalid Age</span></div>
             <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false" [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]="instructorService.selectedInstructors.email"><br>
             <div> <span *ngIf="email.invalid && email.touched" style="color: red;" class="error">Invalid email</span></div>
-            <label>DESCRIPTION</label><input id="description" name="description" type="text" #description="ngModel" [(ngModel)]="instructorService.selectedInstructors.description"><br>
+            <label>DESCRIPTION</label><textarea id="description" name="description" type="" #description="ngModel" [(ngModel)]="instructorService.selectedInstructors.description"></textarea><br>
             <label>PASSWORD</label> <input id="password" type="password" name="password" [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel" [(ngModel)]="instructorService.selectedInstructors.password"><br>
                 <div> <span *ngIf="password.invalid && password.touched" style="color: red;" class="error">Invalid Password</span></div>
             
