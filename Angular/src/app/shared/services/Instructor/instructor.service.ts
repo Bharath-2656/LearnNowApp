@@ -6,6 +6,8 @@ import { Instructor } from './instructor.model';
   providedIn: 'root'
 })
 export class InstructorService {
+  selectedInstructors!: Instructor;
+  instructors!: Instructor[];
   readonly baseURL = 'http://localhost:9000/instructor/';
 
   constructor(private http: HttpClient) { }
@@ -14,14 +16,14 @@ export class InstructorService {
     return this.http.get(this.baseURL + 'instructors');
   }
   postInstructor(instructor: Instructor) {
-    return this.http.post(this.baseURL + 'users', instructor);
+    return this.http.post(this.baseURL + 'instructors', instructor);
   }
 
   putinstructor(instructor: Instructor) {
-    return this.http.put(this.baseURL + 'users' + `/${instructor.instructorid}`, instructor);
+    return this.http.put(this.baseURL + 'instructors' + `/${instructor.instructorid}`, instructor);
   }
 
   deleteInstructor(instructor: Instructor) {
-    return this.http.delete(this.baseURL + 'users' + `/${instructor.instructorid}`);
+    return this.http.delete(this.baseURL + 'instructors' + `/${instructor.instructorid}`);
   }
 }

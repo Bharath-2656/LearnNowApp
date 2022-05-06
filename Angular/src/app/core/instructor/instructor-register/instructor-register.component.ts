@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
+import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/shared/services/User/user.service';
 export class InstructorRegisterComponent implements OnInit {
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
-  constructor(public userService: UserService, private courseService: CourseService) { }
+  constructor(public instructorService: InstructorService, private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.resetForm(); 
@@ -20,24 +21,23 @@ export class InstructorRegisterComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form)
       form.reset();
-    this.userService.selectedUsers = {
-      userid:0,
+    this.instructorService.selectedInstructors = {
+      instructorid:"",
       name: "",
       age: 18,
       email: "",
+      description: "",
       password: "",
-      confirm_password: "",
-      courseid: "",
     };
     this.serverErrorMessages = '';
   }
   
     onSubmit(form: NgForm) {
-        this.userService.postUser(form.value).subscribe((res) => {
+        this.instructorService.postInstructor(form.value).subscribe((res) => {
           this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
-        this.userService.sendConfirmationMail(form.value).subscribe((res) => {
-        });
+        // this.instructorService.sendConfirmationMail(form.value).subscribe((res) => {
+        // });
         this.resetForm(form);
       },
       err => {

@@ -181,12 +181,13 @@ button {
     font-weight: 500;
     text-align: left ;
 }
-.confirmpassword
+#description
 {
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
     width: 250px;
-    height: 30px;
+    height: 90px;
+    text-align: left;
     border-radius: 12px;
     border-color: #2c2b2b57;
     box-shadow: inset;

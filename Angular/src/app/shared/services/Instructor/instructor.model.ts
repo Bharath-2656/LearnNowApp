@@ -3,6 +3,7 @@ export class Instructor {
     name!: String;
     age!: Number;
     email!: String;
+    description!: String;
     password!: String;
-    descrption!: String;
+   
 }

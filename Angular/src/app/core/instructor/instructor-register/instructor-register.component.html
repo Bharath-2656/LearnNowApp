@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,24 +12,23 @@
 <body>
 
     <div align="right" class="main">
-        <h1>Welcome Student</h1>
+        <h1>Welcome Instructor</h1>
         <h2>Add Details</h2>
 
         <form #userform="ngForm" class="formOne" (ngSubmit)="onSubmit(userform)">
 
             <div><img id="logo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
-            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUsers.userid">
-            <label>NAME</label><input id="name" type="text" name="name" autocapitalize="sentences" pattern="^[a-zA-Z]+$" required #name="ngModel" [(ngModel)]="userService.selectedUsers.name" [ngClass]="!name.valid && name.touched? 'invalid-textbox':'name'"><br>
+           
+            <label>NAME</label><input id="name" type="text" name="name" autocapitalize="sentences" pattern="^[a-zA-Z]+$" required #name="ngModel" [(ngModel)]="instructorService.selectedInstructors.name" [ngClass]="!name.valid && name.touched? 'invalid-textbox':'name'"><br>
             <div> <span *ngIf="name.invalid && name.touched" style="color: red;" class="error">Invalid Name</span></div>
-            <label>AGE</label> <input id="age" type="text" name="age" placeholder="" required pattern="^[0-9]{2}$" [ngClass]="!age.valid && age.touched? 'invalid-textbox':'age'" #age="ngModel" [(ngModel)]="userService.selectedUsers.age"><br>
+            <label>AGE</label> <input id="age" type="text" name="age" placeholder="" required pattern="^[0-9]{2}$" [ngClass]="!age.valid && age.touched? 'invalid-textbox':'age'" #age="ngModel" [(ngModel)]="instructorService.selectedInstructors.age"><br>
             <div> <span *ngIf="age.invalid && age.touched" style="color: red;" class="error">Invalid Age</span></div>
-            <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false" [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]="userService.selectedUsers.email"><br>
+            <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false" [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]="instructorService.selectedInstructors.email"><br>
             <div> <span *ngIf="email.invalid && email.touched" style="color: red;" class="error">Invalid email</span></div>
-            <label>PASSWORD</label> <input id="password" type="password" name="password" [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel" [(ngModel)]="userService.selectedUsers.password"><br>
+            <label>DESCRIPTION</label><input id="description" name="description" type="text" #description="ngModel" [(ngModel)]="instructorService.selectedInstructors.description"><br>
+            <label>PASSWORD</label> <input id="password" type="password" name="password" [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel" [(ngModel)]="instructorService.selectedInstructors.password"><br>
                 <div> <span *ngIf="password.invalid && password.touched" style="color: red;" class="error">Invalid Password</span></div>
-            <label>CONFIRM PASSWORD</label> <input id="confirmpassword" type="password" [ngClass]="!confirm_password.valid && confirm_password===password && confirm_password.touched? 'invalid-textbox':'confirmpassword'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required name="confirm_password"
-                #confirm_password="ngModel" [(ngModel)]="userService.selectedUsers.confirm_password"><br>
-                <div> <span *ngIf="confirm_password.invalid && confirm_password.touched" style="color: red;" class="confirmpassworderror">Invalid Confirm Password</span></div>
+            
                 <span><input type="button" id="button" value="Reset" type="button" (click)="resetForm(userform)">
            <input type="submit" id="submit" [disabled]="!userform.valid" value="Register"></span>
             <br>
@@ -47,4 +46,4 @@
  
     
 </body>
-</html> -->
+</html>

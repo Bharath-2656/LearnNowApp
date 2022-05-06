@@ -30,8 +30,8 @@ app.post('/instructors', (req, res) =>
         description: req.body.description,
         password: req.body.password,
         instructorid: req.body.name.replace(/\s+/g, '').toLowerCase(),
-        numberofcourses: req.body.numberofcourses,
-        numberofstudents: req.body.numberofstudents,
+        // numberofcourses: req.body.numberofcourses,
+        // numberofstudents: req.body.numberofstudents,
     });
     instructor.save((err, doc) =>
     {
