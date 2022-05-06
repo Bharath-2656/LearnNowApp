@@ -11,11 +11,12 @@ export class SortPipe implements PipeTransform {
     const sortField=args[0];
     const sortDirection = args[1]
     let modifier= 1;
-
+    
     if(sortDirection === 'desc')
     {
       modifier=-1;
     }
+  
     value.sort(( a: any, b:any) => {
       if(a[sortField] < b[sortField])
       {
@@ -31,5 +32,4 @@ export class SortPipe implements PipeTransform {
     });
     return value;
   }
-
 }

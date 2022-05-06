@@ -13,14 +13,31 @@ export class FilterPipe implements PipeTransform {
       return value;
     }
 
-    for(const item of value)
+    // for(const item of value)
+    // {
+    //   if(item[propertyName] ===filterString)
+    //   {
+    //     result.push(item);
+    //   }
+    // }
+    // return result;
+
+    if(propertyName==='price')
     {
-      if(item[propertyName] ===filterString)
+      for(const item of value)
       {
-        result.push(item);
+        if(item[propertyName]==filterString)
+        {
+          result.push(item);
+        }
       }
+      return result;
+      
     }
-    return result;
+    return value.filter( str => {
+      return str[propertyName].toLowerCase().includes(filterString.toLowerCase());
+    });
+
   }
 
 }
