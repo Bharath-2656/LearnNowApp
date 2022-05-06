@@ -5,7 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [ 
   {path:'user', loadChildren:()=> import('./core/user-routes/user-routes.module').then(m=>m.UserRoutesModule)},
-  {path: 'admin', loadChildren:() => import('./core/admin-routes/admin-routes.module').then(m=>m.AdminRoutesModule)}
+  {path: 'admin', loadChildren:() => import('./core/admin-routes/admin-routes.module').then(m=>m.AdminRoutesModule)},
+  {path:'instructor', loadChildren:() => import('./core/instructor/instructor.module').then(m=>m.InstructorModule)},
 ];
 
 @NgModule({

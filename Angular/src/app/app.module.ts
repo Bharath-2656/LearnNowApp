@@ -12,24 +12,26 @@ import { AuthInterceptor } from './shared/Auth/auth.interceptor';
 import { UserRoutesModule } from './core/user-routes/user-routes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './core/user-routes/footer/footer.component';
-
-
+import { CommonModule } from '@angular/common';
+import { InstructorModule } from './core/instructor/instructor.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
+    
   
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
     FormsModule,
     UserRoutesModule,
     BrowserAnimationsModule,
- 
+    InstructorModule,
   ],
   providers: [UserService,AuthGuard,AuthInterceptor ],
   bootstrap: [AppComponent]

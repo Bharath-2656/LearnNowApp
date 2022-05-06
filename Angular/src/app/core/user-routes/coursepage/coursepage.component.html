@@ -23,7 +23,12 @@
               <h3>{{ course.name}}</h3>
               <p>{{ course.description }}</p>
               <p>Duration : {{ course.duration}}</p>
-              <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active"><p>Instructor : {{course.author}}</p></a>
+              <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
+                <p>Instructor : {{course.author}}</p>
+              </a><div id="small">
+              <p>Language : {{course.language}}</p>
+              <p>Students Enrolled : {{course.enrolledstudents}}</p>
+            </div>
               <h3>Course Contents:</h3>
               <ng-container *ngFor="let content of course.contents">
                 <p>{{content}}</p>
@@ -41,14 +46,19 @@
                 <p>{{include}}</p>
               </ng-container>
             </div>
+          </div><br>
+          <div class="card">
+          <div id="three" class="card">
+            <p>Reviews</p>
+            </div>
           </div>
         </div>
       </form>
 
     </ng-container>
-    <!-- </div> -->
+
   </ng-container>
-  <!-- </div> -->
+
 </body>
 
 </html>

@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../Config/config');
 var server = require('../server');
 const bcrypt = require('bcryptjs');
 const app = express();
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 var uniqueValidator = require('mongoose-unique-validator');
-const { JWT_EXP, JWT_SECRET, Refresh_token_secret, Refresh_token_expiry} = require('../Config/config');
 const dotenv = require("dotenv").config();
 
 const UserSchema = new mongoose.Schema({

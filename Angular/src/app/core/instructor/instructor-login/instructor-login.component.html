@@ -1,0 +1,43 @@
+<!-- <!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%> 
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    
+    <link rel="stylesheet" href="login.component.css">
+    </head>
+    <body>
+        <!-- <nav>
+            
+            <div class="nav-right">
+                <ul>
+                    <a routerLink="user/login" routerLinkActive="active">Login</a>
+                    <a routerLink="user/register" routerLinkActive="active">Register</a>
+                    <a routerLink="user/areaofinterest" routerLinkActive="active">Area of Interest</a>
+                </ul>
+            </div> 
+        </nav> 
+        <div align="right" class="main">
+            <h1>Login Page</h1>
+            <h2>Enter Login Details</h2>
+            <form class="formOne" #showForm="ngForm" (ngSubmit)="onSubmit(showForm)" novalidate >
+                
+                 <div><img id="logo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
+                 <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false" [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" ngModel><br>
+                <div> <span *ngIf="email.invalid && email.touched" style="color: red;" class="error">Invalid email</span></div>
+                <label>PASSWORD</label> <input id="password" type="password" name="password" [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel" ngModel><br>
+                <div> <span *ngIf="password.invalid && password.touched" style="color: red;" class="error">Invalid Password</span></div>
+                <input type="submit" id="button" value="Submit">
+                <br>
+            </form>
+            <div align="left">
+                <img id="image" alt="course image" src="https://i.ibb.co/z6zrnN8/Course-App.png" >
+            </div>
+        </div>
+        <div class="servererror" *ngIf="serverErrorMessages">
+            {{serverErrorMessages}}</div>
+    
+    </body>
+    </html> -->

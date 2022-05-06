@@ -18,7 +18,11 @@ app.post('/usercourse', (req,res) => {
         author: req.body.author,
         category: req.body.category.replace(/\s+/g, '').toLowerCase(),
         price: req.body.price,
-        // courseid: req.body.courseid,
+        contents: req.body.contents,
+        courseincludes: req.body.courseincludes,
+        language: req.body.language,
+        enrolledstudents: req.body.enrolledstudents,
+        reviews: req.body.reviews
     });
     course.save((err,doc) => {
         if(!err) { res.send(doc);
@@ -56,6 +60,8 @@ app.put('/usercourse/:courseid', (req,res) => {
         price: req.body.price,
         contents: req.body.contents,
         courseincludes: req.body.courseincludes,
+        language: req.body.language,
+        enrolledstudents: req.body.enrolledstudents,
     };
     Course.findOneAndUpdate({courseid:req.params.courseid}, {$set: course}, {new:true}, (err,doc) => {
         if(!err) {res.send(doc);}

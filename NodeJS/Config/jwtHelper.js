@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('./config');
 const dotenv = require("dotenv").config();
 
 module.exports.verifyJwtToken = (req, res, next) => {

@@ -9,6 +9,7 @@ import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 
 
+
 @NgModule({
   declarations: [
     CoursesViewComponent,

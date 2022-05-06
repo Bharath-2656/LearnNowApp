@@ -29,7 +29,9 @@ app.post('/instructors', (req, res) =>
         email: req.body.email,
         description: req.body.description,
         password: req.body.password,
-        instructorid: req.body.courseid,
+        instructorid: req.body.name.replace(/\s+/g, '').toLowerCase(),
+        numberofcourses: req.body.numberofcourses,
+        numberofstudents: req.body.numberofstudents,
     });
     instructor.save((err, doc) =>
     {
@@ -46,7 +48,7 @@ app.post('/instructors', (req, res) =>
     });
 });
 
-app.get('/instructor/:instructorid', (req, res) =>
+app.get('/instructors/:instructorid', (req, res) =>
 {
     // if(!ObjectId.isValid(req.params.userid))
     // return res.status(400).send(`No record found for: ${req.params.userid}`);
@@ -57,12 +59,15 @@ app.get('/instructor/:instructorid', (req, res) =>
     });
 });
 
-app.put('/instructor/:instructorid', (req, res) =>
+app.put('/instructors/:instructorid', (req, res) =>
 {
     var instructor = {
         name: req.body.name,
         age: req.body.age,
         password: req.body.password,
+        description: req.body.description,
+        numberofcourses: req.body.numberofcourses,
+        numberofstudents: req.body.numberofstudents,
     };
     Instructor.findOneAndUpdate({ instructorid: req.params.instructorid }, { $set: instructor }, { new: true }, (err, doc) =>
     {
@@ -71,7 +76,7 @@ app.put('/instructor/:instructorid', (req, res) =>
     });
 });
 
-app.delete('/instructor/:instructorid', (req, res) =>
+app.delete('/instructors/:instructorid', (req, res) =>
 {
     Instructor.findOneAndRemove(req.params.instructorid, (err, doc) =>
     {

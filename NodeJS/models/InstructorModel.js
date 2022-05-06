@@ -33,6 +33,15 @@ const InstructorSchema = new mongoose.Schema({
     instructorid: {
       type: Number,
     },
+    numberofcourses: {
+      type: Number,
+    },
+    numberofstudents: {
+      type: Number,
+    },
+    reviews: {
+      type: []
+    },
     saltSecret:String,
   });
 

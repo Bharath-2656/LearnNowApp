@@ -9,7 +9,6 @@ import { UserService } from '../shared/services/User/user.service';
 import { UserprofileComponent } from './admin-routes/userprofile/userprofile.component';
 import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinterest.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { InstructorComponent } from './instructor/instructor.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,7 +25,6 @@ import { MatListModule } from '@angular/material/list';
     RegisterComponent,
     UserprofileComponent,
     AreaofinterestComponent,
-    InstructorComponent,
   ],
   imports: [
     CommonModule,

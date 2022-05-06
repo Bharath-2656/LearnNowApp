@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from 'src/app/shared/Auth/auth.guard';
-import { InstructorComponent } from '../instructor/instructor.component';
+import { InstructorProfileComponent } from '../instructor/instructor-profile/instructor-profile.component';
+
 import { AreaofinterestComponent } from './areaofinterest/areaofinterest.component';
 import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollment.component';
 import { CoursepageComponent } from './coursepage/coursepage.component';
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]},
   {path: "category/:id", component: CoursesViewComponent},
   {path: "course/:id", component: CoursepageComponent},
-  {path: "instructor/:id", component: InstructorComponent},
+  {path: "instructor/:id", component:InstructorProfileComponent},
   {path: "user/confirmenrollment", component: ConfirmenrollmentComponent}
   
   // {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]}

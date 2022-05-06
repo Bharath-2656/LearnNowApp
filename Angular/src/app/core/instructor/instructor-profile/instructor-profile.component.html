@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style></style>
+</head>
+
+<body>
+  <h1 id="heading">Instructor Profile</h1>
+  <div class="row">
+    <ng-container *ngFor="let instructor of instructors">
+      <div class="column">
+       
+ 
+            <div class="card">
+              <h2>
+                <b id="b">{{ instructor.name }}</b>
+              </h2>
+              <p id="description">{{ instructor.description }}</p>
+              
+              <p>Number of Students mentored : {{instructor.numberofstudents}}</p>
+              <p>Number of Courses created : {{instructor.numberofcourses}}</p>
+            </div>
+            
+         
+      </div>
+    </ng-container>
+  </div>
+</body>
+
+</html>
