@@ -11,6 +11,8 @@ const jwtHelper = require('../Config/jwtHelper');
 var router = express.Router();
 const app = express();
 const loadash = require('lodash');
+const jwt = require('jsonwebtoken');
+const dotenv = require("dotenv").config();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -85,7 +87,7 @@ app.put('/users/:userid', (req, res) =>
 // app.use(bodyParser).json;
 app.put('/usercourse/:userid', (req, res) =>
 {
-    console.log("hi");
+    
     var user = {
         courseid: req.body.courseid
     };
@@ -110,14 +112,42 @@ app.delete('/users/:userid', (req, res) =>
 //     "token": t,
 //     "refreshToken": refreshToken,
 // }
+var  useridforrefresh;
 app.post('/authenticate', (req, res, next) =>
 {
     passport.authenticate('local', (err, user, info) =>
     {
         if (err) return res.status(400).json(err);
-        else if (user) return res.status(200).json({ "token": user.generateJwt(), });
+        else if (user)
+            {
+                var user1 = {
+                    refreshtoken: user.generateRefreshToken()
+                    
+                };
+                
+                useridforrefresh = req.body.email;
+                const refresh_token = user.generateRefreshToken();
+                User.findOneAndUpdate({ email: req.body.email }, {  refreshtoken: user.generateRefreshToken() })
+                return res.status(200).json( { "token": user.generateJwt(), });
+            }
         else return res.status(404).json(info);
     })(req, res);
+});
+
+app.post('/token', async (req,res,next) =>
+{
+    const userfortoken = await User.findOne({ email: useridforrefresh }, 'userid refreshtoken').exec();
+    
+    jwt.verify(userfortoken.refreshtoken,process.env.REFRESH_TOKEN_SECRET,
+        (err, decoded) => {
+            if (err)
+                return res.status(500).send({ auth: false, message: 'Token authentication failed.' });
+            else {
+                    return res.status(200).json( { "token": userfortoken.generateJwt() });
+                next();
+            }
+        }
+    )
 });
 
 app.get('/userprofile', jwtHelper.verifyJwtToken, (req, res, next) =>
@@ -231,7 +261,7 @@ let mailOptions = {
 
 app.post('/user_mail', async (req, res) =>
 {
-    console.log(req.body.name);
+    
 let transprter = nodemailer.createTransport({
     service: "gmail",
     auth: {

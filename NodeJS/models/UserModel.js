@@ -40,6 +40,14 @@ const UserSchema = new mongoose.Schema({
     courseid: {
       type: [],
     },
+    role:{
+      type: String,
+      default: 'user',
+    },
+    refreshtoken:{
+      type: String,
+      default: 'refresh_token'
+    },
     saltSecret:String,
   });
  UserSchema.plugin(uniqueValidator);
@@ -86,8 +94,8 @@ UserSchema.methods.generateJwt = function () {
 }
 
 UserSchema.methods.generateRefreshToken = function() {
-  console.log();
-  return jwt.sign({ userid: this.userid}, process.env.Refresh_token_secret, { expiresIn:process.env.Refresh_token_expiry });
+
+  return jwt.sign({ userid: this.userid}, process.env.REFRESH_TOKEN_SECRET, { expiresIn:process.env.REFRESH_TOKEN_EXPIRY });
 }
 
   const User = mongoose.model("User", UserSchema);

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(formOne.value).subscribe((res : any)=>{
         //localStorage.setItem('userToken',data.access_token);
         this.userService.setToken(res['token']);
+        this.userService.getuserfromPayload();
         this.router.navigateByUrl('/userprofile');
         this.router.navigate(['/user/areaofinterest']);
       },

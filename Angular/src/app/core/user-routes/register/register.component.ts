@@ -4,10 +4,6 @@ import { NgForm } from '@angular/forms';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { ToastrService } from 'ngx-toastr';
 
-
-
-var M: any;
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

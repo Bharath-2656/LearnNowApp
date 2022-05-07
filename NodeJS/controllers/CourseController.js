@@ -5,6 +5,7 @@ var {Course} = require('../models/CourseModel');
 const { User} = require("../models/UserModel");
 const {AreaOfInterest} = require("../models/areaOfInterestModel");
 // const app = require('./UserController');
+const jwtHelper = require('../Config/jwtHelper');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);

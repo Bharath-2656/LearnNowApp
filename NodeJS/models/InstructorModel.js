@@ -39,6 +39,10 @@ const InstructorSchema = new mongoose.Schema({
     reviews: {
       type: []
     },
+    role:{
+      type: String,
+      default: 'instructor',
+    },
     saltSecret:String,
   });
 

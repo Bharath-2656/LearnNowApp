@@ -39,6 +39,13 @@ export class UserService {
     localStorage.setItem('token', token);
   }
 
+  postRefreshtokencheck(user: User)
+  {
+    console.log(user);
+    
+    return this.http.post(this.baseURL + 'token', user);
+  }
+
   getToken() {
     return localStorage.getItem('token');
   }
@@ -46,9 +53,14 @@ export class UserService {
   deleteToken() {
     localStorage.removeItem('token');
   }
-
+ getuserfromPayload()
+ {
+   const userid = this.getUserPayload().userid;
+   return userid;
+ }
   getUserPayload() {
     var token = this.getToken();
+     
     if (token) {
       var userPayload = atob(token.split('.')[1]);
       return JSON.parse(userPayload);
@@ -58,8 +70,13 @@ export class UserService {
   }
   isLoggedIn() {
     var userPayload = this.getUserPayload();
+    console.log("jump");  
     if (userPayload)
+   {
+     console.log(userPayload.exp > Date.now() / 1000);
+     
       return userPayload.exp > Date.now() / 1000;
+   }
     else
       return false;
   }
