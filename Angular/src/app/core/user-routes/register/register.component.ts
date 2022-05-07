@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from 'src/app/shared/services/User/user.service'
 import { NgForm } from '@angular/forms';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,7 +17,7 @@ var M: any;
 export class RegisterComponent implements OnInit {
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
-  constructor(public userService: UserService, private courseService: CourseService) { }
+  constructor(public userService: UserService, private courseService: CourseService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.resetForm(); 
@@ -38,9 +39,8 @@ export class RegisterComponent implements OnInit {
   }
   
     onSubmit(form: NgForm) {
-        this.userService.postUser(form.value).subscribe((res) => {
-          this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 4000);
+        this.userService.postUser(form.value).subscribe((res) => {      
+          this.toastr.success('Upadated Successfully','Success');     
         this.userService.sendConfirmationMail(form.value).subscribe((res) => {
         });
         this.resetForm(form);
@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
           this.serverErrorMessages = err.error.join('<br/>');
         }
         else
-          this.serverErrorMessages = 'Something went wrong. Please contact admin.';
+          this.toastr.error('Something went wrong. Please contact admin.','Error');
       }
     );
     }
@@ -60,5 +60,7 @@ export class RegisterComponent implements OnInit {
     //     //M.toast({ html: 'Updated successfully', classes: 'rounded' });
     //   });
     // }
+
   }
+
     

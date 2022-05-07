@@ -16,6 +16,7 @@ import { InstructorLoginComponent } from './core/instructor/instructor-login/ins
 import { InstructorModule } from './core/instructor/instructor.module';
 import { CourseService } from './shared/services/Course/course.service';
 import { InstructorService } from './shared/services/Instructor/instructor.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -29,11 +30,17 @@ import { InstructorService } from './shared/services/Instructor/instructor.servi
     CommonModule,
     AppRoutingModule,
     CoreModule,
-    HttpClientModule,
+    HttpClientModule, 
     FormsModule,
     UserRoutesModule,
     BrowserAnimationsModule,
     InstructorModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      progressBar: true,
+      preventDuplicates:true,
+      positionClass:'toast-bottom-left',
+    }),
   ],
   providers: [UserService,AuthGuard,AuthInterceptor,CourseService,InstructorService ],
   bootstrap: [AppComponent]

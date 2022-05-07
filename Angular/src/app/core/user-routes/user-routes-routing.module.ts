@@ -16,10 +16,10 @@ const routes: Routes = [
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
   {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]},
-  {path: "category/:id", component: CoursesViewComponent},
-  {path: "course/:id", component: CoursepageComponent},
-  {path: "instructor/:id", component:InstructorProfileComponent},
-  {path: "user/confirmenrollment", component: ConfirmenrollmentComponent}
+  {path: "category/:id", component: CoursesViewComponent,canActivate:[AuthGuard]},
+  {path: "course/:id", component: CoursepageComponent,canActivate:[AuthGuard]},
+  {path: "instructor/:id", component:InstructorProfileComponent,canActivate:[AuthGuard]},
+  {path: "user/confirmenrollment", component: ConfirmenrollmentComponent,canActivate:[AuthGuard]}
   
   // {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]}
   

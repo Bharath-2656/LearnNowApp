@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AreaOfInterest } from './AreaOfInterest.model';
 
@@ -9,6 +9,7 @@ export class AreaofinterestService {
 
   areaOfInterest!: AreaOfInterest[];
   readonly baseURL = 'http://localhost:9000/admin/';
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   constructor(private http: HttpClient) { }
 
