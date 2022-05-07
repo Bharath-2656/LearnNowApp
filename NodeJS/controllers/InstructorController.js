@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require('passport');
 var router = express.Router();
 const app = express();
+const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());

@@ -64,3 +64,70 @@
     
     text-decoration: none;
 }
+.formOne{
+    width: auto;
+    align-items: center;
+    margin-right: auto;
+    margin-top: 7%;
+}
+.formOne label{
+    /* width: auto; */
+    margin: auto;
+    align-items: center;
+    margin-right: 20%;
+}
+.formOne input{
+    margin-right: 20%;
+    margin: 10px;
+    background-color: rgba(67, 177, 100,0.4s);
+    width: 250px;
+    height: 30px;
+    border-radius: 12px;
+    border-color: #2c2b2b57;
+    box-shadow: inset;
+    color: rgb(63, 58, 58);
+    font-size: 19px;
+    font-weight: 500;
+    text-align: left ;
+}
+.formOne textarea{
+    margin-right: 20%;
+    margin: 10px;
+    background-color: rgba(67, 177, 100,0.4s);
+    width: 250px;
+    height: 100px;
+    border-width: 2px;
+    border-radius: 12px;
+    border-color: #2c2b2b57;
+    box-shadow: inset;
+    color: rgb(63, 58, 58);
+    font-size: 19px;
+    font-weight: 500;
+    text-align: left ;
+}
+label {
+    display: inline-block;
+    width: 200px;
+    margin: 5px;
+    text-align: left;
+}
+#submit{
+    align-items: center;
+    background-color: #CCD0D5;
+    font-size: 19px;
+    color: #050505;
+    margin-top: 10px;
+    margin-right: 60px;
+    text-align: center;
+    font-weight: 500;
+    padding: auto;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    border: #CCD0D5;
+    border-radius: 25px;
+    box-shadow: inset;
+    outline: none;
+    overflow: hidden;
+}
+

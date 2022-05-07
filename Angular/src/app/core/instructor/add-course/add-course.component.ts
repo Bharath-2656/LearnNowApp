@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AddCourseComponent implements OnInit {
   allCourses : string[] = [];
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
-  constructor(public courseService: CourseService) { }
+  constructor(public courseService: CourseService, private router: Router) { }
   
   ngOnInit(): void {
     this.resetForm(); 
@@ -40,10 +41,8 @@ addCourse(){
 }
 onSubmit(form: NgForm) {
   this.courseService.postCourse(form.value).subscribe((res) => {
-    this.showSuccessMessage = true;
-  setTimeout(() => this.showSuccessMessage = false, 4000);
-  // this.instructorService.sendConfirmationMail(form.value).subscribe((res) => {
-  // });
+    this.router.navigate(['/addcoursestep2'])
+  
   this.resetForm(form);
 },
 err => {

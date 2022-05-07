@@ -5,13 +5,15 @@ import { InstructorProfileComponent } from './instructor-profile/instructor-prof
 import { FormsModule } from '@angular/forms';
 import { InstructorRegisterComponent } from './instructor-register/instructor-register.component';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { Addcoursestep2Component } from './addcoursestep2/addcoursestep2.component';
 
 
 @NgModule({
   declarations: [
     InstructorProfileComponent,
     InstructorRegisterComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    Addcoursestep2Component
   ],
   imports: [
     CommonModule,
