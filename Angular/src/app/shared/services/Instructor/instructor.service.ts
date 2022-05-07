@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Instructor } from './instructor.model';
 
@@ -8,6 +8,7 @@ import { Instructor } from './instructor.model';
 export class InstructorService {
   selectedInstructors!: Instructor;
   instructors!: Instructor[];
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
   readonly baseURL = 'http://localhost:9000/instructor/';
 
   constructor(private http: HttpClient) { }
@@ -26,4 +27,52 @@ export class InstructorService {
   deleteInstructor(instructor: Instructor) {
     return this.http.delete(this.baseURL + 'instructors' + `/${instructor.instructorid}`);
   }
+
+  login(authCredentials:any) {
+    return this.http.post(this.baseURL + 'authenticate', authCredentials,this.noAuthHeader);
+  }
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  deleteToken() {
+    localStorage.removeItem('token');
+  }
+
+  postRefreshtokencheck(instructor: Instructor)
+  {
+   return this.http.post(this.baseURL + 'token', instructor);
+  }
+
+  getInstructorfromPayload()
+ {
+   const userid = this.getInstructorPayload().userid;
+   return userid;
+ }
+ getInstructorPayload() {
+  var token = this.getToken();
+   
+  if (token) {
+    var instructorPayload = atob(token.split('.')[1]);
+    return JSON.parse(instructorPayload);
+  }
+  else
+    return null;
+}
+isLoggedIn() {
+  var instructorPayload = this.getInstructorPayload();
+   
+  if (instructorPayload)
+ {
+   console.log(instructorPayload.exp > Date.now() / 1000);
+   
+    return instructorPayload.exp > Date.now() / 1000;
+ }
+  else
+    return false;
+}
+
 }

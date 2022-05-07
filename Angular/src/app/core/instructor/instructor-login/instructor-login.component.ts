@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
 
 @Component({
@@ -11,18 +12,21 @@ import { UserService } from 'src/app/shared/services/User/user.service';
 })
 export class InstructorLoginComponent implements OnInit {
 
-  constructor(private userService: UserService, private router : Router) { }
+  constructor(private instructorService: InstructorService, private router : Router) { }
   serverErrorMessages!: string;
 
   ngOnInit(): void {
   }
   
     onSubmit(formOne : NgForm){
-      this.userService.login(formOne.value).subscribe((res : any)=>{
+      this.instructorService.login(formOne.value).subscribe((res : any)=>{
+        console.log("cool");
+        
         //localStorage.setItem('userToken',data.access_token);
-        this.userService.setToken(res['token']);
-        this.router.navigateByUrl('/userprofile');
-        this.router.navigate(['/user/areaofinterest']);
+        this.instructorService.setToken(res['token']);
+        this.router.navigate(['/instructors/addcourse']);
+      
+        
       },
       (err : HttpErrorResponse)=>{
         this.serverErrorMessages = err.error.message;

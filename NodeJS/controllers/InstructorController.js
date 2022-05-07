@@ -1,7 +1,7 @@
 const express = require('express');
 const { Instructor} = require('../models/InstructorModel');
 const bodyParser = require("body-parser");
-
+const passport = require('passport');
 var router = express.Router();
 const app = express();
 
@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(router);
 
+//Get all Instructors
 app.get('/instructors', async (req, res) =>
 {
     Instructor.find((err, data) =>
@@ -21,6 +22,7 @@ app.get('/instructors', async (req, res) =>
     });
 });
 
+//Post Instructer details to database
 app.post('/instructors', (req, res) =>
 {
     var instructor = new Instructor({
@@ -48,10 +50,10 @@ app.post('/instructors', (req, res) =>
     });
 });
 
+//Get particular record of the instructor
 app.get('/instructors/:instructorid', (req, res) =>
 {
-    // if(!ObjectId.isValid(req.params.userid))
-    // return res.status(400).send(`No record found for: ${req.params.userid}`);
+
     Instructor.findOne({ instructorid: req.params.instructorid }, `name age email`, (err, doc) =>
     {
         if (!err) { res.send(doc); }
@@ -59,6 +61,7 @@ app.get('/instructors/:instructorid', (req, res) =>
     });
 });
 
+//Update a particular record of Instructor
 app.put('/instructors/:instructorid', (req, res) =>
 {
     var instructor = {
@@ -76,6 +79,7 @@ app.put('/instructors/:instructorid', (req, res) =>
     });
 });
 
+//Delete a Instructor
 app.delete('/instructors/:instructorid', (req, res) =>
 {
     Instructor.findOneAndRemove(req.params.instructorid, (err, doc) =>
@@ -84,5 +88,47 @@ app.delete('/instructors/:instructorid', (req, res) =>
         else { console.log("Error in deleting user"); }
     });
 });
+
+var  instructoridforrefresh;
+
+app.post('/authenticate', (req, res, next) =>
+{
+    passport.authenticate('local-instructor', (err, instructor, info) =>
+    {
+        if (err) return res.status(400).json(err);
+        else if (instructor)
+            {
+                var instructor1 = {
+                    refreshtoken: instructor.generateRefreshToken()
+                    
+                };
+                
+                instructoridforrefresh = req.body.email;
+                const refresh_token = instructor.generateRefreshToken();
+                Instructor.findOneAndUpdate({ email: req.body.email }, {  refreshtoken: instructor.generateRefreshToken() })
+                return res.status(200).json( { "token": instructor.generateJwt(), });
+            }
+        else return res.status(404).json(info);
+    })(req, res);
+});
+
+
+//Generating access token if refersh token is valid and access token is expired
+app.post('/token', async (req,res,next) =>
+{
+    const instructorfortoken = await Instructor.findOne({ email: instructoridforrefresh }, 'instructorid refreshtoken').exec();
+    console.log(instructorfortoken);
+    jwt.verify(instructorfortoken.refreshtoken,process.env.REFRESH_TOKEN_SECRET,
+        (err, decoded) => {
+            if (err)
+                return res.status(500).send({ auth: false, message: 'Token authentication failed.' });
+            else {
+                    return res.status(200).json( { "token": instructorfortoken.generateJwt() });
+                next();
+            }
+        }
+    )
+});
+
 
 module.exports = app;

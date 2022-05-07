@@ -15,11 +15,13 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
-  {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]},
+  {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard],data: {role: 'user'}},
   {path: "category/:id", component: CoursesViewComponent,canActivate:[AuthGuard]},
   {path: "course/:id", component: CoursepageComponent,canActivate:[AuthGuard]},
   {path: "instructor/:id", component:InstructorProfileComponent,canActivate:[AuthGuard]},
-  {path: "user/confirmenrollment", component: ConfirmenrollmentComponent,canActivate:[AuthGuard]}
+  {path: "user/confirmenrollment", component: ConfirmenrollmentComponent,canActivate:[AuthGuard],data: {
+    role: 'user',
+  }}
   
   // {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]}
   

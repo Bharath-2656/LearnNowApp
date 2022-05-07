@@ -86,7 +86,7 @@ UserSchema.methods.verifyPassword = function (password) {
 };
 
 UserSchema.methods.generateJwt = function () {
-  return jwt.sign({ userid: this.userid},
+  return jwt.sign({ userid: this.userid, role: 'user'},
       process.env.JWT_SECRET,
   {
       expiresIn: process.env.JWT_EXP
@@ -95,34 +95,10 @@ UserSchema.methods.generateJwt = function () {
 
 UserSchema.methods.generateRefreshToken = function() {
 
-  return jwt.sign({ userid: this.userid}, process.env.REFRESH_TOKEN_SECRET, { expiresIn:process.env.REFRESH_TOKEN_EXPIRY });
+  return jwt.sign({ userid: this.userid, role: 'user'}, process.env.REFRESH_TOKEN_SECRET, { expiresIn:process.env.REFRESH_TOKEN_EXPIRY });
 }
 
   const User = mongoose.model("User", UserSchema);
   
   module.exports = {User};
   
-
-
-
-
-  
-  //SQL
-
-// const Sequelize= require('sequelize');
-// const mysql = new Sequelize(
-//   'user_schema',
-//   'root',
-//   'bh1232656',
-//   {
-//     dialect: 'mysql',
-//     host: 'localhost'
-//   }
-// );
-
-
-// mysql.authenticate().then(()=> {
-//   console.log("Connection established");
-// }).catch((err) => {
-// console.log("Error");
-// })

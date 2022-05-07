@@ -58,6 +58,9 @@ export class UserService {
    const userid = this.getUserPayload().userid;
    return userid;
  }
+ getRole(){
+      return this.getUserPayload().role;
+ }
   getUserPayload() {
     var token = this.getToken();
      

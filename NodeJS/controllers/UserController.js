@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(router);
 
 
-
+//Getting all users
 app.get('/users', async (req, res) =>
 {
     User.find((err, data) =>
@@ -32,7 +32,7 @@ app.get('/users', async (req, res) =>
     });
 });
 
-
+//Posting user detials to database
 app.post('/users', (req, res) =>
 {
     var user = new User({
@@ -58,10 +58,10 @@ app.post('/users', (req, res) =>
     });
 });
 
+
+//getting the details of a particular user
 app.get('/users/:userid', (req, res) =>
 {
-    // if(!ObjectId.isValid(req.params.userid))
-    // return res.status(400).send(`No record found for: ${req.params.userid}`);
     User.findOne({ userid: req.params.userid }, `name age email`, (err, doc) =>
     {
         if (!err) { res.send(doc); }
@@ -69,6 +69,8 @@ app.get('/users/:userid', (req, res) =>
     });
 });
 
+
+//Updating record of a particular user
 app.put('/users/:userid', (req, res) =>
 {
     var user = {
@@ -84,7 +86,8 @@ app.put('/users/:userid', (req, res) =>
         else { console.log(`Error in updating user`); }
     });
 });
-// app.use(bodyParser).json;
+
+// Updating the courseid to User after Enrollment
 app.put('/usercourse/:userid', (req, res) =>
 {
     
@@ -99,6 +102,7 @@ app.put('/usercourse/:userid', (req, res) =>
     });
 });
 
+//Deleting the user from the database
 app.delete('/users/:userid', (req, res) =>
 {
     User.findOneAndRemove(req.params.userid, (err, doc) =>
@@ -107,12 +111,10 @@ app.delete('/users/:userid', (req, res) =>
         else { console.log("Error in deleting user"); }
     });
 });
-// const response = {
-//     "status": "Logged in",
-//     "token": t,
-//     "refreshToken": refreshToken,
-// }
+
 var  useridforrefresh;
+
+//Authenticating the user upon login and generating refresh and access token
 app.post('/authenticate', (req, res, next) =>
 {
     passport.authenticate('local', (err, user, info) =>
@@ -134,6 +136,8 @@ app.post('/authenticate', (req, res, next) =>
     })(req, res);
 });
 
+
+//Generating access token if refersh token is valid and access token is expired
 app.post('/token', async (req,res,next) =>
 {
     const userfortoken = await User.findOne({ email: useridforrefresh }, 'userid refreshtoken').exec();
@@ -150,7 +154,9 @@ app.post('/token', async (req,res,next) =>
     )
 });
 
-app.get('/userprofile', jwtHelper.verifyJwtToken, (req, res, next) =>
+
+//getting all userprofiles Admin access
+app.get('/userprofile',  (req, res, next) =>
 {
     User.findOne({ userid: req.userid },
         (err, user) =>
@@ -163,6 +169,9 @@ app.get('/userprofile', jwtHelper.verifyJwtToken, (req, res, next) =>
     );
 });
 
+/*  Area of intfrest section to be moved to seperate controller */
+
+//adding area of Intrest
 app.post('/areaofinterest',  (req, res) =>
 {
     var areaofinterest = new AreaOfInterest({
@@ -185,6 +194,7 @@ app.post('/areaofinterest',  (req, res) =>
     });
 });
 
+//Getting all the area of interest 
 app.get('/areaofinterest',  async (req, res) =>
 {
     AreaOfInterest.find((err, data) =>
@@ -197,7 +207,7 @@ app.get('/areaofinterest',  async (req, res) =>
     });
 });
 
-
+//mapping the usercourse with the user using llokup in mongo
  app.get('/usercourse', async (req, res) =>
 {
     Course.aggregate([
@@ -224,6 +234,8 @@ app.get('/areaofinterest',  async (req, res) =>
         });
 });
 
+
+//Sending mail upon enrollment of a course
 app.post('/course_mail', async (req, res) =>
 {
     console.log(req.params.courseid);
@@ -258,7 +270,7 @@ let mailOptions = {
     res.send("Email sent")
 });
 
-
+//Sending mail upon successful registeration to the application 
 app.post('/user_mail', async (req, res) =>
 {
     
@@ -292,5 +304,7 @@ transprter.sendMail(mailOptions,function(err,success){
 });
     res.send("Email sent")
 });
+
+
 
 module.exports = app;

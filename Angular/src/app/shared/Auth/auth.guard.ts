@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
         this.userService.deleteToken();
         return false;
       }
-    return true;
+    return this.userService.getRole().includes(route.data['role']);;
   }
   
 }
