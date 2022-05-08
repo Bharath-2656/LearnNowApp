@@ -101,18 +101,24 @@ app.post('/authenticate', (req, res, next) =>
             {
                 var instructor1 = {
                     refreshtoken: instructor.generateRefreshToken()
-                    
                 };
                 
                 instructoridforrefresh = req.body.email;
+                console.log(req.body.email);
                 const refresh_token = instructor.generateRefreshToken();
-                Instructor.findOneAndUpdate({ email: req.body.email }, {  refreshtoken: instructor.generateRefreshToken() })
+                console.log(refresh_token);
+                Instructor.findOneAndUpdate({ email: req.body.email }, {  refreshtoken: instructor.generateRefreshToken() },(err, doc) =>
+                {
+                    // if (!err) { res.send(doc); }
+                    // else { console.log(`Error in updating user`); }
+                    console.log("you");
+                });
                 return res.status(200).json( { "token": instructor.generateJwt(), });
             }
         else return res.status(404).json(info);
     })(req, res);
 });
-
+console.log(instructoridforrefresh);
 
 //Generating access token if refersh token is valid and access token is expired
 app.post('/token', async (req,res,next) =>

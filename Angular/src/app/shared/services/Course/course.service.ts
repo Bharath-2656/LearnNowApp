@@ -27,7 +27,10 @@ export class CourseService {
   putCourse(course: Course) {
     return this.http.put(this.baseURL + 'usercourse' + `/${course.courseid}`, course);
   }
-
+  putCoursecontents(course:Course)
+  {
+    return this.http.put(this.baseURL + 'usercourse/coursecontents' + `/${course.courseid}`, course.contents);
+  }
   deleteCourse(course: Course) {
     return this.http.delete(this.baseURL + 'usercourse' + `/${course.courseid}`);
   }

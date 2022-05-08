@@ -5,7 +5,9 @@ export class Course {
     author!: String;
     category!: String;
     price!: Number;
-    contents: String[] =[];
+    contents!: String;
     language!: String;
     courseid!: Number;
+    courseincludes! : String;
+    requirements! : String;
 }

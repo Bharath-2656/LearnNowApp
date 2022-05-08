@@ -96,6 +96,6 @@ export class UserService {
     
     return this.http.post('http://localhost:9000/admin/user_mail', user);
   }
-
+  
 
 }

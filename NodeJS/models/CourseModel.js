@@ -41,10 +41,10 @@ const CourseSchema = new mongoose.Schema({
     //   type: String,
     // },
     contents : {
-      type: [],
+      type: String,
     },
     courseincludes: {
-      type: [],
+      type:String,
     },
     couponcode: {
       type: String,
@@ -59,7 +59,7 @@ const CourseSchema = new mongoose.Schema({
       type: Number,
     },
     requirements: {
-      type: [],
+      type: String,
     },
     reviews: {
       type: [],

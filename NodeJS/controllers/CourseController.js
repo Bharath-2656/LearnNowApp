@@ -20,8 +20,9 @@ app.post('/usercourse', (req,res) => {
         category: req.body.category,//.replace(/\s+/g, '').toLowerCase(),
         price: req.body.price,
         contents: req.body.contents,
-        // courseincludes: req.body.courseincludes,
+        courseincludes: req.body.courseincludes,
         language: req.body.language,
+        requirements:req.body.requirements,
         // enrolledstudents: req.body.enrolledstudents,
         // reviews: req.body.reviews
     });
@@ -69,6 +70,18 @@ app.put('/usercourse/:courseid', (req,res) => {
         else {  console.log(`Error in updating user`);}
     });
 });
+
+app.put('/usercourse/coursecontents/:courseid', (req,res) => {
+    var course = {
+       
+        contents: req.body.contents,
+    };
+    Course.findOneAndUpdate({courseid:req.params.courseid}, {$push: course}, {new:true}, (err,doc) => {
+        if(!err) {res.send(doc);}
+        else {  console.log(`Error in updating user`);}
+    });
+});
+
 
 app.delete('/usercourse/:courseid',(req,res) => {
     Course.findOneAndRemove(req.params.userid, (err,doc) => {
