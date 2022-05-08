@@ -95,7 +95,9 @@ nav {
     height: 55px;
 } */
 
-body { margin-top: -12px; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 20px; }
+body { margin-top: -12px; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 20px;
+    background-image: url("https://i.ibb.co/M1Wy0HB/C-1.png");
+    background-size: 100%; }
 h1{
     font-size: 22px;
 }

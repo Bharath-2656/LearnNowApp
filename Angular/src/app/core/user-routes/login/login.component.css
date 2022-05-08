@@ -76,7 +76,8 @@
 .main{
     padding-top: 5px;
     height: 596px;
-     background-color: #F7F8FA;
+    z-index: -1;
+     /* background-color: #F7F8FA; */
 }
 .main h2{
     /* color: #4c9173; */

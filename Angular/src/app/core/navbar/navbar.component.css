@@ -147,11 +147,13 @@ nav {
 
 .navbar{
   height: 40px;
-  width: 95.8%;
+  width: 96%;
   margin-left: 0px;
   padding: 14px 30px;
   vertical-align:middle;
-  background-color: #7dd87d;
+/* background-color: #7dd87d; */
+/* background-color: #333C83; */
+background-color: #21325E;
   /* position: relative; */
   margin-top: 0px;
 }
@@ -170,7 +172,7 @@ nav {
 }
 #logo{
   margin-top: 6px;
-  width: 220px;
+  width: 200px;
   height: 55px;
 }
 .navbar .nav-links .loginBtn{
@@ -184,7 +186,9 @@ nav {
   padding: 10px 12px;
   text-decoration: none;
   font-weight: 550;
-  color: #5b446a;
+  /* color: #5b446a; */
+  /* color: #F24A72; */
+  color: #f4f81c;
 }
 /* Hover effects */
 .navbar .nav-links a:hover{
