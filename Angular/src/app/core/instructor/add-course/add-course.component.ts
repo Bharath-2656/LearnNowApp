@@ -10,6 +10,7 @@ import { CourseService } from 'src/app/shared/services/Course/course.service';
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent implements OnInit {
+  [x: string]: any;
   newContents! : string;
   allCourses : string[] = [];
   showSuccessMessage!: boolean;
@@ -49,7 +50,9 @@ export class AddCourseComponent implements OnInit {
 // }
 onSubmit(form: NgForm) {
   this.courseService.postCourse(form.value).subscribe((res) => {
-    //this.router.navigate(['/addcoursestep2'])
+    form.value.instructor = 
+    console.log(form.value);
+    
   
   this.resetForm(form);
 },

@@ -92,9 +92,14 @@ app.delete('/instructors/:instructorid', (req, res) =>
 
 var  instructoridforrefresh;
 
-app.post('/getinstructorid', (req,res,next) => {
-    instructoridforrefresh = req.body.instructorid;
-    console.log(instructoridforrefresh);
+app.get('/getinstructorid', (req,res,next) => {
+    Instructor.findOne({ instructorid: req.params.instructorid }, `name age email`, (err, doc) =>
+    {
+        if (!err) { res.send(doc); }
+        else { console.log("Error in retreiving data") }
+    });
+
+
 })
 
 

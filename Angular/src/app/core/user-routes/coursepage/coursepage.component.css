@@ -17,10 +17,12 @@
      width: auto;
     display: block;
     padding: 25px;
+    border-color: #CCD0D5;
      margin: auto; 
     align-items: center;
     /* margin-bottom: 30px; */
     border-radius: 3%; 
+    background-clip: border-box;
 }
 .img{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -73,22 +75,24 @@ ngb-rating {
     font-size: 80px;
 }
 #enroll {
-    background-color: #CCD0D5;
+    background-color: #41d454;
     font-size: 19px;
     color: #050505;
     /* margin-left: 80%; */
     /*       */
     text-align: center;
     font-weight: 500;
-    padding: auto;
-    width: 100px;
+    /* padding: 5%; */
+    margin-left: 10%;
+    margin-top: 6%;
+    width: 80%;
     height: 40px;
     border: #CCD0D5;
-    border-radius: 25px;
+    border-radius: 10px;
     box-shadow: inset;
 }
 #addtocart{
-    background-color: #CCD0D5;
+    background-color: #41d454;
     font-size: 19px;
     color: #050505;
     /* margin-left: 80%; */
@@ -96,7 +100,8 @@ ngb-rating {
     text-align: center;
     font-weight: 500;
     padding: auto;
-    width: auto;
+    width: 80%;
+    margin-left: 10%;
     height: 40px;
     border: #CCD0D5;
     border-radius: 12px;
@@ -131,11 +136,13 @@ h3{
     grid-column: 2/3;
     grid-row: 1/2;
     height: 100%;
-    margin-right:0vw ;
-    background-color: aliceblue;
+    /* margin-right:7vw; */
+    /* background-color: aliceblue; */
+    background-color: #90E0EF;
     padding: 20px;
     text-align: justify;
     width: 20vw;
+    color: #f2497b;
     /* margin-right: 10px;
     height: 120%;
     width: auto; */
@@ -152,16 +159,19 @@ h3{
     grid-row: 2/3;
     height: 100%;
     margin-right:0vw ;
-    background-color: aliceblue;
+    background-color: #3E497A;
     padding: 20px;
     text-align: justify;
     width: 60vw;
+    /* color: #f2497b; */
 }
-
+.textcolor{
+    color: #03045F
+}
 
 @media only screen and (max-width: 800px) {
     .card{
-        width: 80%;
+        width: 90%;
     }
 
 }

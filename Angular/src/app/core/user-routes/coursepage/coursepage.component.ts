@@ -31,7 +31,7 @@ export class CoursepageComponent implements OnInit {
        this.courses[index]=res[index];
        if(this.id==this.courses[index].routerlink)
        {
-         //this.courseincludes=this.courses[index].courseincludes.split(',');
+         this.courseincludes=this.courses[index].courseincludes.split(',');
          this.coursecontents=this.courses[index].contents.split(',');
         this.courserequirements=this.courses[index].requirements.split(',')      
          

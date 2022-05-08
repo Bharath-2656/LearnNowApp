@@ -10,6 +10,7 @@
   <h1 id="heading">Instructor Profile</h1>
   <div class="row">
     <ng-container *ngFor="let instructor of instructors">
+      <ng-container *ngIf="instructor.name===id">
       <div class="column">
        
  
@@ -22,9 +23,8 @@
               <p>Number of Students mentored : {{instructor.numberofstudents}}</p>
               <p>Number of Courses created : {{instructor.numberofcourses}}</p>
             </div>
-            
-         
       </div>
+    </ng-container>
     </ng-container>
   </div>
 </body>
