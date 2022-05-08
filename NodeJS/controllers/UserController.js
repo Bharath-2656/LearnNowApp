@@ -112,7 +112,7 @@ app.delete('/users/:userid', (req, res) =>
     });
 });
 
-var  useridforrefresh;
+var  useridforrefresh="manoj@gmail.com";
 
 //Authenticating the user upon login and generating refresh and access token
 app.post('/authenticate', (req, res, next) =>

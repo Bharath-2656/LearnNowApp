@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
         //localStorage.setItem('userToken',data.access_token);
         this.userService.setToken(res['token']);
         this.userService.getuserfromPayload();
-        this.router.navigateByUrl('/userprofile');
+        
         this.router.navigate(['/user/areaofinterest']);
       },
       (err : HttpErrorResponse)=>{

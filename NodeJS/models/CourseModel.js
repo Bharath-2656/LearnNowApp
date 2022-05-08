@@ -37,9 +37,9 @@ const CourseSchema = new mongoose.Schema({
       // required: true,
       primaryKey: true,
     },
-    // routerlink: {
-    //   type: String,
-    // },
+    routerlink: {
+      type: String,
+    },
     contents : {
       type: String,
     },

@@ -17,6 +17,9 @@ export class CoursepageComponent implements OnInit {
   courses: any[] = [];
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
+  courseincludes!: string;
+  coursecontents!: string;
+  courserequirements!: string;
   constructor(private courseService: CourseService, private userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -26,6 +29,14 @@ export class CoursepageComponent implements OnInit {
     this.courseService.getCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
        this.courses[index]=res[index];
+       if(this.id==this.courses[index].routerlink)
+       {
+         //this.courseincludes=this.courses[index].courseincludes.split(',');
+         this.coursecontents=this.courses[index].contents.split(',');
+        this.courserequirements=this.courses[index].requirements.split(',')      
+         
+       }
+       console.log(this.courseincludes);
        
       }
     },

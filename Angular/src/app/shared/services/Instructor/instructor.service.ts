@@ -49,8 +49,12 @@ export class InstructorService {
 
   getInstructorfromPayload()
  {
-   const userid = this.getInstructorPayload().userid;
-   return userid;
+   const instructorid = this.getInstructorPayload().instructorid; 
+   return instructorid;
+ }
+ postintructorid(instructorid: Number)
+ {
+    return this.http.post(this.baseURL + 'getinstructorid', instructorid);
  }
  getInstructorPayload() {
   var token = this.getToken();

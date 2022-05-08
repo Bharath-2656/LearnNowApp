@@ -25,15 +25,17 @@
               <p>Duration : {{ course.duration}}</p>
               <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
                 <p>Instructor : {{course.author}}</p>
-              </a><div id="small">
+              </a>
+              <div id="small">
               <p>Language : {{course.language}}</p>
               <p>Students Enrolled : {{course.enrolledstudents}}</p>
-            </div>
-              <h3>Course Contents:</h3>
-              <ng-container *ngFor="let content of course.contents">
-                <p>{{content}}</p>
+              <p>Course contents : </p>
+              <ng-container *ngFor="let content of coursecontents">
+                <li>{{content}}</li>
               </ng-container>
-            </div>
+             
+              </div>
+          </div>
           </div>
 
           <div class="card">
@@ -44,6 +46,10 @@
               <h3>The course includes </h3>
               <ng-container *ngFor="let include of course.courseincludes">
                 <p>{{include}}</p>
+              </ng-container>
+              <p>Course requirements : </p>
+              <ng-container *ngFor="let requirements of courserequirements">
+                <li>{{requirements}}</li>
               </ng-container>
             </div>
           </div><br>

@@ -32,7 +32,7 @@ app.post('/instructors', (req, res) =>
         email: req.body.email,
         description: req.body.description,
         password: req.body.password,
-        instructorid: req.body.name.replace(/\s+/g, '').toLowerCase(),
+        //instructorid: req.body.name.replace(/\s+/g, '').toLowerCase(),
         // numberofcourses: req.body.numberofcourses,
         // numberofstudents: req.body.numberofstudents,
     });
@@ -92,6 +92,12 @@ app.delete('/instructors/:instructorid', (req, res) =>
 
 var  instructoridforrefresh;
 
+app.post('/getinstructorid', (req,res,next) => {
+    instructoridforrefresh = req.body.instructorid;
+    console.log(instructoridforrefresh);
+})
+
+
 app.post('/authenticate', (req, res, next) =>
 {
     passport.authenticate('local-instructor', (err, instructor, info) =>
@@ -111,7 +117,7 @@ app.post('/authenticate', (req, res, next) =>
                 {
                     // if (!err) { res.send(doc); }
                     // else { console.log(`Error in updating user`); }
-                    console.log("you");
+                    
                 });
                 return res.status(200).json( { "token": instructor.generateJwt(), });
             }
