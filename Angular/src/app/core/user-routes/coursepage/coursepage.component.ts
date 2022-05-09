@@ -66,4 +66,8 @@ export class CoursepageComponent implements OnInit {
 );
   }
 
+  openModal(id: string) {
+    this.courseService['open']();
+}
+
 }

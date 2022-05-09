@@ -50,6 +50,12 @@ const InstructorSchema = new mongoose.Schema({
     type: String,
     default: 'refresh_token'
   },
+  courseid: {
+    type: [],
+  },
+  routerlink:{
+    type: String,
+  },
   saltSecret: String,
 });
 

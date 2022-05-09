@@ -19,6 +19,7 @@ import { InstructorService } from './shared/services/Instructor/instructor.servi
 import { ToastrModule } from 'ngx-toastr';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     UserRoutesModule,
     BrowserAnimationsModule,
     InstructorModule,
+
     ToastrModule.forRoot({
       timeOut: 3000,
       progressBar: true,

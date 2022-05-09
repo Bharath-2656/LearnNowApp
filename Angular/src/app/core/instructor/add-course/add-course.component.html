@@ -8,29 +8,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <body>
 <h1 id="heading">Add Course Details</h1>
     <div class="card">
         <form #userform="ngForm" class="formOne" (ngSubmit)="onSubmit(userform)">
        <label>Course Name</label><input type="text"  name="name" id="name" #name="ngModel" [(ngModel)]="courseService.selectedCourses.name"><br> 
        <label for="description">Course Descrption</label><textarea name="description" #descrption="ngModel" [(ngModel)]="courseService.selectedCourses.description"></textarea><br>
-       <label>Course Instructor</label><input type="text" id="instructor" name="instructor" #instructor="ngModel" [(ngModel)]="courseService.selectedCourses.author"><br>
+       <label>Course Instructor</label><input type="text" id="author" name="author" #author="ngModel" [(ngModel)]="courseService.selectedCourses.author"><br>
        <label>Course Duration</label><input type="text" id="duration" name="duration" #duration="ngModel" [(ngModel)]="courseService.selectedCourses.duration"><br>
        <label>Course Category</label><input type="text" name="category" #category="ngModel" [(ngModel)]="courseService.selectedCourses.category"><br>
        <label>Course Price</label><input type="number" name="price" #price="ngModel" [(ngModel)]="courseService.selectedCourses.price"><br>
   
 <label>Language</label><input type="text" name="language" #language="ngModel" [(ngModel)]="courseService.selectedCourses.language">
-<label>Course Contents</label><input type="text" name="contents" #contents="ngModel" [(ngModel)]="courseService.selectedCourses.contents"><br>
+<label>Course Contents</label><textarea name="contents" #contents="ngModel" [(ngModel)]="courseService.selectedCourses.contents"></textarea><br>
 <label>Course Requirements</label><input type="text" name="requirements" #requirements="ngModel" [(ngModel)]="courseService.selectedCourses.requirements"><br>
 <label>Course Overview</label><input type="text" name="courseincludes" #courseincludes="ngModel" [(ngModel)]="courseService.selectedCourses.courseincludes"><br>
 
- 
+
     <input type="submit" onsubmit="" id="submit" value="Add Course">
+    <span class="glyphicon glyphicon-education"></span>
+   
+
 
 </form>
     </div>
-
-
 </body>
 
 </html>

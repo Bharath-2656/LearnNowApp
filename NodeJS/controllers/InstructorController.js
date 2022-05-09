@@ -5,6 +5,7 @@ const passport = require('passport');
 var router = express.Router();
 const app = express();
 const jwt = require('jsonwebtoken');
+const { Course} = require("../models/CourseModel");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -32,6 +33,7 @@ app.post('/instructors', (req, res) =>
         email: req.body.email,
         description: req.body.description,
         password: req.body.password,
+        routerlink: req.body.name.replace(/\s+/g, '').toLowerCase(),
         //instructorid: req.body.name.replace(/\s+/g, '').toLowerCase(),
         // numberofcourses: req.body.numberofcourses,
         // numberofstudents: req.body.numberofstudents,
@@ -87,6 +89,20 @@ app.delete('/instructors/:instructorid', (req, res) =>
     {
         if (!err) { res.send(doc); }
         else { console.log("Error in deleting user"); }
+    });
+});
+
+app.put('/instructorcourse/:instructorid', (req, res) =>
+{
+    
+    var instructor = {
+        instructorid: req.body.instructorid
+    };
+    console.log(req.body);
+    User.findOneAndUpdate({ instructorid: req.params.instructorid }, { $push: instructor }, { new: true }, (err, doc) =>
+    {
+        if (!err) { res.send(doc); }
+        else { console.log(`Error in updating user`); }
     });
 });
 
@@ -146,6 +162,29 @@ app.post('/token', async (req,res,next) =>
             }
         }
     )
+});
+
+app.get('/instructorcourse', async (req, res) =>
+{
+    Instructor.aggregate([
+        {
+            $lookup: {
+                from: "courses",
+                localField: "routerlink",
+                foreignField: "author",
+                as: "instructor_courses",
+            },
+        },
+        
+    ])
+        .then((result) =>
+        {
+            res.send(result);
+        })
+        .catch((error) =>
+        {
+            console.log(error);
+        });
 });
 
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style></style>
+</head>
+
+<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+  <!-- <input type="checkbox" id="checkbox">
+    <label for="checkbox">
+    <i class="fa fa-bars" id="btn"></i>
+    <i class="fa fa-times" id="cancel"></i>
+  </label> -->
+  <div class="sidebar">
+   
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">login</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+ 
+  <h1 id="heading">Courses created by you</h1>
+  <ng-container *ngFor="let course of courses">
+    <ng-container *ngFor="let instructor of instructors">
+      <ng-container *ngIf="course.author===instructor.routerlink">
+        <div class="card">
+          <div>
+            <h3>{{ course.name}}</h3>
+
+            <p><strong>Duration : </strong>{{ course.duration}}</p>
+            <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
+              <p><strong>Instructor : </strong>{{course.author  | titlecase}}</p>
+            </a>
+          </div>
+          <div align="right">
+            <button  class="updatebutton" value="Update"><i class="fa fa-pencil" style="color: black;  margin-left: 0px" aria-hidden="true"></i>  Update</button>
+            <button class="deletebutton" value="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i>  Delete</button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+</body>
+</html>

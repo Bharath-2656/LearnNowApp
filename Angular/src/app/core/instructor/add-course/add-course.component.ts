@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/shared/services/Course/course.model';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
+import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 
 @Component({
   selector: 'app-add-course',
@@ -18,7 +19,7 @@ export class AddCourseComponent implements OnInit {
   name = 'Dynamic Add Fields';
   values: any[5] = [];
   course: Course = new Course;
-  constructor(public courseService: CourseService, private router: Router) { }
+  constructor(public courseService: CourseService, private router: Router, private instructorService: InstructorService) { }
   
   ngOnInit(): void {
     this.resetForm(); 
@@ -50,9 +51,6 @@ export class AddCourseComponent implements OnInit {
 // }
 onSubmit(form: NgForm) {
   this.courseService.postCourse(form.value).subscribe((res) => {
-    form.value.instructor = 
-    console.log(form.value);
-    
   
   this.resetForm(form);
 },
@@ -64,6 +62,11 @@ err => {
     this.serverErrorMessages = 'Something went wrong. Please contact admin.';
 }
 );
+ this.instructorService.postInstructorCourse(form.value).subscribe((res) => {
+      this.showSuccessMessage = true;
+    setTimeout(() => this.showSuccessMessage = false, 4000);
+    // this.router.navigate(['user/confirmenrollment']);
+    });
 }
 // addvalue(){
 //   this.values.push({value: ""});

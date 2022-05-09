@@ -6,6 +6,7 @@
   <style></style>
 </head>
 
+
 <body>
   <!-- <h1 id="heading">Courses based on your choice</h1> -->
   <!-- <div class="row"> -->
@@ -21,7 +22,7 @@
           <div class="card">
             <div id="one">
               <h3>{{ course.name}}</h3>
-              <p>{{ course.description }}</p>
+              <p class="textcolor">{{ course.description }}</p>
               <p><strong>Duration : </strong>{{ course.duration}}</p>
               <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
                 <p><strong>Instructor : </strong>{{course.author}}</p>
@@ -32,7 +33,7 @@
             
               <p><strong>Course contents : </strong></p>
               <ng-container *ngFor="let content of coursecontents">
-                <li>{{content}}</li><br>
+                <li class="textcolor">{{content}}</li><br>
               </ng-container>
              
               
@@ -56,10 +57,13 @@
           </div><br>
           <div class="card">
           <div id="three" class="card">
-            <p class="textcolor">Reviews</p>
-            </div>
+            <p ><strong>Reviews</strong></p>
+            
+          </div>
           </div>
         </div>
+       
+        
       </form>
 
     </ng-container>

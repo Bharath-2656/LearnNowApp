@@ -16,7 +16,7 @@ app.post('/usercourse', (req,res) => {
         name: req.body.name,
         description: req.body.description,
         duration: req.body.duration,
-        // author: req.body.author,
+        author: req.body.author.replace(/\s+/g, '').toLowerCase(),
         category: req.body.category.replace(/\s+/g, '').toLowerCase(),
         price: req.body.price,
         routerlink: req.body.name.replace(/\s+/g, '').toLowerCase(),

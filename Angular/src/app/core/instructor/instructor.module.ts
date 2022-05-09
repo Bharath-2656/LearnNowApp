@@ -5,6 +5,7 @@ import { InstructorProfileComponent } from './instructor-profile/instructor-prof
 import { FormsModule } from '@angular/forms';
 import { InstructorRegisterComponent } from './instructor-register/instructor-register.component';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { InsructorcoursesviewComponent } from './insructorcoursesview/insructorcoursesview.component';
 
 
 
@@ -13,6 +14,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
     InstructorProfileComponent,
     InstructorRegisterComponent,
     AddCourseComponent,
+    InsructorcoursesviewComponent,
 
   ],
   imports: [

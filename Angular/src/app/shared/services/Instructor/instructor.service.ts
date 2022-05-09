@@ -5,7 +5,8 @@ import { Instructor } from './instructor.model';
 @Injectable({
   providedIn: 'root'
 })
-export class InstructorService {
+export class InstructorService
+{
   selectedInstructors!: Instructor;
   instructors!: Instructor[];
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
@@ -13,70 +14,86 @@ export class InstructorService {
 
   constructor(private http: HttpClient) { }
 
-  getInstructor() {
+  getInstructor()
+  {
     return this.http.get(this.baseURL + 'instructors');
   }
-  postInstructor(instructor: Instructor) {
+  postInstructor(instructor: Instructor)
+  {
     return this.http.post(this.baseURL + 'instructors', instructor);
   }
 
-  putinstructor(instructor: Instructor) {
+  putinstructor(instructor: Instructor)
+  {
     return this.http.put(this.baseURL + 'instructors' + `/${instructor.instructorid}`, instructor);
   }
 
-  deleteInstructor(instructor: Instructor) {
+  deleteInstructor(instructor: Instructor)
+  {
     return this.http.delete(this.baseURL + 'instructors' + `/${instructor.instructorid}`);
   }
 
-  login(authCredentials:any) {
-    return this.http.post(this.baseURL + 'authenticate', authCredentials,this.noAuthHeader);
+  login(authCredentials: any)
+  {
+    return this.http.post(this.baseURL + 'authenticate', authCredentials, this.noAuthHeader);
   }
-  setToken(token: string) {
+  setToken(token: string)
+  {
     localStorage.setItem('token', token);
   }
-  getToken() {
+  getToken()
+  {
     return localStorage.getItem('token');
   }
 
-  deleteToken() {
+  deleteToken()
+  {
     localStorage.removeItem('token');
   }
 
   postRefreshtokencheck(instructor: Instructor)
   {
-   return this.http.post(this.baseURL + 'token', instructor);
+    return this.http.post(this.baseURL + 'token', instructor);
   }
 
   getInstructorfromPayload()
- {
-   const instructorid = this.getInstructorPayload().instructorid; 
-   return instructorid;
- }
- postintructorid(instructorid: Number)
- {
-    return this.http.post(this.baseURL + 'getinstructorid', instructorid);
- }
- getInstructorPayload() {
-  var token = this.getToken();
-   
-  if (token) {
-    var instructorPayload = atob(token.split('.')[1]);
-    return JSON.parse(instructorPayload);
+  {
+    return this.getInstructorPayload().instructorid;
   }
-  else
-    return null;
-}
-isLoggedIn() {
-  var instructorPayload = this.getInstructorPayload();
-   
-  if (instructorPayload)
- {
-   console.log(instructorPayload.exp > Date.now() / 1000);
-   
-    return instructorPayload.exp > Date.now() / 1000;
- }
-  else
-    return false;
-}
+  postintructorid(instructorid: Number)
+  {
+    return this.http.post(this.baseURL + 'getinstructorid', instructorid);
+  }
+  getInstructorPayload()
+  {
+    var token = this.getToken();
+
+    if (token)
+    {
+      var instructorPayload = atob(token.split('.')[1]);
+      return JSON.parse(instructorPayload);
+    }
+    else
+      return null;
+  }
+  isLoggedIn()
+  {
+    var instructorPayload = this.getInstructorPayload();
+
+    if (instructorPayload)
+    {
+      return instructorPayload.exp > Date.now() / 1000;
+    }
+    else
+      return false;
+  }
+  postInstructorCourse(instructor: Instructor)
+  {
+    return this.http.put(this.baseURL + 'instructorcourse' + `/${instructor.instructorid}`, instructor);
+  }
+  getInstructorCourse()
+  {
+    return this.http.get(this.baseURL + 'instructorcourse');
+  }
 
 }
