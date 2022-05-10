@@ -25,7 +25,7 @@ export class InstructorLoginComponent implements OnInit {
         //localStorage.setItem('userToken',data.access_token);
         this.instructorService.setToken(res['token']);
         this.instructorService.postintructorid(this.instructorService.getInstructorfromPayload());
-        this.router.navigate(['/instructors/addcourse']);
+        this.router.navigate(['/instructors/instructorCourse']);
       
         
       },

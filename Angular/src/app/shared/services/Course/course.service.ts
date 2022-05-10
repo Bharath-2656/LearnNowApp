@@ -31,8 +31,11 @@ export class CourseService {
   {
     return this.http.put(this.baseURL + 'usercourse/coursecontents' + `/${course.courseid}`, course.contents);
   }
-  deleteCourse(course: Course) {
-    return this.http.delete(this.baseURL + 'usercourse' + `/${course.courseid}`);
+  deleteCourse(courseid: Number) {
+    console.log(courseid);
+  
+    
+    return this.http.delete(this.baseURL + 'usercourse' + `/${courseid}`);
   }
 
   sendConfirmationMail(courses:any)

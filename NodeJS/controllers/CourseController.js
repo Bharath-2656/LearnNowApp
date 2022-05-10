@@ -63,8 +63,9 @@ app.put('/usercourse/:courseid', (req,res) => {
         price: req.body.price,
         contents: req.body.contents,
         courseincludes: req.body.courseincludes,
+        requirements: req.body.requirements,
         language: req.body.language,
-        enrolledstudents: req.body.enrolledstudents,
+        //enrolledstudents: req.body.enrolledstudents,
     };
     Course.findOneAndUpdate({courseid:req.params.courseid}, {$set: course}, {new:true}, (err,doc) => {
         if(!err) {res.send(doc);}
@@ -85,10 +86,15 @@ app.put('/usercourse/coursecontents/:courseid', (req,res) => {
 
 
 app.delete('/usercourse/:courseid',(req,res) => {
-    Course.findOneAndRemove(req.params.userid, (err,doc) => {
-        if(!err) { res.send(doc);}
+    console.log(req.params.courseid);
+    Course.findOneAndRemove({courseid:req.params.courseid}, (err,doc) => {
+        if(!err) { 
+            res.send(doc);
+            console.log("data deleted");
+        }
         else { console.log("Error in deleting user");}
     });
+    //Course.remove({ courseid: ObjectId(req.params.ObjectId) }).setOptions({ single: true })
 });
 
 app.get('/areaofinterestcourse', async (req, res) =>

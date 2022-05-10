@@ -105,7 +105,7 @@ app.put('/usercourse/:userid', (req, res) =>
 //Deleting the user from the database
 app.delete('/users/:userid', (req, res) =>
 {
-    User.findOneAndRemove(req.params.userid, (err, doc) =>
+    User.findByIdAndRemove(req.params.userid, (err, doc) =>
     {
         if (!err) { res.send(doc); }
         else { console.log("Error in deleting user"); }

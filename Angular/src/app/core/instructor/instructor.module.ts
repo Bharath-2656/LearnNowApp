@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { InstructorRegisterComponent } from './instructor-register/instructor-register.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { InsructorcoursesviewComponent } from './insructorcoursesview/insructorcoursesview.component';
+import { UpdateCourseComponent } from './update-course/update-course.component';
+import { DeleteCourseComponent } from './delete-course/delete-course.component';
 
 
 
@@ -15,6 +17,8 @@ import { InsructorcoursesviewComponent } from './insructorcoursesview/insructorc
     InstructorRegisterComponent,
     AddCourseComponent,
     InsructorcoursesviewComponent,
+    UpdateCourseComponent,
+    DeleteCourseComponent,
 
   ],
   imports: [

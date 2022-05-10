@@ -99,7 +99,7 @@ app.put('/instructorcourse/:instructorid', (req, res) =>
         instructorid: req.body.instructorid
     };
     console.log(req.body);
-    User.findOneAndUpdate({ instructorid: req.params.instructorid }, { $push: instructor }, { new: true }, (err, doc) =>
+    Instructor.findOneAndUpdate({ instructorid: req.params.instructorid }, { $push: instructor }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }
         else { console.log(`Error in updating user`); }
