@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+<body>
+   
+    <div class='banner violet'>
+        <h3 id="logo">LearnNow!</h3>
+         
+        <p id="sidetext">LearnNow is a new age edtech firm which focues on college students for their carrer enhancement. We offer best courses, specially currated by our team of instructors</p>
+    </div>
+    <div class='banner blue'>
+        <h3 id="secondleft">Are you Industry Ready?</h3>
+        
+        <p id="secondtext">Large openings are there in the digital market right now and is only expected to increased in the comming years</p>
+    </div>
+        
+    <div class='banner2 orange' >
+        <h3 id="thirdleft">Courses we offer</h3>   
+        <button id="slideRight" type="button">></button>
+        <button id="slideLeft" type="button"><</button>
+        <br>
+        <div class="row" id="row">
+            
+            <ng-container *ngFor="let areaOfInterest of areaOfInterests">
+            <div class="column">
+                <div class="card">
+                    <!-- <img src="https://i.ibb.co/0MTN4KN/web-devolpment.jpg" alt="web-devolpment"> -->
+                    <img src={{areaOfInterest.imagesrc}} alt="web-devolpment" class="img" style="width:100%">
+                    <div class="container">
+                        <h3><b><a id="b" [routerLink]="['/user/category', areaOfInterest.routerlink]" routerLinkActive="active">{{areaOfInterest.name}}</a></b></h3>
+                        <!-- <p></p>  -->
+                    </div>
+                </div>
+            </div>
+           
+        </ng-container>
+        </div>
+       
+        
+        
+</div>
+</body>
+</html>
+<app-footer></app-footer>  

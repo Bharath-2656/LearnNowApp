@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/User/user.service';
 import { Router } from "@angular/router";
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService, private router : Router) { }
+  constructor(private userService: UserService, private router : Router, private toastr: ToastrService) { }
   serverErrorMessages!: string;
 
   ngOnInit(): void {
@@ -19,11 +20,15 @@ export class LoginComponent implements OnInit {
   
     onSubmit(formOne : NgForm){
       this.userService.login(formOne.value).subscribe((res : any)=>{
-        //localStorage.setItem('userToken',data.access_token);
+
+        this.toastr.success('Login Successfully','Success');
+       
         this.userService.setToken(res['token']);
         this.userService.getuserfromPayload();
+        setTimeout(() =>{
+          this.router.navigate(['/user/dashboard']);
+        }, 3000); 
         
-        this.router.navigate(['/user/areaofinterest']);
       },
       (err : HttpErrorResponse)=>{
         this.serverErrorMessages = err.error.message;

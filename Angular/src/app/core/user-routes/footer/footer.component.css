@@ -1,21 +1,18 @@
-p{
-    margin-right: 0px;
-}
+
 
 *{
   margin: 0;
   padding: 0;
+  
   box-sizing: border-box;
-  font-family: 'Poppins',sans-serif;
+  font-family: 'Montserrat';
   text-decoration: none;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
 }
 footer{
   width: 100%;
-  /* position: fixed;
-  bottom: 0;
-  left: 0; */
-  background: #F7F8FA;
+  margin-top: -8px;
+  background: var(--purple-color);
 }
 footer .content{
   max-width: 1350px;
@@ -26,28 +23,33 @@ footer .content{
   justify-content: space-between;
 }
 footer .content p,a{
-  color: #5b446a;
+  color: white;
   font-weight: 450;
 }
 footer .content .box{
-  width: 33%;
+  width:40%;
   transition: all 0.4s ease;
 }
 footer .content .topic{
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 600;
-  color: #5b446a;
+  color: white;
   margin-bottom: 16px;
 
 }
 footer .content p{
   text-align: justify;
+  color: white;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 300;
 }
 footer .content .lower .topic{
   margin: 24px 0 5px 0;
 }
 footer .content .lower i{
   padding-right: 16px;
+  line-height: 1.3;
 }
 footer .content .middle{
   padding-left: 80px;
@@ -59,7 +61,7 @@ footer .content .right input[type="text"]{
   height: 45px;
   width: 100%;
   outline: none;
-  color: #d9d9d9;
+  color: black; 
   background-color:  rgba(67, 177, 100,0.4s);
   border-radius: 5px;
   padding-left: 10px;
@@ -72,7 +74,7 @@ footer .content .right input[type="submit"]{
   width: 100%;
   font-size: 18px;
   color: black;
-  background: #CCD0D5;
+  background: #d5cccc;
   outline: none;
   border-radius: 5px;
   /* letter-spacing: 1px; */
@@ -83,7 +85,7 @@ footer .content .right input[type="submit"]{
 }
 .content .right input[type="submit"]:hover{
   background: none;
-  color:  #eb2f06;
+ 
 }
 footer .content .media-icons a{
   font-size: 16px;
@@ -93,7 +95,7 @@ footer .content .media-icons a{
   text-align: center;
   line-height: 43px;
   border-radius: 5px;
-  border: 2px solid #222222;
+  border: 2px solid #f0f0f0;
   margin: 30px 5px 0 0;
   transition: all 0.3s ease;
 }
@@ -106,9 +108,9 @@ footer .bottom{
   color: #d9d9d9;
   padding: 0 40px 5px 0;
 }
-footer .bottom a{
+/* footer .bottom a{
   color: #eb2f06;
-}
+} */
 footer a{
   transition: all 0.3s ease;
 }

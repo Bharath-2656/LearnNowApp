@@ -19,6 +19,7 @@ export class CoursesViewComponent implements OnInit {
   SortbyParam: string='';
   SortDirection = 'asc';
   userid!: Number;
+  userintrest: any[] =[]
   constructor(private courseService: CourseService, private router: Router, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class CoursesViewComponent implements OnInit {
     this.userid = this.userService.getuserfromPayload();
 
     this.userService.postAreaOfIntrestForUser(this.userid, this.id).subscribe((res:any) => {
+      this.userintrest = res;
 
     })
     

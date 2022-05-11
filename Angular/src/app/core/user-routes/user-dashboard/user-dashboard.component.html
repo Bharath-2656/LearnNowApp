@@ -14,38 +14,61 @@
 
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a [routerLink]="['/instructorCourse']" routerLinkActive="active">View Courses</a></li>
+            <!-- <li><a [routerLink]="['/course/']" routerLinkActive="active">View Courses</a></li> -->
             <li><a [routerLink]="['/areaofinterest']" routerLinkActive="active">Enroll Course</a></li>
             <li><a href="#">Logout</a></li>
         </ul>
     </div>
     <h1 id="heading">Welcome back</h1>
-    <h2>Continue your courses</h2>
-    <ng-container *ngFor="let course of usercourses">
-         <ng-container *ngFor="let cour of course.user_courses"> 
+    <h2><strong>Enrolled courses</strong></h2>
+    <ng-container *ngFor="let usercourse of usercourses">
+         <ng-container *ngFor="let ucourse of usercourse.user_courses"> 
            
                 <div class="card">
                     <div>
-                        <h3>{{ course.name}}</h3>
+                        <h3>
+                            <a style="font-size: 23px;" id="b" [routerLink]="['/course', usercourse .routerlink]" routerLinkActive="active"><b>{{
+                                usercourse.name}}</b></a>
+                          </h3>
 
-                        <p><strong>Duration : </strong>{{ course.duration}}</p>
-                        <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
-                            <p><strong>Instructor : </strong>{{course.author | titlecase}}</p>
+                        <p><strong>Duration : </strong>{{ usercourse.duration}}</p>
+                        <a id="b" [routerLink]="['/instructor', usercourse.author]" routerLinkActive="active">
+                            <p><strong>Instructor : </strong>{{usercourse.author | titlecase}}</p>
                         </a>
-                        <p>Price: {{course.price}}</p>
-                    </div>
-                    
-                    <div align="right">
-                        <!-- <a class=" updatebutton" href="/updateCourse/{{course.routerlink}}"><i class="fa fa-pencil" style="color: black;  margin-left: 0px" aria-hidden="true"></i> Update</a>
-                  <button class="deletebutton" value="Delete" (click)="delete([course.name],[course.courseid])"><i class="fa fa-trash-o" aria-hidden="true"></i>  Delete</button>  -->
+                        <p>Price: {{usercourse.price}}</p>
                     </div>
                 </div>
                 
         </ng-container>
-        <!-- <ng-container *ngIf="course.user_courses.name" -->
+       
     </ng-container>
-     <h2>Recommended courses for you</h2> 
-    
+      <h2>Recommended courses for you</h2> 
+     <!-- <ng-container *ngFor="let courseservice of courseservices">
+        
+        <ng-container
+          *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses">
+          <ng-container
+          *ngFor="let ucs of uc">
+        <div class="card">{{ucs}}</div></ng-container>
+        <ng-container *ngIf="uc!=areaofinterest_course.routerlink">
+         
+            <div class="card">
+                
+              <h3>
+                <a style="font-size: 23px;" id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{
+                    areaofinterest_course.name}}</b></a>
+              </h3>
+              <p>{{ areaofinterest_course.description}}</p>
+              <p>Duration : {{ areaofinterest_course.duration}}</p>
+              <a id="b" [routerLink]="['/instructor', areaofinterest_course.author]" routerLinkActive="active">
+                <p>Instructor : {{areaofinterest_course.author}}</p>
+              </a>
+              <p id="price">Price : {{areaofinterest_course.price}}</p>
+            </div>
+        </ng-container>
+        </ng-container>
+
+      </ng-container> -->
     
 </body>
 

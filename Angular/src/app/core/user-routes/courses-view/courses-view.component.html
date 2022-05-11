@@ -10,6 +10,7 @@
 <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
 
 <body>
+  
   <h1 id="heading">Courses based on your choice</h1>
   <div class="grid">
     <div id="one">
@@ -60,7 +61,7 @@
               <p>{{ areaofinterest_course.description}}</p>
               <p>Duration : {{ areaofinterest_course.duration}}</p>
               <a id="b" [routerLink]="['/instructor', areaofinterest_course.author]" routerLinkActive="active">
-                <p>Instructor : {{areaofinterest_course.author}}</p>
+                <p>Instructor : {{areaofinterest_course.author | titlecase}}</p>
               </a>
               <p id="price">Price : {{areaofinterest_course.price}}</p>
             </div>

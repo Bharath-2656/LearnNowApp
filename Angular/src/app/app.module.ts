@@ -10,7 +10,7 @@ import { AuthGuard } from './shared/Auth/auth.guard';
 import { AuthInterceptor } from './shared/Auth/auth.interceptor';
 import { UserRoutesModule } from './core/user-routes/user-routes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FooterComponent } from './core/user-routes/footer/footer.component';
+ import { FooterComponent } from './core/user-routes/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { InstructorLoginComponent } from './core/instructor/instructor-login/instructor-login.component';
 import { InstructorModule } from './core/instructor/instructor.module';
@@ -23,7 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
+    
     InstructorLoginComponent,
   ],
   imports: [
@@ -38,7 +38,7 @@ import { ToastrModule } from 'ngx-toastr';
     InstructorModule,
 
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 2500,
       progressBar: true,
       preventDuplicates:true,
       positionClass:'toast-bottom-left',

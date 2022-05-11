@@ -15,8 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
-
+import { HomepageComponent } from './homepage/homepage.component';
+import { FooterComponent } from './user-routes/footer/footer.component';
 
 
 @NgModule({
@@ -26,6 +26,8 @@ import { MatListModule } from '@angular/material/list';
     RegisterComponent,
     UserprofileComponent,
     AreaofinterestComponent,
+    HomepageComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { MatListModule } from '@angular/material/list';
     NavbarComponent,
     LoginComponent,
     AreaofinterestComponent,
+    FooterComponent
   ],
   providers: [UserService],
 })

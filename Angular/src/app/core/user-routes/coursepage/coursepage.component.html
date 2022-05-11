@@ -22,10 +22,10 @@
           <div class="card">
             <div id="one">
               <h3>{{ course.name}}</h3>
-              <p class="textcolor">{{ course.description }}</p>
+              <p class="textcolor line">{{ course.description }}</p>
               <p><strong>Duration : </strong>{{ course.duration}}</p>
               <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
-                <p><strong>Instructor : </strong>{{course.author}}</p>
+                <p><strong>Instructor : </strong>{{course.author | titlecase}}</p>
               </a>
               
               <p><strong>Language : </strong>{{course.language}}</p>
@@ -51,7 +51,7 @@
               </ng-container>
               <h3 >Course requirements : </h3>
               <ng-container *ngFor="let requirements of courserequirements">
-                <li class="textcolor">{{requirements}}</li>
+                <li id="list" class="textcolor">{{requirements}}</li>
               </ng-container>
             </div>
           </div><br>

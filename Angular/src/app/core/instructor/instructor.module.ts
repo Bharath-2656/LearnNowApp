@@ -7,6 +7,7 @@ import { InstructorRegisterComponent } from './instructor-register/instructor-re
 import { AddCourseComponent } from './add-course/add-course.component';
 import { InsructorcoursesviewComponent } from './insructorcoursesview/insructorcoursesview.component';
 import { UpdateCourseComponent } from './update-course/update-course.component';
+import { InstructorNavbarComponent } from './instructor-navbar/instructor-navbar.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
     AddCourseComponent,
     InsructorcoursesviewComponent,
     UpdateCourseComponent,
+    InstructorNavbarComponent,
 
   ],
   imports: [

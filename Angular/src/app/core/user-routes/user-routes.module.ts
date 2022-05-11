@@ -8,6 +8,8 @@ import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollmen
 import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 
 
@@ -19,11 +21,14 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     FilterPipe,
     SortPipe,
     UserDashboardComponent,
+    
+    
   ],
   imports: [
     CommonModule,
     UserRoutesRoutingModule,
     FormsModule,
   ],
+ 
 })
 export class UserRoutesModule { }
