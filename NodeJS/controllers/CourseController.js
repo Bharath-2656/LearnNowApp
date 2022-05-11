@@ -54,7 +54,14 @@ app.get('/usercourse/:courseid', (req,res) => {
     });
 });
 
-app.put('/usercourse/:courseid', (req,res) => {
+app.get('/usercoursebylink/:routerlink', (req,res) => {
+    Course.findOne({ routerlink: req.params.routerlink },`name description author price`, (err,doc) => {
+        if(!err) { res.send(doc);}
+        else { console.log("Error in retreiving data")}
+    });
+});
+
+app.put('/usercourse/:name', (req,res) => {
     var course = {
         name: req.body.name,
         description: req.body.description,
@@ -67,7 +74,7 @@ app.put('/usercourse/:courseid', (req,res) => {
         language: req.body.language,
         //enrolledstudents: req.body.enrolledstudents,
     };
-    Course.findOneAndUpdate({courseid:req.params.courseid}, {$set: course}, {new:true}, (err,doc) => {
+    Course.findOneAndUpdate({name:req.params.name}, {$set: course}, {new:true}, (err,doc) => {
         if(!err) {res.send(doc);}
         else {  console.log(`Error in updating user`);}
     });

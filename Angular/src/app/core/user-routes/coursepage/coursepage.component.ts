@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-coursepage',
@@ -48,26 +49,40 @@ export class CoursepageComponent implements OnInit {
   onSubmit(formOne : NgForm){
     formOne.value.courseid=this.id;
     formOne.value.userid = this.userService.getUserPayload().userid;
-    this.courseService.sendConfirmationMail(this.courses).subscribe((res) => {
+
+    Swal.fire({
+      title: "Do you wish to enroll to this course "+ name,
+      // text: "Write something interesting:",
+      // input: 'text',
+      showCancelButton: true,
+  }).then((result) => {
+    
+      if (result.value) {
+          console.log("Result: " + result.value);
+
+          this.courseService.sendConfirmationMail(this.courses).subscribe((res) => {
         
-    });
-    this.userService.postUserCourse(formOne.value).subscribe((res) => {
-      this.showSuccessMessage = true;
-    setTimeout(() => this.showSuccessMessage = false, 4000);
-    this.router.navigate(['user/confirmenrollment']);
-  },
-  err => {
-    if (err.status === 422) {
-      this.serverErrorMessages = err.error.join('<br/>');
-    }
-    else
-      this.serverErrorMessages = 'Something went wrong. Please contact admin.';
-  }
-);
+          });
+      
+          this.userService.postUserCourse(formOne.value).subscribe((res) => {
+            this.showSuccessMessage = true;
+          setTimeout(() => this.showSuccessMessage = false, 4000);
+          this.router.navigate(['user/dashboard']);
+        },
+        err => {
+          if (err.status === 422) {
+            this.serverErrorMessages = err.error.join('<br/>');
+          }
+          else
+            this.serverErrorMessages = 'Something went wrong. Please contact admin.';
+        }
+      );
+      }
+  });
+
+    
   }
 
-  openModal(id: string) {
-    this.courseService['open']();
-}
+  
 
 }

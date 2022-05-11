@@ -59,6 +59,7 @@ export class UpdateCourseComponent implements OnInit {
     
     onSubmit(form: NgForm) {
       this.courseService.putCourse(form.value).subscribe((res) => {
+       
       
       this.resetForm(form);
     },

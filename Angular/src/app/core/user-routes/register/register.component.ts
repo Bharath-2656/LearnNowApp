@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
       password: "",
       confirm_password: "",
       courseid: "",
+      areaofintrest: "",
     };
     this.serverErrorMessages = '';
   }

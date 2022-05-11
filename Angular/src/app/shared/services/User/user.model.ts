@@ -6,4 +6,5 @@ export class User {
     password!: String;
     confirm_password!: String;
     courseid!: String;
+    areaofintrest!: String;
 }

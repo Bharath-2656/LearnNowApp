@@ -63,7 +63,8 @@ const CourseSchema = new mongoose.Schema({
     },
     reviews: {
       type: [],
-    }
+    },
+    
   });
 
   CourseSchema.pre("save", function (next) {

@@ -7,8 +7,6 @@ import { InstructorRegisterComponent } from './instructor-register/instructor-re
 import { AddCourseComponent } from './add-course/add-course.component';
 import { InsructorcoursesviewComponent } from './insructorcoursesview/insructorcoursesview.component';
 import { UpdateCourseComponent } from './update-course/update-course.component';
-import { DeleteCourseComponent } from './delete-course/delete-course.component';
-
 
 
 @NgModule({
@@ -18,7 +16,6 @@ import { DeleteCourseComponent } from './delete-course/delete-course.component';
     AddCourseComponent,
     InsructorcoursesviewComponent,
     UpdateCourseComponent,
-    DeleteCourseComponent,
 
   ],
   imports: [

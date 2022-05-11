@@ -156,8 +156,9 @@ nav {
 /* background-color: #333C83; */
 /* background-color: #21325E; */
 background-color:#3E497A;
-  /* position: relative; */
+   position: relative; 
   margin-top: 0px;
+  z-index: 100;
 }
 .navbar .nav-header{
   display: inline;
@@ -187,7 +188,7 @@ background-color:#3E497A;
 .navbar .nav-links a{
   padding: 10px 12px;
   text-decoration: none;
-  font-weight: 550;
+  /* font-weight: 550; */
   /* color: #5b446a; */
   /* color: #F24A72; */
   color: #f4f81c;

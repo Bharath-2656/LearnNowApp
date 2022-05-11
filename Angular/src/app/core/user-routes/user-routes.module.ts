@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollment.component';
 import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 
@@ -17,6 +18,7 @@ import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
     ConfirmenrollmentComponent,
     FilterPipe,
     SortPipe,
+    UserDashboardComponent,
   ],
   imports: [
     CommonModule,

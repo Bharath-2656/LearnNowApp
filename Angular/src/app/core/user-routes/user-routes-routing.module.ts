@@ -10,6 +10,7 @@ import { CoursepageComponent } from './coursepage/coursepage.component';
 import { CoursesViewComponent } from './courses-view/courses-view.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,9 @@ const routes: Routes = [
    {path: "instructor/:id", component:InstructorProfileComponent,canActivate:[AuthGuard],data: {role: 'user'}},
   {path: "user/confirmenrollment", component: ConfirmenrollmentComponent,canActivate:[AuthGuard],data: {
     role: 'user',
-  }}
+  }},
+  {path: "user/dashboard", component: UserDashboardComponent,canActivate:[AuthGuard],data: {
+    role: 'user',}}
   
   // {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]}
   

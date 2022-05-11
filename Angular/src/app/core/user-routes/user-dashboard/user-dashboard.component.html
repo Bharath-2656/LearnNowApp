@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a [routerLink]="['/instructorCourse']" routerLinkActive="active">View Courses</a></li>
+            <li><a [routerLink]="['/areaofinterest']" routerLinkActive="active">Enroll Course</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+    <h1 id="heading">Welcome back</h1>
+    <h2>Continue your courses</h2>
+    <ng-container *ngFor="let course of usercourses">
+         <ng-container *ngFor="let cour of course.user_courses"> 
+           
+                <div class="card">
+                    <div>
+                        <h3>{{ course.name}}</h3>
+
+                        <p><strong>Duration : </strong>{{ course.duration}}</p>
+                        <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
+                            <p><strong>Instructor : </strong>{{course.author | titlecase}}</p>
+                        </a>
+                        <p>Price: {{course.price}}</p>
+                    </div>
+                    
+                    <div align="right">
+                        <!-- <a class=" updatebutton" href="/updateCourse/{{course.routerlink}}"><i class="fa fa-pencil" style="color: black;  margin-left: 0px" aria-hidden="true"></i> Update</a>
+                  <button class="deletebutton" value="Delete" (click)="delete([course.name],[course.courseid])"><i class="fa fa-trash-o" aria-hidden="true"></i>  Delete</button>  -->
+                    </div>
+                </div>
+                
+        </ng-container>
+        <!-- <ng-container *ngIf="course.user_courses.name" -->
+    </ng-container>
+     <h2>Recommended courses for you</h2> 
+    
+    
+</body>
+
+</html>

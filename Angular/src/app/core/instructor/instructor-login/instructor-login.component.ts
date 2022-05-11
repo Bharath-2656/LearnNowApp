@@ -20,7 +20,7 @@ export class InstructorLoginComponent implements OnInit {
   
     onSubmit(formOne : NgForm){
       this.instructorService.login(formOne.value).subscribe((res : any)=>{
-        console.log("cool");
+       
         
         //localStorage.setItem('userToken',data.access_token);
         this.instructorService.setToken(res['token']);

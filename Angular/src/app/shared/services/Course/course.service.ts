@@ -23,9 +23,9 @@ export class CourseService {
   postCourse(course: Course) {
     return this.http.post(this.baseURL + 'usercourse', course);
   }
-
+ 
   putCourse(course: Course) {
-    return this.http.put(this.baseURL + 'usercourse' + `/${course.courseid}`, course);
+    return this.http.put(this.baseURL + 'usercourse' + `/${course.name}`, course);
   }
   putCoursecontents(course:Course)
   {

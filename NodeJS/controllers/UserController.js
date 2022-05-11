@@ -15,9 +15,9 @@ const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(router);
-
+app.use(express.json());
 
 //Getting all users
 app.get('/users', async (req, res) =>
@@ -90,7 +90,7 @@ app.put('/users/:userid', (req, res) =>
 // Updating the courseid to User after Enrollment
 app.put('/usercourse/:userid', (req, res) =>
 {
-    
+       
     var user = {
         courseid: req.body.courseid
     };
@@ -111,6 +111,24 @@ app.delete('/users/:userid', (req, res) =>
         else { console.log("Error in deleting user"); }
     });
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.put('/usercourse/:userid/:areaofintrest', (req, res) =>
+{
+    console.log("wow");
+    var user = {
+        areaofintrest: req.params.areaofintrest
+    };
+    console.log(req.params.areaofintrest);
+    
+    User.findOneAndUpdate({ userid: req.params.userid }, { $push: user }, { new: true }, (err, doc) =>
+    {
+        if (!err) { res.send(doc); }
+        else { console.log(`Error in updating user`); }
+    });
+});
+
 
 var  useridforrefresh="manoj@gmail.com";
 
@@ -214,7 +232,7 @@ app.get('/areaofinterest',  async (req, res) =>
         {
             $lookup: {
                 from: "users",
-                localField: "courseid",
+                localField: "routerlink",
                 foreignField: "courseid",
                 as: "user_courses",
             },

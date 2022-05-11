@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/Auth/auth.guard';
 import { InstructorgaurdGuard } from 'src/app/shared/Auth/instructorgaurd.guard';
 import { AddCourseComponent } from './add-course/add-course.component';
-import { DeleteCourseComponent } from './delete-course/delete-course.component';
 import { InsructorcoursesviewComponent } from './insructorcoursesview/insructorcoursesview.component';
 
 import { InstructorLoginComponent } from './instructor-login/instructor-login.component';
@@ -16,8 +15,7 @@ const routes: Routes = [
   {path: "addcourse", component: AddCourseComponent,canActivate:[InstructorgaurdGuard],data: {role: 'instructor'}},
   {path: "instructorCourse", component: InsructorcoursesviewComponent , canActivate: [InstructorgaurdGuard], data: {role: 'instructor'}},
   {path: "updateCourse/:id", component: UpdateCourseComponent , canActivate: [InstructorgaurdGuard], data: {role: 'instructor'}},
-  {path: "deleteCourse", component: DeleteCourseComponent , canActivate: [InstructorgaurdGuard], data: {role: 'instructor'}},
-];
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -18,11 +18,18 @@ export class CoursesViewComponent implements OnInit {
   Parameter: string='';
   SortbyParam: string='';
   SortDirection = 'asc';
-  constructor(private courseService: CourseService, private router: Router, private route: ActivatedRoute) { }
+  userid!: Number;
+  constructor(private courseService: CourseService, private router: Router, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
 
     this.id=this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    this.userid = this.userService.getuserfromPayload();
+
+    this.userService.postAreaOfIntrestForUser(this.userid, this.id).subscribe((res:any) => {
+
+    })
     
     this.courseService.getAreaOfInterestCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {

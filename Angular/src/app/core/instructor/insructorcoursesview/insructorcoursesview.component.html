@@ -23,8 +23,8 @@
    
     <ul>
       <li><a href="#">Home</a></li>
-      <li><a href="#">View Courses</a></li>
-      <li><a href="/addcourse">Add Course</a></li>
+      <li><a [routerLink]="['/instructorCourse']" routerLinkActive="active">View Courses</a></li>
+      <li><a  [routerLink]="['/addcourse']" routerLinkActive="active">Add Course</a></li>
       <li><a href="#">Logout</a></li>
     </ul>
   </div>

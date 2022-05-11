@@ -40,9 +40,7 @@ export class UserService {
   }
 
   postRefreshtokencheck(user: User)
-  {
-    console.log(user);
-    
+  {   
     return this.http.post(this.baseURL + 'token', user);
   }
 
@@ -72,28 +70,31 @@ export class UserService {
       return null;
   }
   isLoggedIn() {
-    var userPayload = this.getUserPayload();
-    console.log("jump");  
+    var userPayload = this.getUserPayload();  
     if (userPayload)
    {
-     console.log(userPayload.exp > Date.now() / 1000);
-     
-      return userPayload.exp > Date.now() / 1000;
+     return userPayload.exp > Date.now() / 1000;
    }
     else
       return false;
   }
 
   postUserCourse(user: User){
-    console.log(user);
     
     return this.http.put(this.baseURL + 'usercourse' + `/${user.userid}`,user);
   }
-
-  sendConfirmationMail(user: User)
+  postAreaOfIntrestForUser(userid: Number, areaofintrest: String)
   {
-    console.log("presidio");
+    console.log(userid, areaofintrest);
     
+    return this.http.put(this.baseURL + 'usercoursearea' + `/${userid}`+`/${areaofintrest}`, areaofintrest)
+  }
+  getUsercourse()
+  {
+    return this.http.get(this.baseURL + 'usercourse');
+  }
+  sendConfirmationMail(user: User)
+  {  
     return this.http.post('http://localhost:9000/admin/user_mail', user);
   }
   

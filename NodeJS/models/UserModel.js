@@ -48,6 +48,9 @@ const UserSchema = new mongoose.Schema({
       type: String,
       default: 'refresh_token'
     },
+    areaofintrest: {
+      type: [],
+    },
     saltSecret:String,
   });
  UserSchema.plugin(uniqueValidator);
