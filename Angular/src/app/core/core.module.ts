@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreRoutingModule } from './core-routing.module';
-import { NavbarComponent } from './navbar/navbar.component';
+
 import { LoginComponent } from './user-routes/login/login.component';
 import { RegisterComponent } from './user-routes/register/register.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../shared/services/User/user.service';
-import { UserprofileComponent } from './admin-routes/userprofile/userprofile.component';
+
 import { AreaofinterestComponent } from './user-routes/areaofinterest/areaofinterest.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -17,17 +17,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './user-routes/footer/footer.component';
+import { InstructorNavbarComponent } from './instructor/instructor-navbar/instructor-navbar.component';
+import { UserRoutesModule } from './user-routes/user-routes.module';
 
 
 @NgModule({
   declarations: [
-    NavbarComponent,
+    
     LoginComponent,
     RegisterComponent,
-    UserprofileComponent,
+
     AreaofinterestComponent,
     HomepageComponent,
     FooterComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -41,12 +44,14 @@ import { FooterComponent } from './user-routes/footer/footer.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    UserRoutesModule,
   ],
   exports: [
-    NavbarComponent,
+    
     LoginComponent,
     AreaofinterestComponent,
-    FooterComponent
+    FooterComponent,
+    
   ],
   providers: [UserService],
 })

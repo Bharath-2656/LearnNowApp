@@ -1,6 +1,7 @@
 <!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%> -->
-   
+     <app-instructor-navbar></app-instructor-navbar> 
+     <router-outlet></router-outlet>
     <!DOCTYPE html>
     <html>
     <head>
@@ -10,17 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   
     <body>
-         <!-- <nav>
-            
-            <div class="nav-right">
-                <ul>
-                    <a routerLink="user/login" routerLinkActive="active">Login</a>
-                    <a routerLink="user/register" routerLinkActive="active">Register</a>
-                    <a routerLink="user/areaofinterest" routerLinkActive="active">Area of Interest</a>
-                </ul>
-            </div> 
-        </nav>  -->
-        <div align="right" class="main">
+           <div align="right" class="main">
             <h1>Instructor Login Page</h1>
             <h2>Enter Login Details</h2>
             <form class="formOne" #showForm="ngForm" (ngSubmit)="onSubmit(showForm)" novalidate >

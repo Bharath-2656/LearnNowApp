@@ -8,13 +8,14 @@ import { InstructorService } from 'src/app/shared/services/Instructor/instructor
   styleUrls: ['./instructor-navbar.component.css']
 })
 export class InstructorNavbarComponent implements OnInit {
-
+  id!: Number;
   constructor(private instructorService : InstructorService, private router: Router) { }
 
   ngOnInit(): void {
+    this.id=this.instructorService.getInstructorfromPayload();
   }
   onLogout(){
-    this.instructorService.deleteToken();
+    this.instructorService.deleteToken(this.id);
     this.router.navigate(['instructors/login']);
   }
 

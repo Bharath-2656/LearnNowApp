@@ -146,124 +146,125 @@ nav {
 
 
 .navbar{
-  height: 45px;
-  left: 0;
-  width: 96%;
-  margin-left: 0px;
-  padding: 14px 30px;
-  vertical-align:middle;
-/* background-color: #7dd87d; */
-/* background-color: #333C83; */
-/* background-color: #21325E; */
-/* background-color:#3E497A; */
-background-color: var(--purple-color);
-   position: relative; 
-  margin-top: 0px;
-  z-index: 100;
-}
-.navbar .nav-header{
-  display: inline;
-}
-.navbar .nav-header .nav-logo{
-  display: inline-block;
-  margin-top: -7px;
-}
-.navbar .nav-links{
-  display: inline;
-  float: right;
-  font-size: 22px;
-  margin-top: 19px;
-}
-#logo{
-  margin-top: 10px;
-  width: 210px;
-  height: 45px;
-}
-.navbar .nav-links .loginBtn{
-  display: inline-block;
-  padding: 5px 15px;
-  margin-left: 20px;
-  font-size: 17px;
-  color: rgb(9, 14, 90);
-}
-.navbar .nav-links a{
-  padding: 10px 12px;
-  text-decoration: none;
-  font-weight: 400; 
-  /* color: #5b446a; */
-  /* color: #F24A72; */
-  /* color: #f4f81c; */
-  color: white;
-}
-/* Hover effects */
-.navbar .nav-links a:hover{
-  background-color: rgba(0, 0, 0, 0.3);
-}
- 
-/* responsive navbar toggle button */
-.navbar #nav-check, .navbar .nav-btn{
-  display: none;
-}
- 
-@media (max-width:750px) {
-  .navbar .nav-btn{
+    height: 45px;
+    left: 0;
+    width: 96%;
+    margin-left: 0px;
+    padding: 14px 30px;
+    vertical-align:middle;
+  /* background-color: #7dd87d; */
+  /* background-color: #333C83; */
+  /* background-color: #21325E; */
+  /* background-color:#3E497A; */
+  background-color: var(--purple-color);
+     position: relative; 
+    margin-top: 0px;
+    z-index: 100;
+  }
+  .navbar .nav-header{
+    display: inline;
+  }
+  .navbar .nav-header .nav-logo{
     display: inline-block;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-  }
-  #nav-check{
-    margin-top: 70px;
-  }
-  .navbar .nav-btn label {
-    display: inline-block;
-    margin-top: 20px;
-    margin-right: 5px;
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-  }
-  .navbar .nav-btn label span {
-    display: block;
-    height: 7px;
-    width: 20px;
-    border-top: 3px solid #eee;
-  }
-  .navbar .nav-btn label:hover, .navbar #nav-check:checked ~ .nav-btn label {
-    background-color:#5b446a ;
+    margin-top: -7px;
   }
   .navbar .nav-links{
-    position: absolute;
-    display: block;
-    text-align: center;
-    width: 50%;
-    background-color: var(--purple-color);
-    transition: all 0.3s ease-in;
-    overflow-y: hidden;
-    top: 58px;  
-    right: 0px;
+    display: inline;
+    float: right;
+    font-size: 22px;
+    margin-top: 15px;
   }
-  .navbar .nav-links a {
-    display: block;
+  #logo{
+    margin-top: 10px;
+    width: 210px;
+    height: 45px;
   }
- 
-  /* when nav toggle button not checked */
-  .navbar #nav-check:not(:checked) ~ .nav-links {
-    height: 0px;
+  .navbar .nav-links .loginBtn{
+    display: inline-block;
+    padding: 5px 15px;
+    margin-left: 20px;
+    font-size: 17px;
+    color: rgb(9, 14, 90);
   }
- 
-  /* when nav toggle button is checked */
-  .navbar #nav-check:checked ~ .nav-links {
-    height: calc(100vh - 80px);
-    overflow-y: auto;
+  .navbar .nav-links a{
+    padding: 10px 12px;
+    text-decoration: none;
+    font-weight: 400; 
+    /* color: #5b446a; */
+    /* color: #F24A72; */
+    /* color: #f4f81c; */
+    color: white;
   }
-  .navbar .nav-links .loginBtn {
-    padding: 10px 40px ;
-    margin: 20px;
-    font-size:  18px;
-    font-weight: bold;
-    color: #7dd87d;
+  /* Hover effects */
+  .navbar .nav-links a:hover{
+    background-color: rgba(0, 0, 0, 0.3);
   }
    
- 
-}
+  /* responsive navbar toggle button */
+  .navbar #nav-check, .navbar .nav-btn{
+    display: none;
+  }
+   
+  @media (max-width:750px) {
+    .navbar .nav-btn{
+      display: inline-block;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+    #nav-check{
+      margin-top: 70px;
+    }
+    .navbar .nav-btn label {
+      display: inline-block;
+      margin-top: 20px;
+      margin-right: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+    }
+    .navbar .nav-btn label span {
+      display: block;
+      height: 7px;
+      width: 20px;
+      border-top: 3px solid #eee;
+    }
+    .navbar .nav-btn label:hover, .navbar #nav-check:checked ~ .nav-btn label {
+      background-color:#5b446a ;
+    }
+    .navbar .nav-links{
+      position: absolute;
+      display: block;
+      text-align: center;
+      width: 50%;
+      font-weight: bolder;
+      background-color: var(--purple-color);
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 58px;  
+      right: 0px;
+    }
+    .navbar .nav-links a {
+      display: block;
+    }
+   
+    /* when nav toggle button not checked */
+    .navbar #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+   
+    /* when nav toggle button is checked */
+    .navbar #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
+    .navbar .nav-links .loginBtn {
+      padding: 10px 40px ;
+      margin: 20px;
+      font-size:  18px;
+      font-weight: bold;
+      color: #7dd87d;
+    }
+     
+   
+  }

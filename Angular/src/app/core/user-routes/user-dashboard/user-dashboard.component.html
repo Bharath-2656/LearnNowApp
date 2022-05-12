@@ -1,3 +1,4 @@
+<app-user-navbar></app-user-navbar>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,13 +37,15 @@
                             <p><strong>Instructor : </strong>{{usercourse.author | titlecase}}</p>
                         </a>
                         <p>Price: {{usercourse.price}}</p>
+                        <button id="review" name="review" (click) ="review(usercourse.routerlink)">Add review</button>
+                        <!-- <button id="review" name="review" (click)="review([ucourse.name],[ucourse.courseid])">Add review</button> -->
                     </div>
                 </div>
                 
         </ng-container>
        
     </ng-container>
-      <h2>Recommended courses for you</h2> 
+      <!-- <h2>Recommended courses for you</h2>  -->
      <!-- <ng-container *ngFor="let courseservice of courseservices">
         
         <ng-container

@@ -81,7 +81,7 @@
     width: auto;
     height: auto;
     border: #CCD0D5;
-    border-radius: 10%;
+    border-radius: 6%;
     box-shadow: inset;
     background-color:rgb(247, 182, 62);
 
@@ -103,7 +103,7 @@
     width: auto;
     height: auto;
     border: #CCD0D5;
-    border-radius: 10%;
+    border-radius: 6%;
     box-shadow: inset;
     background-color:rgb(247, 77, 77);
 }
@@ -125,10 +125,10 @@ h3{
     list-style: none;
     margin-top: -100px;
     position:fixed;
-    left:8px;
+    left:0px;
     width: 220px;
     height: 100%;
-    background-color: var(--purple-color);
+    background-color: #3E497A;
     transition: all 0.5s ease;
     position: fixed;
      /* z-index: -100;  */
@@ -152,11 +152,13 @@ h3{
     width: 100%;
     line-height: 65px;
     font-size: 20px;
-    color: whitesmoke;
+  
+    /* color: #41d454; */
+    color: #f4f81c;
     /* padding-left: 20px; */
     box-sizing: border-box;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+    border-top: 1px solid #f4f81c;
+    border-bottom: 1px solid #f4f81c;
     transition: 0.4s;
      /* z-index: 1;  */
 }
@@ -181,6 +183,13 @@ label btn{
     color: white;
     padding:  6px 12px;
     transition: all 0.5s;
+}
+#list{
+    list-style-type: disc;
+  list-style-position: inside;
+  text-indent: 1em;
+  padding-left: 1em;
+  line-height: 1.6;
 }
 
 

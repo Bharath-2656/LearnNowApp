@@ -116,11 +116,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.put('/usercourse/:userid/:areaofintrest', (req, res) =>
 {
-    console.log("wow");
     var user = {
         areaofintrest: req.params.areaofintrest
     };
-    console.log(req.params.areaofintrest);
     
     User.findOneAndUpdate({ userid: req.params.userid }, { $push: user }, { new: true }, (err, doc) =>
     {
@@ -172,6 +170,17 @@ app.post('/token', async (req,res,next) =>
     )
 });
 
+app.post('/deletetoken/:userid', (req,res) => {
+    var user = {
+        refreshtoken: 'refresh_token',
+    };
+    console.log("hi");
+    User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
+    {
+        if (!err) { res.send(doc); }
+        else { console.log(`Error in updating user`); }
+    });
+})
 
 //getting all userprofiles Admin access
 app.get('/userprofile',  (req, res, next) =>

@@ -116,7 +116,7 @@
     background-color: rgba(67, 177, 100,0.4s);
     width: 90%;
     height: 30px;
-    border-radius: 12px;
+    border-radius:6px;
     border-color: #2c2b2b57;
     box-shadow: inset;
     color: rgb(63, 58, 58);
@@ -129,7 +129,7 @@
     background-color: rgba(67, 177, 100,0.4s);
     width: 70%;
     height: 30px;
-    border-radius: 12px;
+    border-radius: 6px;
     border-color: #2c2b2b57;
     box-shadow: inset;
     color: rgb(63, 58, 58);
@@ -162,4 +162,6 @@
 {
     display: inline-block;
 }
-
+.checkbox{
+    width: 24px;
+}

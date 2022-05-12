@@ -1,3 +1,4 @@
+<app-user-navbar></app-user-navbar>
 <!DOCTYPE html>
 <html>
 
@@ -41,7 +42,25 @@
         <!-- <i *ngIf="SortDirection==='desc'" class="fa fa-fw fa-sort"></i> -->
       </button>
     </div>
-    
+    <!-- <div>
+      <input type="checkbox" class="checkbox" id="web" value="Web devolpment" name="web devolopment">
+      <label for="web">Web devolopment</label><br>
+      <input type="checkbox" class="checkbox" id="cyber" value="Cyber Security" name="cybersecurity">
+      <label for="web">Cyber Security</label><br>
+      <input type="checkbox" class="checkbox" id="iot" value="Internet of Things" name="internetofthings">
+      <label for="web">Internet Of Things</label><br>
+      <input type="checkbox" class="checkbox" id="cloud" value="Cloud Computing" name="cloudcomputing">
+      <label for="web">Cloud Computing</label><br>
+      <input type="checkbox" class="checkbox" id="blockchain" value="Blockchain" name="blockchain">
+      <label for="web">Blockchain</label><br>
+    </div> -->
+    <ng-container *ngFor="let courseservice of courseservices">
+   
+         
+          <input type="checkbox" class="checkbox" id="web" value="Web devolpment" name="web devolopment">
+      <label for="web">Web devolopment</label><br>
+        <!-- </ng-container> -->
+      </ng-container>
   </div>
  
     <div id="two">

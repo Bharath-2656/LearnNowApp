@@ -8,7 +8,7 @@ import { InstructorLoginComponent } from './core/instructor/instructor-login/ins
 
 const routes: Routes = [ 
   {path:'user', loadChildren:()=> import('./core/user-routes/user-routes.module').then(m=>m.UserRoutesModule)},
-  {path: 'admin', loadChildren:() => import('./core/admin-routes/admin-routes.module').then(m=>m.AdminRoutesModule)},
+  //{path: 'admin', loadChildren:() => import('./core/admin-routes/admin-routes.module').then(m=>m.AdminRoutesModule)},
   {path:'instructors', loadChildren:() => import('./core/instructor/instructor.module').then(m=>m.InstructorModule)},
   {path: '',component:HomepageComponent}
 ];

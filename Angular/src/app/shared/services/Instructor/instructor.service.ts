@@ -46,9 +46,10 @@ export class InstructorService
     return localStorage.getItem('token');
   }
 
-  deleteToken()
+  deleteToken(instructorid: Number)
   {
     localStorage.removeItem('token');
+    return this.http.post(this.baseURL + 'deletetoken' + `/${instructorid}`,instructorid);
   }
 
   postRefreshtokencheck(instructor: Instructor)

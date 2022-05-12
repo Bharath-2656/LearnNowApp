@@ -3,23 +3,19 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/User/user.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-user-navbar',
+  templateUrl: './user-navbar.component.html',
+  styleUrls: ['./user-navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  
-
+export class UserNavbarComponent implements OnInit {
+  id!: Number;
   constructor(private userService : UserService, private router: Router) { }
 
   ngOnInit(): void {
-
-    
-  } 
+    this.id = this.userService.getuserfromPayload();
+  }
   onLogout(){
-    this.userService.deleteToken();
+    this.userService.deleteToken(this.id);
     this.router.navigate(['user/login']);
   }
-
 }
-

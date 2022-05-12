@@ -1,3 +1,4 @@
+<app-user-navbar></app-user-navbar>
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style></style>
 </head>
-
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
 
 <body>
   <!-- <h1 id="heading">Courses based on your choice</h1> -->
@@ -23,7 +24,7 @@
             <div id="one">
               <h3>{{ course.name}}</h3>
               <p class="textcolor line">{{ course.description }}</p>
-              <p><strong>Duration : </strong>{{ course.duration}}</p>
+              <p id="p"><strong>Duration : </strong>{{ course.duration}}</p>
               <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
                 <p><strong>Instructor : </strong>{{course.author | titlecase}}</p>
               </a>
@@ -31,9 +32,9 @@
               <p><strong>Language : </strong>{{course.language}}</p>
               <p><strong>Students Enrolled : </strong>{{course.enrolledstudents}}</p>
             
-              <p><strong>Course contents : </strong></p>
+              <p class="bold para">Course contents : </p>
               <ng-container *ngFor="let content of coursecontents">
-                <li class="textcolor">{{content}}</li><br>
+                <li class="textcolor line">{{content}}</li><br>
               </ng-container>
              
               
@@ -42,23 +43,25 @@
 
           <div class="card">
             <div id="two">
-              <p id="price">Price Rs. {{course.price}}</p>
+              <p id="price" class="bold">Price Rs. {{course.price}}</p><br>
               <button id="addtocart">Add to Cart</button><br>
               <input type="submit" id="enroll" value="Enroll"><br><br>
               <h3 >The course includes </h3>
               <ng-container *ngFor="let include of courseincludes">
-                <p class="textcolor">{{include}}</p>
+                <p class="textcolor line">{{include}}</p>
               </ng-container>
               <h3 >Course requirements : </h3>
               <ng-container *ngFor="let requirements of courserequirements">
                 <li id="list" class="textcolor">{{requirements}}</li>
               </ng-container>
             </div>
-          </div><br>
+          </div><br><br><br>
           <div class="card">
           <div id="three" class="card">
-            <p ><strong>Reviews</strong></p>
-            
+            <h3 class="bold textcolor">Reviews</h3>
+            <ng-container *ngFor="let review of reviews">
+              <p>{{review}}</p>
+            </ng-container>
           </div>
           </div>
         </div>

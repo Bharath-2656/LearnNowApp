@@ -25,7 +25,7 @@ export class CoursesViewComponent implements OnInit {
   ngOnInit() {
 
     this.id=this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
+    
     this.userid = this.userService.getuserfromPayload();
 
     this.userService.postAreaOfIntrestForUser(this.userid, this.id).subscribe((res:any) => {
@@ -36,6 +36,7 @@ export class CoursesViewComponent implements OnInit {
     this.courseService.getAreaOfInterestCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
        this.courseservices[index]=res[index];
+       console.log(this.courseservices);
        
       }
     },

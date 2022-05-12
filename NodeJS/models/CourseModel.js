@@ -57,6 +57,7 @@ const CourseSchema = new mongoose.Schema({
     },
     enrolledstudents: {
       type: Number,
+      default:0,
     },
     requirements: {
       type: String,
@@ -64,6 +65,7 @@ const CourseSchema = new mongoose.Schema({
     reviews: {
       type: [],
     },
+    
     
   });
 

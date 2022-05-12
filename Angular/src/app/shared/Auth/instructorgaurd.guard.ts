@@ -25,7 +25,7 @@ export class InstructorgaurdGuard implements CanActivate {
         }
         });
         this.router.navigateByUrl('/instructors/login');
-        this.instructorService.deleteToken();
+        this.instructorService.deleteToken(instructorid);
         return false;
       }      
     return this.userService.getRole().includes(route.data['role']);

@@ -48,8 +48,11 @@ export class UserService {
     return localStorage.getItem('token');
   }
 
-  deleteToken() {
+  deleteToken(userid: Number) {
     localStorage.removeItem('token');
+    console.log(userid);
+    
+    return this.http.post(this.baseURL + 'deletetoken'+ `/${userid}`, userid);
   }
  getuserfromPayload()
  {
@@ -84,9 +87,7 @@ export class UserService {
     return this.http.put(this.baseURL + 'usercourse' + `/${user.userid}`,user);
   }
   postAreaOfIntrestForUser(userid: Number, areaofintrest: String)
-  {
-    console.log(userid, areaofintrest);
-    
+  {   
     return this.http.put(this.baseURL + 'usercoursearea' + `/${userid}`+`/${areaofintrest}`, areaofintrest)
   }
   getUsercourse()

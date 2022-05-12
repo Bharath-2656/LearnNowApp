@@ -31,13 +31,17 @@ export class CourseService {
   {
     return this.http.put(this.baseURL + 'usercourse/coursecontents' + `/${course.courseid}`, course.contents);
   }
-  deleteCourse(courseid: Number) {
-    console.log(courseid);
-  
-    
+  deleteCourse(courseid: Number) { 
     return this.http.delete(this.baseURL + 'usercourse' + `/${courseid}`);
   }
-
+  courseEnrollCount(routerlink: String)
+  {   
+    return this.http.put(this.baseURL + 'courseenrollcount' + `/${routerlink}`, routerlink)
+  }
+  courseReview(routerlink: String, reviews: String, name: String)
+  {   
+    return this.http.put(this.baseURL + 'coursereview' + `/${routerlink}` + `/${reviews}`+ `/${name}`, reviews);
+  }
   sendConfirmationMail(courses:any)
   {
     return this.http.post('http://localhost:9000/admin/course_mail', courses);

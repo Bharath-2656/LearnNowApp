@@ -1,3 +1,4 @@
+<app-instructor-navbar></app-instructor-navbar> 
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <body>
-<h1 id="heading">Add Course Details</h1>
+<h1 id="heading">Edit Course Details</h1>
 <ng-container *ngFor="let course of courses">
     <ng-container *ngIf="course.routerlink===id">
     <div class="card">
@@ -29,7 +30,7 @@
 <label>Course Overview</label><input type="text" name="courseincludes" placeholder="{{course.courseincludes}}" #courseincludes="ngModel" [(ngModel)]="courseService.selectedCourses.courseincludes"><br>
 
 
-    <input type="submit" onsubmit="" id="submit" value="Add Course">
+    <input type="submit" onsubmit="" id="submit" value="Edit Course">
     <span class="glyphicon glyphicon-education"></span>
    
 

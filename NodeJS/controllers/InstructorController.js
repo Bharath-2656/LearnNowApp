@@ -131,9 +131,9 @@ app.post('/authenticate', (req, res, next) =>
                 };
                 
                 instructoridforrefresh = req.body.email;
-                console.log(req.body.email);
+                
                 const refresh_token = instructor.generateRefreshToken();
-                console.log(refresh_token);
+                
                 Instructor.findOneAndUpdate({ email: req.body.email }, {  refreshtoken: instructor.generateRefreshToken() },(err, doc) =>
                 {
                     // if (!err) { res.send(doc); }
@@ -145,13 +145,12 @@ app.post('/authenticate', (req, res, next) =>
         else return res.status(404).json(info);
     })(req, res);
 });
-console.log(instructoridforrefresh);
 
 //Generating access token if refersh token is valid and access token is expired
 app.post('/token', async (req,res,next) =>
 {
     const instructorfortoken = await Instructor.findOne({ email: instructoridforrefresh }, 'instructorid refreshtoken').exec();
-    console.log(instructorfortoken);
+    
     jwt.verify(instructorfortoken.refreshtoken,process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {
             if (err)
@@ -163,6 +162,20 @@ app.post('/token', async (req,res,next) =>
         }
     )
 });
+
+app.post('/deletetoken/:instructorid', (req,res) => {
+    var instructor = {
+        refreshtoken: 'refresh_token',
+    };
+    console.log("hi");
+    Instructor.findOneAndUpdate({ instructorid: req.params.instructorid }, { $set: instructor }, { new: true }, (err, doc) =>
+    {
+        if (!err) { 
+            console.log("hello");
+            res.send(doc); }
+        else { console.log(`Error in updating user`); }
+    });
+})
 
 app.get('/instructorcourse', async (req, res) =>
 {

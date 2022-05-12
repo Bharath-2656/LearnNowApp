@@ -20,23 +20,26 @@ import { ToastrModule } from 'ngx-toastr';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    
+
     InstructorLoginComponent,
+
   ],
   imports: [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
+    InstructorModule,
+    UserRoutesModule,
     CoreModule,
     HttpClientModule, 
     FormsModule,
     UserRoutesModule,
     BrowserAnimationsModule,
-    InstructorModule,
-
     ToastrModule.forRoot({
       timeOut: 2500,
       progressBar: true,
@@ -44,6 +47,9 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass:'toast-bottom-left',
     }),
   ],
+ exports: [
+ ],
+ 
   providers: [UserService,AuthGuard,AuthInterceptor,CourseService,InstructorService ],
   bootstrap: [AppComponent]
 })

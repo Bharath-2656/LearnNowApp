@@ -10,6 +10,7 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
 import { InstructorNavbarComponent } from './instructor-navbar/instructor-navbar.component';
 
 
+
 @NgModule({
   declarations: [
     InstructorProfileComponent,
@@ -18,12 +19,16 @@ import { InstructorNavbarComponent } from './instructor-navbar/instructor-navbar
     InsructorcoursesviewComponent,
     UpdateCourseComponent,
     InstructorNavbarComponent,
-
+    
   ],
   imports: [
     CommonModule,
     InstructorRoutingModule,
     FormsModule,
+  ],
+  exports: [
+    InstructorNavbarComponent,
+    
   ]
 })
 export class InstructorModule { }

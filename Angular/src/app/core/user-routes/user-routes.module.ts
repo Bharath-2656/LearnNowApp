@@ -10,6 +10,10 @@ import { SortPipe } from 'src/app/shared/pipes/sort.pipe';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { CoreModule } from '../core.module';
+import { UserNavbarComponent } from './user-navbar/user-navbar.component';
+
+
 
 
 
@@ -21,14 +25,17 @@ import { FooterComponent } from './footer/footer.component';
     FilterPipe,
     SortPipe,
     UserDashboardComponent,
-    
-    
+    UserNavbarComponent,  
   ],
   imports: [
     CommonModule,
     UserRoutesRoutingModule,
     FormsModule,
+    
   ],
+  exports : [
+    UserNavbarComponent,
+  ]
  
 })
 export class UserRoutesModule { }

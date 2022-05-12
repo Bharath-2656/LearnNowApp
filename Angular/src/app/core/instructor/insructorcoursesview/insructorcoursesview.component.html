@@ -1,3 +1,4 @@
+<app-instructor-navbar></app-instructor-navbar> 
 <!DOCTYPE html>
 <html>
 
@@ -31,27 +32,40 @@
 
  
   <h1 id="heading">Courses created by you</h1>
-  <ng-container *ngFor="let course of courses">
-    <ng-container *ngFor="let instructor of instructors">
-      <ng-container *ngIf="course.author===instructor.routerlink">
+  <ng-container *ngFor="let instructor of instructors">
+   
+    <ng-container *ngIf="instructorid===instructor.instructorid"> 
+    <ng-container *ngFor="let course of instructor.instructor_courses">
         <div class="card">
           <div>
-            <h3>{{ course.name}}</h3>
+            <h3>{{course.name | json}}</h3>
 
             <p><strong>Duration : </strong>{{ course.duration}}</p>
             <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
               <p><strong>Instructor : </strong>{{course.author  | titlecase}}</p>
             </a>
             <p>Price: {{course.price}}</p>
+            <p> Number of Enrollments: {{course.enrolledstudents}}</p>
           </div>
           <div align="right">
-            <a class=" updatebutton" href="/updateCourse/{{course.routerlink}}"><i class="fa fa-pencil" style="color: black;  margin-left: 0px" aria-hidden="true"></i> Update</a>
-            <button class="deletebutton" value="Delete" (click)="delete([course.name],[course.courseid])"><i class="fa fa-trash-o" aria-hidden="true"></i>  Delete</button>
+            <a class=" updatebutton" href="/updateCourse/{{course.routerlink}}"><i class="fa fa-pencil" style="color: black;  margin-left: 0px" aria-hidden="true"></i> Update Course</a>
+            <button class="deletebutton" value="Delete" (click)="delete([course.name],[course.courseid])"><i class="fa fa-trash-o" aria-hidden="true"></i>  Delete Course</button>
           </div>
         </div>
-      </ng-container>
+      </ng-container> 
+    </ng-container>
+  </ng-container>
+  <div class="card">
+    <h3>Enrolled students: </h3>
+    
+  <ng-container *ngFor="let course of usercourses">
+    <ng-container *ngIf="course.author==author">
+  <ng-container *ngFor="let uc of course.user_courses">
+    <li id="list">{{uc.name}}</li>
+  </ng-container>
     </ng-container>
   </ng-container>
 
+</div>
 </body>
 </html>

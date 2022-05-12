@@ -21,6 +21,8 @@ export class CoursepageComponent implements OnInit {
   courseincludes!: string;
   coursecontents!: string;
   courserequirements!: string;
+  reviews!: String;
+  price!: Number;
   constructor(private courseService: CourseService, private userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -34,12 +36,16 @@ export class CoursepageComponent implements OnInit {
        {
          this.courseincludes=this.courses[index].courseincludes.split(',');
          this.coursecontents=this.courses[index].contents.split(',');
-        this.courserequirements=this.courses[index].requirements.split(',')      
-         
+        this.courserequirements=this.courses[index].requirements.split(',');
+        this.reviews=this.courses[index].reviews; 
+            
+         this.price = this.courses[index].price;
        }
-       console.log(this.courseincludes);
+       
        
       }
+      
+      
     },
     (err:any) => {
       console.log(err);
@@ -51,15 +57,19 @@ export class CoursepageComponent implements OnInit {
     formOne.value.userid = this.userService.getUserPayload().userid;
 
     Swal.fire({
-      title: "Do you wish to enroll to this course "+ name,
-      // text: "Write something interesting:",
+      title: "Do you wish to enroll to this course ",
+       text: "Please pay Rs "+ JSON.stringify(this.price),
       // input: 'text',
+      //html: '<input id="one >' + '<input id="two">',
+      
       showCancelButton: true,
   }).then((result) => {
     
       if (result.value) {
           console.log("Result: " + result.value);
-
+          this.courseService.courseEnrollCount(this.id).subscribe((res) => {
+            
+          })
           this.courseService.sendConfirmationMail(this.courses).subscribe((res) => {
         
           });

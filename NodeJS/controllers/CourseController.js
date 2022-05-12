@@ -82,7 +82,6 @@ app.put('/usercourse/:name', (req,res) => {
 
 app.put('/usercourse/coursecontents/:courseid', (req,res) => {
     var course = {
-       
         contents: req.body.contents,
     };
     Course.findOneAndUpdate({courseid:req.params.courseid}, {$push: course}, {new:true}, (err,doc) => {
@@ -91,6 +90,30 @@ app.put('/usercourse/coursecontents/:courseid', (req,res) => {
     });
 });
 
+app.put('/courseenrollcount/:routerlink', (req,res) => {
+   
+   Course.findOneAndUpdate({routerlink: req.params.routerlink},{$inc: {enrolledstudents: 1}}, {new:true}, (err,doc) => {
+    if(!err) {
+        res.send(doc);}
+    else {  console.log(`Error in updating user`);}
+});
+});
+
+
+app.put('/coursereview/:routerlink/:reviews/:name', (req,res) => {
+
+    var review = [req.params.name, req.params.reviews].join(':  ');
+    //console.log(commaSeparated);
+    var course = {
+        reviews: review,
+    };
+    
+    Course.findOneAndUpdate({routerlink: req.params.routerlink}, {$push: course}, {new:true}, (err,doc) => {
+     if(!err) {
+         res.send(doc);}
+     else {  console.log(`Error in updating user`);}
+ });
+ });
 
 app.delete('/usercourse/:courseid',(req,res) => {
     console.log(req.params.courseid);
