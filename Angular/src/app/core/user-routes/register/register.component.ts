@@ -3,6 +3,7 @@ import {UserService} from 'src/app/shared/services/User/user.service'
 import { NgForm } from '@angular/forms';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent implements OnInit {
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
-  constructor(public userService: UserService, private courseService: CourseService, private toastr: ToastrService) { }
+  constructor(public userService: UserService,private router: Router , private courseService: CourseService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.resetForm(); 
@@ -37,7 +38,10 @@ export class RegisterComponent implements OnInit {
   
     onSubmit(form: NgForm) {
         this.userService.postUser(form.value).subscribe((res) => {      
-          this.toastr.success('Upadated Successfully','Success');     
+          this.toastr.success('Registered Successfully','Success');  
+          setTimeout(() =>{
+            this.router.navigate(['/user/login']);
+          }, 2500);   
         this.userService.sendConfirmationMail(form.value).subscribe((res) => {
         });
         this.resetForm(form);

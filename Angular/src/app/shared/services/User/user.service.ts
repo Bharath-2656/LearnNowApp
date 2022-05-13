@@ -48,10 +48,13 @@ export class UserService {
     return localStorage.getItem('token');
   }
 
-  deleteToken(userid: Number) {
+  deleteToken() {
+     var userid;
+     setTimeout(() => {
+      userid = this.getuserfromPayload();
+    }, 500);
     localStorage.removeItem('token');
-    console.log(userid);
-    
+      
     return this.http.post(this.baseURL + 'deletetoken'+ `/${userid}`, userid);
   }
  getuserfromPayload()
@@ -99,5 +102,4 @@ export class UserService {
     return this.http.post('http://localhost:9000/admin/user_mail', user);
   }
   
-
 }

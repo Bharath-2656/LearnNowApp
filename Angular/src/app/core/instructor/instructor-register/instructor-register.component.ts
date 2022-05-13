@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
@@ -12,7 +14,7 @@ import { UserService } from 'src/app/shared/services/User/user.service';
 export class InstructorRegisterComponent implements OnInit {
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
-  constructor(public instructorService: InstructorService, private courseService: CourseService) { }
+  constructor(public instructorService: InstructorService,private router: Router, private toastr: ToastrService, private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.resetForm(); 
@@ -34,8 +36,10 @@ export class InstructorRegisterComponent implements OnInit {
   
     onSubmit(form: NgForm) {
         this.instructorService.postInstructor(form.value).subscribe((res) => {
-          this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 4000);
+          this.toastr.success('Registered Successfully','Success');  
+          setTimeout(() =>{
+            this.router.navigate(['/user/login']);
+          }, 2500);  
         // this.instructorService.sendConfirmationMail(form.value).subscribe((res) => {
         // });
         this.resetForm(form);

@@ -12,10 +12,10 @@ export class InstructorNavbarComponent implements OnInit {
   constructor(private instructorService : InstructorService, private router: Router) { }
 
   ngOnInit(): void {
-    this.id=this.instructorService.getInstructorfromPayload();
+    //this.id=this.instructorService.getInstructorfromPayload();
   }
   onLogout(){
-    this.instructorService.deleteToken(this.id);
+    this.instructorService.deleteToken();
     this.router.navigate(['instructors/login']);
   }
 

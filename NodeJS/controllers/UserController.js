@@ -56,6 +56,7 @@ app.post('/users', (req, res) =>
             res.send(err.message);
         }
     });
+   
 });
 
 
@@ -68,7 +69,6 @@ app.get('/users/:userid', (req, res) =>
         else { console.log("Error in retreiving data") }
     });
 });
-
 
 //Updating record of a particular user
 app.put('/users/:userid', (req, res) =>
@@ -95,7 +95,7 @@ app.put('/usercourse/:userid', (req, res) =>
         courseid: req.body.courseid
     };
     console.log(req.body);
-    User.findOneAndUpdate({ userid: req.params.userid }, { $push: user }, { new: true }, (err, doc) =>
+    User.findOneAndUpdate({ userid: req.params.userid }, { $addToSet: {courseid: req.body.courseid} }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }
         else { console.log(`Error in updating user`); }
@@ -125,6 +125,7 @@ app.put('/usercourse/:userid/:areaofintrest', (req, res) =>
         if (!err) { res.send(doc); }
         else { console.log(`Error in updating user`); }
     });
+    
 });
 
 
@@ -234,7 +235,7 @@ app.get('/areaofinterest',  async (req, res) =>
     });
 });
 
-//mapping the usercourse with the user using llokup in mongo
+//mapping the usercourse with the user using lookup in mongo
  app.get('/usercourse', async (req, res) =>
 {
     Course.aggregate([
@@ -282,18 +283,19 @@ let mailOptions = {
     to: "bharath2000madhu@gmail.com",
     subject: "Confirmation of enrollemnt",
     // html:{path: `http://localhost:4200/user/confirmenrollment`}
-    text: "You have successfully enrolled in the" + req.body.courseid + "on the LearnNow application"
+    text: "You have successfully enrolled a course on the LearnNow! application",
 }
-// transprter.sendMail(mailOptions,function(err,success){
-//     if(err)
-//     {
-//         console.log(err);
-//     }
-//     else 
-//     {
-//         console.log("Email has been sent sucessfully");
-//     }
-// });
+console.log(req.body.courseid);
+transprter.sendMail(mailOptions,function(err,success){
+    if(err)
+    {
+        console.log(err);
+    }
+    else 
+    {
+        console.log("Email has been sent sucessfully");
+    }
+});
     res.send("Email sent")
 });
 
@@ -317,7 +319,7 @@ let mailOptions = {
     to: "bharath2000madhu@gmail.com",//to be changed
     subject: "Confirmation of Registration",
     // html:{path: `http://localhost:4200/user/confirmenrollment`}
-    text: "Dear " + req.body.name +  " you have successfully registered on the LearnNow application. Please login to continue"
+    text: "Dear " + req.body.name +  " you have successfully registered on the LearnNow application.\n Please login to continue"
 }
 transprter.sendMail(mailOptions,function(err,success){
     if(err)

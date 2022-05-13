@@ -178,3 +178,33 @@
    float: right;
    
 }
+.heading{
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 44px;
+    margin-top: 60px;
+}
+#loginbutton
+{
+    align-items: center;
+    font-size: 28px;
+    width: 20%;
+    height: 15%;
+    margin: 30px;
+    margin-top: 40px;
+    margin-left: 26%;
+    border-radius: 6%;
+}
+#loginbutton2
+{
+    align-items: center;
+    font-size: 28px;
+    width: 20%;
+    height: 15%;
+    margin: 20px;
+    border-radius: 6%;
+}
+.buttonalign{
+    margin-left: 26%;
+    /* color: ; */
+}

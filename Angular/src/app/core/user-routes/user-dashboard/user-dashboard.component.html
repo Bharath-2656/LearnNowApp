@@ -23,15 +23,18 @@
     <h1 id="heading">Welcome back</h1>
     <h2><strong>Enrolled courses</strong></h2>
     <ng-container *ngFor="let usercourse of usercourses">
+      
+      
          <ng-container *ngFor="let ucourse of usercourse.user_courses"> 
            
+           <ng-container *ngIf="id==ucourse.userid"> 
                 <div class="card">
                     <div>
                         <h3>
                             <a style="font-size: 23px;" id="b" [routerLink]="['/course', usercourse .routerlink]" routerLinkActive="active"><b>{{
                                 usercourse.name}}</b></a>
                           </h3>
-
+                            
                         <p><strong>Duration : </strong>{{ usercourse.duration}}</p>
                         <a id="b" [routerLink]="['/instructor', usercourse.author]" routerLinkActive="active">
                             <p><strong>Instructor : </strong>{{usercourse.author | titlecase}}</p>
@@ -41,7 +44,7 @@
                         <!-- <button id="review" name="review" (click)="review([ucourse.name],[ucourse.courseid])">Add review</button> -->
                     </div>
                 </div>
-                
+          </ng-container>      
         </ng-container>
        
     </ng-container>

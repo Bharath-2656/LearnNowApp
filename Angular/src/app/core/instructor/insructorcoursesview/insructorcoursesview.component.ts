@@ -69,6 +69,7 @@ export class InsructorcoursesviewComponent implements OnInit {
     this.courseService.deleteCourse(id).subscribe((res:any) => {});
       if (result.value) {
           console.log("Result: " + result.value);
+          window.location.reload();
       }
   });
   }

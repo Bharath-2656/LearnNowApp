@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 
@@ -11,7 +12,7 @@ import { InstructorService } from 'src/app/shared/services/Instructor/instructor
 })
 export class UpdateCourseComponent implements OnInit {
 
-  constructor(public courseService: CourseService, private router: Router, private instructorService: InstructorService, private route: ActivatedRoute) { }
+  constructor(public courseService: CourseService, private toastr: ToastrService, private router: Router, private instructorService: InstructorService, private route: ActivatedRoute) { }
   courses: any[] = [];
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
@@ -72,11 +73,11 @@ export class UpdateCourseComponent implements OnInit {
     }
     );
      this.instructorService.postInstructorCourse(form.value).subscribe((res) => {
-          this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 4000);
-        // this.router.navigate(['user/confirmenrollment']);
-        });
-    }
+      this.toastr.success('Course Registered successful','Success');
+      setTimeout(() => {
+        this.router.navigate(['instructors/instructorCourse']);
+      }, 3000)
+    });
   
-
+  }
 }

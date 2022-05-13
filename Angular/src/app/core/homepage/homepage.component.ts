@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AreaofinterestService } from 'src/app/shared/services/AreaOfIntrest/areaofinterest.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AreaofinterestService } from 'src/app/shared/services/AreaOfIntrest/are
 })
 export class HomepageComponent implements OnInit {
   areaOfInterests: any[] = [];
-  constructor(private areaOfInterestService: AreaofinterestService) { }
+  constructor(private areaOfInterestService: AreaofinterestService, private route: Router) { }
 
   ngOnInit(): void {
     this.areaOfInterestService.getAreaOfInterest().subscribe((res:any) => {
@@ -29,6 +30,14 @@ export class HomepageComponent implements OnInit {
       };
 
     };
+    loginstudent()
+    {
+    this.route.navigate(['/user/login']);
+    }
+    logininstructor()
+    {
+      this.route.navigate(['/instructors/login']);
+    }
   }
 
 

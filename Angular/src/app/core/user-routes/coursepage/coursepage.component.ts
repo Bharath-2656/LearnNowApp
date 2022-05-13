@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-coursepage',
@@ -23,7 +24,7 @@ export class CoursepageComponent implements OnInit {
   courserequirements!: string;
   reviews!: String;
   price!: Number;
-  constructor(private courseService: CourseService, private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private courseService: CourseService, private toastr: ToastrService,  private userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     
@@ -52,6 +53,7 @@ export class CoursepageComponent implements OnInit {
       });
 
   };
+  
   onSubmit(formOne : NgForm){
     formOne.value.courseid=this.id;
     formOne.value.userid = this.userService.getUserPayload().userid;
@@ -70,14 +72,16 @@ export class CoursepageComponent implements OnInit {
           this.courseService.courseEnrollCount(this.id).subscribe((res) => {
             
           })
-          this.courseService.sendConfirmationMail(this.courses).subscribe((res) => {
+          this.courseService.sendConfirmationMail(formOne.value).subscribe((res) => {
         
           });
       
           this.userService.postUserCourse(formOne.value).subscribe((res) => {
-            this.showSuccessMessage = true;
-          setTimeout(() => this.showSuccessMessage = false, 4000);
-          this.router.navigate(['user/dashboard']);
+            this.toastr.success('Enrollment successful','Success');
+          setTimeout(() => {
+            this.router.navigate(['user/dashboard']);
+          }, 3000);
+          
         },
         err => {
           if (err.status === 422) {

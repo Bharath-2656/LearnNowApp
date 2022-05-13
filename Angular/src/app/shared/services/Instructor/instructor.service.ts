@@ -46,9 +46,12 @@ export class InstructorService
     return localStorage.getItem('token');
   }
 
-  deleteToken(instructorid: Number)
-  {
-    localStorage.removeItem('token');
+  deleteToken()
+  { var instructorid;
+    setTimeout(() => {
+      instructorid = this.getInstructorfromPayload();
+    }, 500);
+     localStorage.removeItem('token');
     return this.http.post(this.baseURL + 'deletetoken' + `/${instructorid}`,instructorid);
   }
 

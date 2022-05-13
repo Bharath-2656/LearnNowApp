@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Course } from 'src/app/shared/services/Course/course.model';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
@@ -19,7 +20,7 @@ export class AddCourseComponent implements OnInit {
   name = 'Dynamic Add Fields';
   values: any[5] = [];
   course: Course = new Course;
-  constructor(public courseService: CourseService, private router: Router, private instructorService: InstructorService) { }
+  constructor(public courseService: CourseService, private toastr: ToastrService, private router: Router, private instructorService: InstructorService) { }
   
   ngOnInit(): void {
     this.resetForm(); 
@@ -50,9 +51,16 @@ export class AddCourseComponent implements OnInit {
 //     this.courseService.selectedCourses.contents.push(this.newContents);
 // }
 onSubmit(form: NgForm) {
-  this.courseService.postCourse(form.value).subscribe((res) => {
+  console.log(form.value.name);
   
+  if(form.value.name == "" || form.value.author == ""  ||  form.value.category == "")
+  {
+    this.toastr.error('Please add Course details','Error');
+  }
+  else{
+  this.courseService.postCourse(form.value).subscribe((res) => {
   this.resetForm(form);
+
 },
 err => {
   if (err.status === 422) {
@@ -60,20 +68,17 @@ err => {
   }
   else
     this.serverErrorMessages = 'Something went wrong. Please contact admin.';
+
 }
 );
  this.instructorService.postInstructorCourse(form.value).subscribe((res) => {
-      this.showSuccessMessage = true;
-    setTimeout(() => this.showSuccessMessage = false, 4000);
-    // this.router.navigate(['user/confirmenrollment']);
-    });
-}
-// addvalue(){
-//   this.values.push({value: ""});
-//   console.log("mine");
-  
-//   this.course.contents.push(this.values);
+  this.toastr.success('Course Registered successful','Success');
+  setTimeout(() => {
+    this.router.navigate(['instructors/instructorCourse']);
+  }, 3000)
+});
 
-// }
+  }
+ }
 }
  

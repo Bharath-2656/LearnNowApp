@@ -22,8 +22,10 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit(): void {
    
    this.userService.getUsercourse().subscribe((res : any)=>{
-    this.usercourses = res;
-    
+    for (let index = 0; index < res.length; index++) {
+      this.usercourses[index] = res[index];
+    }
+    console.log(this.usercourses);
     
     this.id=this.userService.getuserfromPayload();
     
