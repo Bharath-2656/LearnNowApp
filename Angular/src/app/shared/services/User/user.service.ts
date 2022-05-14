@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/toPromise';
 
@@ -13,7 +15,7 @@ export class UserService {
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
   readonly baseURL = 'http://localhost:9000/admin/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   getUserProfile() {
     return this.http.get(this.baseURL + 'users');
@@ -51,7 +53,7 @@ export class UserService {
   deleteToken() {
      var userid;
      setTimeout(() => {
-      userid = this.getuserfromPayload();
+      userid = Number(this.cookieService.get('userid'));
     }, 500);
     localStorage.removeItem('token');
       
@@ -59,8 +61,7 @@ export class UserService {
   }
  getuserfromPayload()
  {
-   const userid = this.getUserPayload().userid;
-   return userid;
+   return this.getUserPayload().userid;
  }
  getRole(){
       return this.getUserPayload().role;
@@ -85,9 +86,10 @@ export class UserService {
       return false;
   }
 
-  postUserCourse(user: User){
+  postUserCourse(courseid: String, userid: Number){
+ 
     
-    return this.http.put(this.baseURL + 'usercourse' + `/${user.userid}`,user);
+    return this.http.put(this.baseURL + 'usercourse' + `/${userid}` + `/${courseid}`,courseid);
   }
   postAreaOfIntrestForUser(userid: Number, areaofintrest: String)
   {   
@@ -96,6 +98,11 @@ export class UserService {
   getUsercourse()
   {
     return this.http.get(this.baseURL + 'usercourse');
+  }
+
+  payment(stripeToken: any, price: Number): Observable<any>
+  {   
+    return this.http.post<any>(this.baseURL + 'payment' +`/${price}` ,{token:stripeToken});
   }
   sendConfirmationMail(user: User)
   {  

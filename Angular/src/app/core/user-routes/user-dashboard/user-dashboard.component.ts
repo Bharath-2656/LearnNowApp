@@ -25,7 +25,8 @@ export class UserDashboardComponent implements OnInit {
     for (let index = 0; index < res.length; index++) {
       this.usercourses[index] = res[index];
     }
-    console.log(this.usercourses);
+    
+
     
     this.id=this.userService.getuserfromPayload();
     
@@ -44,7 +45,7 @@ export class UserDashboardComponent implements OnInit {
      if(this.id==this.users[index].userid)
      {
       this.name = this.users[index].name;
-      console.log(this.name);
+     
      }
    }
    
@@ -72,7 +73,7 @@ review(routerlink: String)
     
     showCancelButton: true        
 }).then((result) => {
-      console.log(JSON.stringify(result.value));
+      //console.log(JSON.stringify(result.value));
       this.courseService.courseReview(routerlink, result.value, this.name).subscribe((res:any) => {
         
        })

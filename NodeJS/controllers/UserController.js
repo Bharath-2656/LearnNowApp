@@ -13,7 +13,7 @@ const app = express();
 const loadash = require('lodash');
 const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
-
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(router);
@@ -88,14 +88,14 @@ app.put('/users/:userid', (req, res) =>
 });
 
 // Updating the courseid to User after Enrollment
-app.put('/usercourse/:userid', (req, res) =>
+app.put('/usercourse/:userid/:courseid', (req, res) =>
 {
        
     var user = {
         courseid: req.body.courseid
     };
-    console.log(req.body);
-    User.findOneAndUpdate({ userid: req.params.userid }, { $addToSet: {courseid: req.body.courseid} }, { new: true }, (err, doc) =>
+   
+    User.findOneAndUpdate({ userid: req.params.userid }, { $addToSet: {courseid: req.params.courseid} }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }
         else { console.log(`Error in updating user`); }
@@ -175,7 +175,7 @@ app.post('/deletetoken/:userid', (req,res) => {
     var user = {
         refreshtoken: 'refresh_token',
     };
-    console.log("hi");
+   
     User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }
@@ -235,6 +235,48 @@ app.get('/areaofinterest',  async (req, res) =>
     });
 });
 
+app.post('/payment/:price', async(req,res) => {
+    try {
+        //console.log(req.body.token);
+        token = req.body.token;
+        price = req.body.price;
+       
+      const customer = stripe.customers
+        .create({
+          email: "bharathstarck@gmail.com",
+          source: token.id
+        })
+        .then((customer) => {
+          //console.log(customer);
+          //return stripe.charges.create({
+          return stripe.paymentIntents.create({
+            amount: req.params.price,
+            description: "Payment for course enrollment",
+            currency: "inr",
+            
+            customer: customer.id,
+          });
+        })
+        .then((charge) => {
+          //console.log(charge);
+            res.json({
+              data:"success"
+          })
+        })
+        .catch((err) => {
+            //console.log(err);
+            //console.log("statusCode: ", err.statusCode);
+            res.json({
+              data: "failure",
+            });
+        });
+      return true;
+    } catch (error) {
+      return false;
+    }
+})
+
+
 //mapping the usercourse with the user using lookup in mongo
  app.get('/usercourse', async (req, res) =>
 {
@@ -266,7 +308,7 @@ app.get('/areaofinterest',  async (req, res) =>
 //Sending mail upon enrollment of a course
 app.post('/course_mail', async (req, res) =>
 {
-    console.log(req.params.courseid);
+   
 let transprter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -285,7 +327,7 @@ let mailOptions = {
     // html:{path: `http://localhost:4200/user/confirmenrollment`}
     text: "You have successfully enrolled a course on the LearnNow! application",
 }
-console.log(req.body.courseid);
+
 transprter.sendMail(mailOptions,function(err,success){
     if(err)
     {

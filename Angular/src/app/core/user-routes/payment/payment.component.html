@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+<body>
+    <p id="heading">Payment for your Course Enrollment</p>
+    
+    <ng-container *ngFor="let cours of course">
+        <br><br>    
+        <ng-container *ngIf="cours.routerlink==courselink">
+            <div class="paypagecard">
+                
+                <h3>
+                  <a style="font-size: 23px;" id="b" [routerLink]="['/course', cours.routerlink]" routerLinkActive="active"><b>{{
+                      cours.name}}</b></a>
+                </h3>
+                <p>{{ cours.description}}</p>
+                <p>Duration : {{cours.duration}}</p>
+                <a id="b" [routerLink]="['/instructor', cours.author]" routerLinkActive="active">
+                  <p>Instructor : {{cours.author | titlecase}}</p>
+                </a>
+                <p id="price">Price : {{cours.price}}</p>
+                <button id="pay" (click)="makePayment(15)">Pay</button>
+              </div>
+    </ng-container>
+</ng-container>
+    <div *ngIf="success">
+        <h1>Your Payment is complete successfully</h1>
+      </div>
+      <div *ngIf="failure">
+          <h1>Some Error is taken place inside the payment</h1>
+      </div>
+</body>
+</html>

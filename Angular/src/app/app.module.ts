@@ -17,6 +17,7 @@ import { InstructorModule } from './core/instructor/instructor.module';
 import { CourseService } from './shared/services/Course/course.service';
 import { InstructorService } from './shared/services/Instructor/instructor.service';
 import { ToastrModule } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -50,7 +51,7 @@ import { ToastrModule } from 'ngx-toastr';
  exports: [
  ],
  
-  providers: [UserService,AuthGuard,AuthInterceptor,CourseService,InstructorService ],
+  providers: [UserService,AuthGuard,AuthInterceptor,CourseService,InstructorService,CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

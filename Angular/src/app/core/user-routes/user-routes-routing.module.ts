@@ -9,6 +9,7 @@ import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollmen
 import { CoursepageComponent } from './coursepage/coursepage.component';
 import { CoursesViewComponent } from './courses-view/courses-view.component';
 import { LoginComponent } from './login/login.component';
+import { PaymentComponent } from './payment/payment.component';
 import { RegisterComponent } from './register/register.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
@@ -24,7 +25,9 @@ const routes: Routes = [
     role: 'user',
   }},
   {path: "user/dashboard", component: UserDashboardComponent,canActivate:[AuthGuard],data: {
-    role: 'user',}}
+    role: 'user',}},
+    {path: "course/:id/user/payment", component: PaymentComponent,canActivate:[AuthGuard],data: {
+      role: 'user',}}
   
   // {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]}
   

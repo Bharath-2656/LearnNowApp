@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { CoreModule } from '../core.module';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
@@ -25,7 +26,8 @@ import { UserNavbarComponent } from './user-navbar/user-navbar.component';
     FilterPipe,
     SortPipe,
     UserDashboardComponent,
-    UserNavbarComponent,  
+    UserNavbarComponent,
+    PaymentComponent,  
   ],
   imports: [
     CommonModule,

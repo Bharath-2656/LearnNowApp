@@ -4,6 +4,7 @@ import { UserService } from 'src/app/shared/services/User/user.service';
 import { Router } from "@angular/router";
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService, private router : Router, private toastr: ToastrService) { }
+  constructor(private userService: UserService, private cookieService:CookieService, private router : Router, private toastr: ToastrService) { }
   serverErrorMessages!: string;
 
   ngOnInit(): void {
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
         this.toastr.success('Login Successfully','Success');
        
         this.userService.setToken(res['token']);
+        this.cookieService.set('userid',this.userService.getuserfromPayload())
         this.userService.getuserfromPayload();
         setTimeout(() =>{
           this.router.navigate(['/user/dashboard']);

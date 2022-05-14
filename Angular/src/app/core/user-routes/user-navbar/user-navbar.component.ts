@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/shared/services/User/user.service';
 
 @Component({
@@ -9,13 +10,14 @@ import { UserService } from 'src/app/shared/services/User/user.service';
 })
 export class UserNavbarComponent implements OnInit {
   id!: Number;
-  constructor(private userService : UserService, private router: Router) { }
+  constructor(private userService : UserService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     //this.id = this.userService.getuserfromPayload();
   }
   onLogout(){
     this.userService.deleteToken();
+    this.cookieService.deleteAll();
     this.router.navigate(['user/login']);
   }
 }

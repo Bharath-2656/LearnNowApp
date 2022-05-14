@@ -36,7 +36,6 @@ export class CoursesViewComponent implements OnInit {
     this.courseService.getAreaOfInterestCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
        this.courseservices[index]=res[index];
-       console.log(this.courseservices);
        
       }
     },
