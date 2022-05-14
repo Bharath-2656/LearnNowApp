@@ -26,7 +26,7 @@
             <h2>Enter Login Details</h2>
             <form class="formOne" #showForm="ngForm" (ngSubmit)="onSubmit(showForm)" novalidate >
                 <!-- <form class="formOne"> -->
-                 <div><img id="logo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
+                 <div><img id="pagelogo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
                  <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false" [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" ngModel><br>
                 <div> <span *ngIf="email.invalid && email.touched" style="color: red;" class="error">Invalid email</span></div>
                 <label>PASSWORD</label> <input id="password" type="password" name="password" [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel" ngModel><br>

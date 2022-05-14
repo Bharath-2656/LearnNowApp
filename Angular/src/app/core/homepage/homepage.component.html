@@ -8,22 +8,62 @@
 </head>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 <body>
+    <div class="navbar">
    
-    <div class='banner violet'>
-        <h3 id="logo">LearnNow!</h3>
+        <!-- Navbar logo -->
+        <div class="nav-header">
+          <div class="nav-logo">
+            <a href="#">
+              <img id="logo" src="https://i.ibb.co/Ph9cJSC/logo-purple.png" width="100px" alt="logo">
+            </a>
+          </div>
+        </div>
          
-        <p id="sidetext">LearnNow is a new age edtech firm which focues on college students for their carrer enhancement. We offer best courses, specially currated by our team of instructors</p>
+        <!-- responsive navbar toggle button -->
+        <input type="checkbox" id="nav-check">
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+       
+        <!-- Navbar items -->
+        <div class="nav-links">
+          <a routerLink="/user/login" routerLinkActive="active">Login</a>
+          <a routerLink="/user/register" routerLinkActive="active">Register</a>
+          <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
+          <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
+          
+          <!-- <button class="loginBtn">Login</button> -->
+        </div>
+       
+      </div>
+
+
+    <div class='banner'>
+        <h3 id="logo">LearnNow!</h3>
+        <img id="firstimage" src="https://i.ibb.co/6BjHNdk/imgonline-com-ua-Replace-Color-Jqoy-A8-PHLv-AY.jpg" alt="imgonline-com-ua-Replace-Color-Jqoy-A8-PHLv-AY" border="0">     
+           <!-- <p id="sidetext">LearnNow is a new age edtech firm which focues on college students for their carrer enhancement. We offer best courses, specially currated by our team of instructors</p> -->
     </div>
-    <div class='banner blue'>
-        <h3 id="secondleft">Are you Industry Ready?</h3>
+
+    <div class='banner2 lightbluegreen'>
+        <h3 id="secondleft">Are you Industry Ready</h3><p id="questionmark">?</p>
         
-        <p id="secondtext">Large openings are there in the digital market right now and is only expected to increased in the comming years</p>
+        <p id="secondtext">Large openings are there in the digital market right now and is only expected to increase in the comming years</p>
     </div>
-        
+    <img id="image" src="https://i.ibb.co/YL10DrG/industry-relevant-banner.png" alt="industry-relevant-banner" border="0"> 
+
+    <div class='banner3 violet'>
+        <h3 id="thirdleft">What we offer?</h3>
+        <div class = "vertical"></div>
+        <p id="thirdtext">LearnNow is a new age edtech firm which focues on college students for their carrer enhancement. We offer best courses, specially currated by our team of instructors</p>
+    </div>
     <div class='banner2 orange' >
-        <h3 id="thirdleft">Courses we offer</h3>   
-        <button id="slideRight" type="button">></button>
-        <button id="slideLeft" type="button"><</button>
+        <h3 id="fourthleft">Courses we offer</h3>   
+        <button id="slideRight" type="button"><strong>></strong></button>
+        <button id="slideLeft" type="button"><strong><</strong></button>
         <br>
         <div class="row" id="row">
             
@@ -43,10 +83,9 @@
         </div>
        
         
-        
 </div>
 <div class='banner violet'>
-    <p class="heading">Are you a Student or an instructor</p>
+    <p id="fifthleft">Are you a Student or an instructor</p>
     <button class="buttonalign" id="loginbutton" (click)="loginstudent()" value="Student Login">Student Login</button>
     <button id="loginbutton2" (click)="logininstructor()" value="Instructor Login"><a href="#"></a>Instructor Login</button>
 </div>
