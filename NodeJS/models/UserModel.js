@@ -51,6 +51,10 @@ const UserSchema = new mongoose.Schema({
     areaofintrest: {
       type: [],
     },
+    totalamount: {
+      type: Number,
+      default: 0,
+    },
     saltSecret:String,
   });
  UserSchema.plugin(uniqueValidator);

@@ -33,7 +33,7 @@ export class InstructorLoginComponent implements OnInit {
         
       },
       (err : HttpErrorResponse)=>{
-        this.serverErrorMessages = err.error.message;
+        this.toastr.error(err.error.message, 'Error')
       }); 
     }
 

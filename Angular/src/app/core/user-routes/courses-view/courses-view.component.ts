@@ -28,10 +28,10 @@ export class CoursesViewComponent implements OnInit {
     
     this.userid = this.userService.getuserfromPayload();
 
-    this.userService.postAreaOfIntrestForUser(this.userid, this.id).subscribe((res:any) => {
-      this.userintrest = res;
+    // this.userService.postAreaOfIntrestForUser(this.userid, this.id).subscribe((res:any) => {
+    //   this.userintrest = res;
 
-    })
+    // })
     
     this.courseService.getAreaOfInterestCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {

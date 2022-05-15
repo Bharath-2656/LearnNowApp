@@ -57,10 +57,9 @@ export class PaymentComponent implements OnInit {
               this.courseService.courseEnrollCount(this.courselink).subscribe((res) => {
             
           })
-          // this.courseService.sendConfirmationMail(this.courselink).subscribe((res) => {
-          // });
+          this.courseService.sendConfirmationMail(this.courselink);
       
-          this.userService.postUserCourse(this.courselink, this.id).subscribe((res) => {
+           this.userService.postUserCourse(this.courselink, this.id).subscribe((res) => {
             this.toastr.success('Enrollment successful','Success');
           setTimeout(() => {
             this.router.navigate(['user/dashboard']);

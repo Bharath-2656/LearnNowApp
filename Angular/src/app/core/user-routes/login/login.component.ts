@@ -18,7 +18,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+    googlelogin()
+    {
+      console.log("google");
+      
+      this.userService.googlelogin().subscribe((res) =>{
+        
+      });
+    }
     onSubmit(formOne : NgForm){
       this.userService.login(formOne.value).subscribe((res : any)=>{
 
@@ -33,7 +40,8 @@ export class LoginComponent implements OnInit {
         
       },
       (err : HttpErrorResponse)=>{
-        this.serverErrorMessages = err.error.message;
+        this.toastr.error(err.error.message, 'Error')
+        
       }); 
     }
     //this.login.getUserDetails(username,password);

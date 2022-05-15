@@ -92,13 +92,15 @@ export class UserService {
 
   postUserCourse(courseid: String, userid: Number){
  
+    var price = Number(this.cookieService.get('price'))/100;
+    console.log(price);
     
-    return this.http.put(this.baseURL + 'usercourse' + `/${userid}` + `/${courseid}`,courseid);
+    return this.http.put(this.baseURL + 'usercourse' + `/${userid}` + `/${courseid}` + `/${price}`,courseid);
   }
-  postAreaOfIntrestForUser(userid: Number, areaofintrest: String)
-  {   
-    return this.http.put(this.baseURL + 'usercoursearea' + `/${userid}`+`/${areaofintrest}`, areaofintrest)
-  }
+  // postAreaOfIntrestForUser(userid: Number, areaofintrest: String)
+  // {   
+  //   return this.http.put(this.baseURL + 'usercoursearea' + `/${userid}`+`/${areaofintrest}`, areaofintrest)
+  // }
   getUsercourse()
   {
     return this.http.get(this.baseURL + 'usercourse');
@@ -112,5 +114,8 @@ export class UserService {
   {  
     return this.http.post('http://localhost:9000/admin/user_mail', user);
   }
-  
+  googlelogin()
+  {
+    return this.http.get(this.baseURL + 'google');
+  }
 }
