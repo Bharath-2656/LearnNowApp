@@ -88,7 +88,7 @@ app.put('/users/:userid', (req, res) =>
 });
 
 // Updating the courseid to User after Enrollment
-app.put('/usercourse/:userid/:courseid', (req, res) =>
+app.put('/usercoursearea/:userid/:courseid', (req, res) =>
 {
        
     var user = {
@@ -144,10 +144,14 @@ app.post('/authenticate', (req, res, next) =>
                     
                 };
                 
-                useridforrefresh = req.body.email;
-                const refresh_token = user.generateRefreshToken();
-                User.findOneAndUpdate({ email: req.body.email }, {  refreshtoken: user.generateRefreshToken() })
-                return res.status(200).json( { "token": user.generateJwt(), });
+               
+                User.findOneAndUpdate({ email: req.body.email }, {  refreshtoken: user.generateRefreshToken() } ,(err, doc) =>
+                {
+                    if (!err) { return res.status(200).json( { "token": user.generateJwt(), }); }
+                    else { console.log(`Error in updating user`); }
+                });
+                
+                
             }
         else return res.status(404).json(info);
     })(req, res);
@@ -155,15 +159,17 @@ app.post('/authenticate', (req, res, next) =>
 
 
 //Generating access token if refersh token is valid and access token is expired
-app.post('/token', async (req,res,next) =>
+app.post('/token/:userid', async (req,res,next) =>
 {
-    const userfortoken = await User.findOne({ email: useridforrefresh }, 'userid refreshtoken').exec();
-    
+   
+    const userfortoken = await User.findOne({ userid: req.params.userid }, 'userid refreshtoken').exec();
+   
     jwt.verify(userfortoken.refreshtoken,process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {
             if (err)
                 return res.status(500).send({ auth: false, message: 'Token authentication failed.' });
             else {
+                    
                     return res.status(200).json( { "token": userfortoken.generateJwt() });
                 next();
             }
@@ -175,7 +181,7 @@ app.post('/deletetoken/:userid', (req,res) => {
     var user = {
         refreshtoken: 'refresh_token',
     };
-   
+   console.log("req.params.userid");
     User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }

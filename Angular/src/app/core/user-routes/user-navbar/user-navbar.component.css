@@ -1,4 +1,4 @@
-.navbar{
+/* .navbar{
     height: 45px;
     left: 0;
     width: 96%;
@@ -8,7 +8,7 @@
   /* background-color: #7dd87d; */
   /* background-color: #333C83; */
   /* background-color: #21325E; */
-  /* background-color:#3E497A; */
+  /* background-color:#3E497A; 
   background-color: var(--purple-color);
      position: relative; 
     margin-top: 0px;
@@ -16,11 +16,11 @@
   }
   .navbar .nav-header{
     display: inline;
-  }
+  } */
   .navbar .nav-header .nav-logo{
     display: inline-block;
-    margin-top: -7px;
-  }
+    margin-top: 30px;
+  } /*
   .navbar .nav-links{
     display: inline;
     float: right;
@@ -45,15 +45,15 @@
     font-weight: 400; 
     /* color: #5b446a; */
     /* color: #F24A72; */
-    /* color: #f4f81c; */
+    /* color: #f4f81c; 
     color: white;
   }
-  /* Hover effects */
+  /* Hover effects 
   .navbar .nav-links a:hover{
     background-color: rgba(0, 0, 0, 0.3);
   }
    
-  /* responsive navbar toggle button */
+  /* responsive navbar toggle button 
   .navbar #nav-check, .navbar .nav-btn{
     display: none;
   }
@@ -67,11 +67,12 @@
     }
     #nav-check{
       margin-top: 70px;
+      margin-right: 20px;
     }
     .navbar .nav-btn label {
       display: inline-block;
       margin-top: 20px;
-      margin-right: 5px;
+      margin-right: 25px;
       width: 40px;
       height: 40px;
       padding: 5px;
@@ -101,12 +102,12 @@
       display: block;
     }
    
-    /* when nav toggle button not checked */
+    /* when nav toggle button not checked 
     .navbar #nav-check:not(:checked) ~ .nav-links {
       height: 0px;
     }
    
-    /* when nav toggle button is checked */
+    /* when nav toggle button is checked *
     .navbar #nav-check:checked ~ .nav-links {
       height: calc(100vh - 80px);
       overflow-y: auto;
@@ -120,4 +121,4 @@
     }
      
    
-  }
+  } */

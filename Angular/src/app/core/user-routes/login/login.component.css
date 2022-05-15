@@ -46,12 +46,13 @@
     font-size: 19px;
     align-items: center;
     float:right;
-    margin-right: 60px;
+    margin-right: 3%;
     margin-top: 20px;
     padding: 40px;
-    width: 500px;
+    width: 40%;
     border-radius: 3%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background-color: #F7F8FA;
 }
 /* .formOne input{
     margin: 10px;
@@ -69,7 +70,7 @@
 .formOne label{
     color:#5b446a;
     display: inline-block;
-    width: 200px;
+    width: 40%;
     margin: 5px;
     text-align: left;
 }
@@ -85,17 +86,16 @@
     text-align: center;
     font-weight: bold;
     font-size: 23px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,'Open Sans', 'Helvetica Neue', sans-serif;
-
+    font-family: 'Montserrat';
 }
 .main h1{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Montserrat';
     margin-top: 40px;
     text-align: center;
     /* color: #4c9173; */
     color: #7f67c0;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 32px;
 }
 #button {
     align-items: center;
@@ -117,9 +117,9 @@
     overflow: hidden;
 }
 #image{
-    /* width: 400px;
-    height: 600px; */
-    margin-left: 50px;
+     width: 45%;
+    
+    margin-left: 2%;
     border-radius: 3%;
 }
 #pagelogo{
@@ -140,21 +140,21 @@
 {
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     border-color: #2c2b2b57;
     box-shadow: inset;
     color: rgb(63, 58, 58);
     font-size: 19px;
-    font-weight: 500;
+    font-weight: 700;
     text-align: left ;
-    
+    font-family: 'Montserrat';
 }
 .invalid-textbox{
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     /* border-color: #2c2b2b57; */
@@ -169,7 +169,7 @@
 {
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     border-color: #2c2b2b57;
@@ -184,9 +184,19 @@ body{
     margin: 0;
     /* margin-top: -595px; */
 }
-@media screen and (max-width:750px) {
+/* @media screen and (max-width:750px) {
 #image
     {
         margin-top: 2%;
     }
-}
+}*/
+@media screen and (max-width:800px) {
+    #image
+        {
+            display: none;
+        }
+        .formOne{
+            width: 80%;
+            margin-left: 10%;
+        }
+    } 

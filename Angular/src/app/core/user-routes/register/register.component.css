@@ -26,6 +26,7 @@ button {
     color:#7f67c0;
     font-weight: bold;
     font-size: 26px;
+    
 }
 #button {
     align-items: center;
@@ -49,10 +50,10 @@ button {
 .formOne{
     font-weight: 500;
     font-size: 19px;
-    margin-right: 50px;
+    margin-right: 2%;
     align-items: center;
     padding: 30px;
-    width: 490px;
+    width: 40%;
     background-color: #F7F8FA;
     border-radius: 3%;
     margin-top: -5%;
@@ -74,7 +75,7 @@ button {
 .formOne label{
     color:#5b446a;
     display: inline-block;
-    width: 200px;
+    width: 30%;
     margin: 5px;
     text-align: left;
 }
@@ -114,7 +115,7 @@ button {
 {
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     border-color: #2c2b2b57;
@@ -128,7 +129,7 @@ button {
 .invalid-textbox{
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     /* border-color: #2c2b2b57; */
@@ -143,7 +144,7 @@ button {
 {
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     border-color: #2c2b2b57;
@@ -156,7 +157,7 @@ button {
 .email{
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     border-color: #2c2b2b57;
@@ -170,7 +171,7 @@ button {
 {
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     border-color: #2c2b2b57;
@@ -184,7 +185,7 @@ button {
 {
     margin: 10px;
     background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
+    width: 50%;
     height: 30px;
     border-radius: 12px;
     border-color: #2c2b2b57;
@@ -197,12 +198,12 @@ button {
 #image{
     /* width: 400px;
     height: 600px; */
-    margin-left: 50px;
+    width: 45%;
+    height: 65%;
     margin-top: -32%;
-    padding: 0px;
+    margin-left: 2%;
     border-radius: 3%;
-    margin-bottom: 0px;
-    /* position:fixed; */
+    /* position:fixed;  */
 }
 #pagelogo{
     width: 300px;
@@ -277,29 +278,27 @@ button {
     }
 } */
 
-@media screen and (max-width: 1300px){
+ @media screen and (max-width: 1000px){
 
     #image{
-        width: 70%;
-        margin: 20%;
-        margin-right: 20%;
-        padding: auto;
-        margin-top: 20px;
+           display: none;
     }
     .formOne{
-        width: auto;
-        align-items: center;
-        margin-right: auto;
+        width: 80%;
+       
+        margin-right: 7.5%;
         margin-top: 7%;
     }
     .formOne label{
         /* width: auto; */
         margin: auto;
-        align-items: center;
-        margin-right: 20%;
+        align-items: left;
+        margin-right: 60%; 
+    
     }
     .formOne input{
-        margin-right: 20%;
+        margin-right: 5%;
+        margin-top: -10%;
         
     }
     .name{
@@ -309,4 +308,10 @@ button {
         /* margin: auto; */
         margin-right: 40%;
     }
-}
+    #submit{
+        margin-left: 30%;
+    }
+    #button{
+        margin: 0;
+    }
+} 

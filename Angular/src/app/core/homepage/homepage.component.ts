@@ -26,7 +26,7 @@ export class HomepageComponent implements OnInit {
         document.getElementById('row')!.scrollLeft += 340;
       };
       buttonLeft.onclick = function () {
-        document.getElementById('row')!.scrollLeft -= 300;
+        document.getElementById('row')!.scrollLeft -= 340;
       };
 
     };

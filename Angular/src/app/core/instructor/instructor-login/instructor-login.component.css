@@ -1,5 +1,5 @@
 *{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Montserrat';
 
 }
 
@@ -72,6 +72,7 @@
     width: 200px;
     margin: 5px;
     text-align: left;
+    font-weight: 600;
 }
 .main{
     padding-top: 5px;
@@ -84,12 +85,12 @@
     text-align: center;
     font-weight: bold;
     font-size: 23px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:'Montserrat';
 
 }
 .main h1{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-top: 70px;
+    font-family: 'Montserrat';
+    margin-top: 40px;
     text-align: center;
     /* color: #4c9173; */
     color: #7f67c0;
@@ -130,8 +131,7 @@
 .error
 {
     font-size: 19px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
-    'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Montserrat'; 
     color: red;
     margin-right: 80px;
 }
@@ -146,7 +146,7 @@
     box-shadow: inset;
     color: rgb(63, 58, 58);
     font-size: 19px;
-    font-weight: 500;
+    font-weight: 600;
     text-align: left ;
     
 }

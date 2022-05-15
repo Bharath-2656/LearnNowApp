@@ -13,6 +13,7 @@ footer{
   width: 100%;
   margin-top: -8px;
   background: #7a7777fd;
+  font-size: 1.8vw;
 }
 footer .content{
   max-width: 1350px;
@@ -22,11 +23,13 @@ footer .content{
   flex-wrap: wrap;
   justify-content: space-between;
   margin-left:20%;
+  
 }
 footer .content p,a{
   color: white;
   font-weight: 450;
   text-align: center;
+  margin-top: 5%;
 }
 footer .content .box{
   width:70%;
@@ -34,25 +37,26 @@ footer .content .box{
   align-items: center;
 }
 footer .content .topic{
-  font-size: 1.6em;
+  font-size: 2.5vw;
   font-weight: 600;
   color: white;
   margin-bottom: 16px;
   text-align: center;
+  margin-top: 5%;
 
 }
 footer .content .topic2{
-  font-size: 1.6em;
+  font-size: 2.5vw;
   font-weight: 600;
   color: white;
   margin-bottom: 16px;
-  margin-left: 15%;
+  margin-left: 12%;
 
 }
 footer .content p{
   text-align: center;
   color: white;
-  font-size: 1em;
+  font-size: 2vw;
   line-height: 1.2;
   font-weight: 300;
   text-align: center;
@@ -73,7 +77,7 @@ footer .content .middle{
   padding-left: 80px;
 }
 footer .content .middle a{
-  line-height: 32px;
+  line-height: 3%;
 }
 footer .content .right input[type="text"]{
   height: 45px;
@@ -106,18 +110,18 @@ footer .content .right input[type="submit"]{
  
 }
 footer .content .media-icons{
-  margin-left: 30%;
+  margin-left: 25%;
 }
 footer .content .media-icons a{
-  font-size: 16px;
-  height: 45px;
-  width: 45px;
+  font-size: 2vw;
+  height: 10%;
+  width: 12%;
   display: inline-block;
   text-align: center;
-  line-height: 43px;
+  line-height: 10%;
   border-radius: 5px;
   border: 2px solid #f0f0f0;
-  margin: 30px 5px 0 0;
+  margin: 1% 5px 0 0;
   transition: all 0.3s ease;
   
 }
@@ -144,23 +148,26 @@ footer a:hover{
     padding-left: 50px;
   }
 }
-@media (max-width:950px){
+/* @media (max-width:950px){
   footer .content .box{
     width: 50%;
   }
   .content .right{
     margin-top: 40px;
   }
-}
+} */
 @media (max-width:560px){
   footer{
     position: relative;
   }
   footer .content .box{
     width: 100%;
-    margin-top: 30px;
+    /* margin-top: 2%; */
   }
   footer .content .middle{
     padding-left: 0;
+  }
+  footer .content .topic2{
+    margin-left: 0px;
   }
 }

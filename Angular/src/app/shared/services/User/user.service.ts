@@ -34,16 +34,20 @@ export class UserService {
   }
 
   login(authCredentials:any) {
-    return this.http.post(this.baseURL + '/authenticate', authCredentials,this.noAuthHeader);
+        
+    return this.http.post(this.baseURL + 'authenticate', authCredentials,this.noAuthHeader);
   }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  postRefreshtokencheck(user: User)
+  postRefreshtokencheck(userid: Number)
   {   
-    return this.http.post(this.baseURL + 'token', user);
+    console.log("token needed");
+    console.log(userid);
+    
+    return this.http.post(this.baseURL + 'token' + `/${userid}`,this.noAuthHeader);
   }
 
   getToken() {
@@ -52,12 +56,12 @@ export class UserService {
 
   deleteToken() {
      var userid;
-     setTimeout(() => {
+     
       userid = Number(this.cookieService.get('userid'));
-    }, 500);
-    localStorage.removeItem('token');
+      localStorage.removeItem('token');
+      console.log(userid);
       
-    return this.http.post(this.baseURL + 'deletetoken'+ `/${userid}`, userid);
+    return this.http.post(this.baseURL + 'deletetoken'+ `/${userid}`, this.noAuthHeader);
   }
  getuserfromPayload()
  {

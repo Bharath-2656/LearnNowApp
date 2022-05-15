@@ -13,10 +13,11 @@ export class UserNavbarComponent implements OnInit {
   constructor(private userService : UserService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    //this.id = this.userService.getuserfromPayload();
+    
   }
   onLogout(){
-    this.userService.deleteToken();
+    this.userService.deleteToken().subscribe((res:any) => { 
+    });
     this.cookieService.deleteAll();
     this.router.navigate(['user/login']);
   }
