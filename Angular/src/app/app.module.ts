@@ -18,6 +18,7 @@ import { CourseService } from './shared/services/Course/course.service';
 import { InstructorService } from './shared/services/Instructor/instructor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 
 
@@ -40,6 +41,7 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClientModule, 
     FormsModule,
     UserRoutesModule,
+    SocialLoginModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 2500,
@@ -51,7 +53,25 @@ import { CookieService } from 'ngx-cookie-service';
  exports: [
  ],
  
-  providers: [UserService,AuthGuard,AuthInterceptor,CourseService,InstructorService,CookieService ],
+  providers: [UserService,AuthGuard,AuthInterceptor,CourseService,InstructorService,CookieService,
+  {
+    provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              "901178890016-v8jukc08edhcbsvaiv864ma59btorcvr.apps.googleusercontent.com"
+            )
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

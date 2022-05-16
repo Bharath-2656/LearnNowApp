@@ -147,9 +147,9 @@ app.post('/authenticate', (req, res, next) =>
 });
 
 //Generating access token if refersh token is valid and access token is expired
-app.post('/token', async (req,res,next) =>
+app.post('/token/:instructorid', async (req,res,next) =>
 {
-    const instructorfortoken = await Instructor.findOne({ email: instructoridforrefresh }, 'instructorid refreshtoken').exec();
+    const instructorfortoken = await Instructor.findOne({ instructorid: req.params.instructorid }, 'instructorid refreshtoken').exec();
     
     jwt.verify(instructorfortoken.refreshtoken,process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {

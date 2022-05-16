@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
@@ -13,7 +14,7 @@ import { UserService } from 'src/app/shared/services/User/user.service';
 })
 export class InstructorLoginComponent implements OnInit {
 
-  constructor(private instructorService: InstructorService, private router : Router, private toastr: ToastrService) { }
+  constructor(private instructorService: InstructorService, private cookieService: CookieService, private router : Router, private toastr: ToastrService) { }
   serverErrorMessages!: string;
 
   ngOnInit(): void {
@@ -24,6 +25,7 @@ export class InstructorLoginComponent implements OnInit {
        
         this.toastr.success('Login Successfully','Success');
         this.instructorService.setToken(res['token']);
+        this.cookieService.set('instructorid',this.instructorService.getInstructorfromPayload());
         this.instructorService.postintructorid(this.instructorService.getInstructorfromPayload());
         setTimeout(() =>{
           this.router.navigate(['/instructors/instructorCourse']);

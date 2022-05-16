@@ -34,10 +34,14 @@
                 <label>PASSWORD</label> <input id="password" type="password" name="password" [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel" ngModel><br>
                 <div> <span *ngIf="password.invalid && password.touched" style="color: red;" class="error">Invalid Password</span></div>
                 
-                <input type="submit" id="button" value="Submit">
+                <input type="submit" id="button" value="Submit"><br>
+                <p class="horizontal-line-text">
+                    <span>OR</span>
+                  </p>
+                <button id="googlelogin" type="button" (click)="googlelogin()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button>
+
                 <br>
             </form>
-            <button id="googlelogin" type="button" (click)="googlelogin()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button>
 
             <div align="left">
                 <img id="image" alt="course image" src="https://i.ibb.co/P9V6YH9/Course-App-removebg-preview.jpg" >

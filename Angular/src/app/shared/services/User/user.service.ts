@@ -13,6 +13,7 @@ export class UserService {
   selectedUsers!: User;
   users!: User[];
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+
   readonly baseURL = 'http://localhost:9000/admin/';
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
@@ -116,6 +117,6 @@ export class UserService {
   }
   googlelogin()
   {
-    return this.http.get(this.baseURL + 'google');
+    return this.http.get(this.baseURL + 'api/auth/google');
   }
 }

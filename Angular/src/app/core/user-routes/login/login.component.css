@@ -180,21 +180,38 @@
     text-align: left ;
     
 }
+.horizontal-line-text {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #D8DDEC;
+    line-height: 0.1rem;
+    margin: 25px 0 30px 0;
+}
+    span {
+      background: white;
+      padding: 0 10px;
+    }
+  
 
 #googlelogin{
-
-    background-color: #635bff;
-    text-align: center;
-    width: 50%;
-    height: 40px;
-    margin: 10px;
-    border-radius: 12px;
-    border-color: #2c2b2b57;
-    box-shadow: inset;
-    color: rgb(63, 58, 58);
+    align-items: left;
+    text-decoration: none;
+    background-color: #CCD0D5;
     font-size: 19px;
-    font-weight: 700;
-    font-family: 'Montserrat';
+    margin-right: 30%;
+    color: #ffffff;
+    /* margin-right: 0px; */
+    text-align: center;
+    font-weight: 500;
+    /* margin: 8px; */
+    padding: 1%;
+    width: 40%;
+    height: auto;
+    border: #CCD0D5;
+    border-radius: 7%;
+    box-shadow: inset;
+    /* background-color:rgb(66, 133, 244); */
+    background-color: var(--purple-color);
 }
 body{
     margin: 0;

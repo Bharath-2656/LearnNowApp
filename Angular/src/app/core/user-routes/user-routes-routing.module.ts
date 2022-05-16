@@ -19,8 +19,9 @@ const routes: Routes = [
   {path: "register", component:RegisterComponent},
   {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard],data: {role: 'user'}},
   {path: "category/:id", component: CoursesViewComponent,canActivate:[AuthGuard],data: {role: 'user'}},
-  {path: "course/:id", component: CoursepageComponent,canActivate:[AuthGuard],data: {role: 'user'}},
-   {path: "instructor/:id", component:InstructorProfileComponent,canActivate:[AuthGuard],data: {role: 'user'}},
+ {path: "course/:id", component: CoursepageComponent,canActivate:[AuthGuard],data: {role: 'user'}},
+ // {path: "course/:id", component: CoursepageComponent},
+   {path: "instructor/:id", component:InstructorProfileComponent},
   {path: "user/confirmenrollment", component: ConfirmenrollmentComponent,canActivate:[AuthGuard],data: {
     role: 'user',
   }},

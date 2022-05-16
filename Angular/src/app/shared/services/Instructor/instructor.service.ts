@@ -55,9 +55,9 @@ export class InstructorService
     return this.http.post(this.baseURL + 'deletetoken' + `/${instructorid}`,instructorid);
   }
 
-  postRefreshtokencheck(instructor: Instructor)
+  postRefreshtokencheck(instructorid: Number)
   {
-    return this.http.post(this.baseURL + 'token', instructor);
+    return this.http.post(this.baseURL + 'token' + `/${instructorid}`,this.noAuthHeader);
   }
 
   getInstructorfromPayload()

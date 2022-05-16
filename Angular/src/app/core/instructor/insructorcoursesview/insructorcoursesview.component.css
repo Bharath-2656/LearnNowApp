@@ -22,7 +22,7 @@
     align-items: center;
     margin-bottom: 30px;
     border-radius: 2%; 
-    margin-left: 245px;
+    margin-left: 20%;
     margin-right: 10%;
     background-color: rgba(127, 103, 192, 0.2);
 }
@@ -88,6 +88,9 @@
     background-color:rgb(247, 182, 62);
 
   }
+  #enrolled{
+      margin-top: -40px;
+  }
   #buttons{
     width:100%;
     text-align: center;
@@ -99,6 +102,7 @@
     color: #050505;
     /* margin-right: 0px; */
     text-align: center;
+    /* margin-top: 30px; */
     font-weight: 500;
     margin: 5px;
     padding: 1%;

@@ -19,6 +19,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './user-routes/footer/footer.component';
 import { InstructorNavbarComponent } from './instructor/instructor-navbar/instructor-navbar.component';
 import { UserRoutesModule } from './user-routes/user-routes.module';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { UserRoutesModule } from './user-routes/user-routes.module';
     AreaofinterestComponent,
     HomepageComponent,
     FooterComponent,
+    NotfoundComponent,
     
   ],
   imports: [

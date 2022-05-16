@@ -10,12 +10,15 @@
   <h1 id="heading">Instructor Profile</h1>
   <div class="row">
     <ng-container *ngFor="let instructor of instructors">
+ 
       <ng-container *ngIf="instructor.name===id">
+        
       <div class="column">
        
  
             <div class="card">
               <h2>
+                
                 <b id="b">{{ instructor.name }}</b>
               </h2>
               <p id="description">{{ instructor.description }}</p>

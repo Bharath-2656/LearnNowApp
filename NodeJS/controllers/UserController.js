@@ -21,6 +21,19 @@ app.use(bodyParser.json());
 app.use(router);
 app.use(express.json());
 
+// var allowCrossDomain = function(req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      
+//     if ('OPTIONS' == req.method) {
+//     	res.send(200);
+//     }
+//     else {
+//     	next();
+//     }
+// }; 
+
 //Getting all users
 app.get('/users', async (req, res) =>
 {
@@ -160,18 +173,29 @@ app.post('/authenticate', (req, res, next) =>
         else return res.status(404).json(info);
     })(req, res);
 });
+app.use((req,res,next)=>{
+    res.setHeader("Access-Control-Allow-Origin","*")
+    res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,PATCH,DELETE")
+    res.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization")
+    next()
+  })
+
 
 app.use(cookieSession({
     name: 'google-auth-session',
     keys: ['key1', 'key2']
   }))
 
-app.get('/google',
+app.get('/api/auth/google',
  passport.authenticate('google', {
+     
             scope:
                 ['email', 'profile']
         }
-    ));
+           ),(req,res) =>
+           {
+               res.setHeader("Access-Control-Allow-Origin","*")
+           });
 
     app.get("/failed", (req, res) => {
         res.send("Failed")
