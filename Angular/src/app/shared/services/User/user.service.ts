@@ -3,6 +3,7 @@ import { User } from './user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { globalVars } from "../Url/url.model";
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/toPromise';
 
@@ -15,40 +16,47 @@ export class UserService {
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   readonly baseURL = 'http://localhost:9000/admin/';
+  url: string = `${globalVars.backendAPI}/admin/`;
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   getUserProfile() {
-    return this.http.get(this.baseURL + 'users');
+    return this.http.get(this.url + 'users');
   }
 
   postUser(user: User) {
-    return this.http.post(this.baseURL + 'users', user,this.noAuthHeader);
+    return this.http.post(this.url + 'users', user,this.noAuthHeader);
   }
 
   putUser(user: User) {
-    return this.http.put(this.baseURL + 'users' + `/${user.userid}`, user);
+    return this.http.put(this.url + 'users' + `/${user.userid}`, user);
   }
 
   deleteUser(userid: string) {
-    return this.http.delete(this.baseURL + 'users' + `/${userid}`);
+    return this.http.delete(this.url + 'users' + `/${userid}`);
   }
 
   login(authCredentials:any) {
         
-    return this.http.post(this.baseURL + 'authenticate', authCredentials,this.noAuthHeader);
+    return this.http.post(this.url + 'authenticate', authCredentials,this.noAuthHeader);
   }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
 
+  setRefreshToken(refreshtoken: string)
+  {
+    console.log(refreshtoken);
+    this.cookieService.set('refreshtoken', refreshtoken);
+  }
+
   postRefreshtokencheck(userid: Number)
   {   
     console.log("token needed");
     console.log(userid);
-    
-    return this.http.post(this.baseURL + 'token' + `/${userid}`,this.noAuthHeader);
+    const refreshtoken = this.cookieService.get('refreshtoken');
+    return this.http.post(this.url + 'token' + `/${userid}` + `/${refreshtoken}`, this.noAuthHeader);
   }
 
   getToken() {
@@ -62,7 +70,7 @@ export class UserService {
       localStorage.removeItem('token');
       console.log(userid);
       
-    return this.http.post(this.baseURL + 'deletetoken'+ `/${userid}`, this.noAuthHeader);
+    return this.http.post(this.url + 'deletetoken'+ `/${userid}`, this.noAuthHeader);
   }
  getuserfromPayload()
  {
@@ -96,20 +104,20 @@ export class UserService {
     var price = Number(this.cookieService.get('price'))/100;
     console.log(price);
     
-    return this.http.put(this.baseURL + 'usercourse' + `/${userid}` + `/${courseid}` + `/${price}`,courseid);
+    return this.http.put(this.url + 'usercourse' + `/${userid}` + `/${courseid}` + `/${price}`,courseid);
   }
   // postAreaOfIntrestForUser(userid: Number, areaofintrest: String)
   // {   
-  //   return this.http.put(this.baseURL + 'usercoursearea' + `/${userid}`+`/${areaofintrest}`, areaofintrest)
+  //   return this.http.put(this.url + 'usercoursearea' + `/${userid}`+`/${areaofintrest}`, areaofintrest)
   // }
   getUsercourse()
   {
-    return this.http.get(this.baseURL + 'usercourse');
+    return this.http.get(this.url + 'usercourse');
   }
 
   payment(stripeToken: any, price: Number): Observable<any>
   {   
-    return this.http.post<any>(this.baseURL + 'payment' +`/${price}` ,{token:stripeToken});
+    return this.http.post<any>(this.url + 'payment' +`/${price}` ,{token:stripeToken});
   }
   sendConfirmationMail(user: User)
   {  
@@ -117,6 +125,6 @@ export class UserService {
   }
   googlelogin()
   {
-    return this.http.get(this.baseURL + 'api/auth/google');
+    return this.http.get(this.url + 'api/auth/google');
   }
 }

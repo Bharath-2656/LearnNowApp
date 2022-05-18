@@ -17,6 +17,7 @@ export class UserDashboardComponent implements OnInit {
   courses: any[] =[];
   courseservices: any[] = [];
   name!: String;
+  mycourse: any[] =[];
   constructor(private userService:UserService, private courseService:CourseService ) { }
   
   ngOnInit(): void {

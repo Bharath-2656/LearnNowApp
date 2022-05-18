@@ -6,26 +6,71 @@
   <style></style>
 </head>
 
+<div class="navbar">
+   
+  <!-- Navbar logo -->
+  <div class="nav-header">
+    <div class="nav-logo">
+      <a href="#">
+        <img id="logo" src="https://i.ibb.co/Ph9cJSC/logo-purple.png" width="100px" alt="logo">
+      </a>
+    </div>
+  </div>
+   
+  <!-- responsive navbar toggle button -->
+  <input type="checkbox" id="nav-check">
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+ 
+  <!-- Navbar items -->
+  <div class="nav-links">
+    <a routerLink="/user/login" routerLinkActive="active">Login</a>
+    <a routerLink="/user/register" routerLinkActive="active">Register</a>
+    <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
+   
+    <!-- <button class="loginBtn">Login</button> -->
+  </div>
+ 
+</div>
+
 <body>
   <h1 id="heading">Instructor Profile</h1>
   <div class="row">
     <ng-container *ngFor="let instructor of instructors">
- 
-      <ng-container *ngIf="instructor.name===id">
+      <ng-container *ngIf="instructor.routerlink===id">
         
       <div class="column">
        
- 
+        <br>
+        
             <div class="card">
               <h2>
-                
-                <b id="b">{{ instructor.name }}</b>
+               
+                <b id="name">{{ instructor.name }}</b>
               </h2>
-              <p id="description">{{ instructor.description }}</p>
-              
+              <p id="description"><strong>Description:  </strong> {{  instructor.description }}</p>
+              <!-- <br>
               <p>Number of Students mentored : {{instructor.numberofstudents}}</p>
-              <p>Number of Courses created : {{instructor.numberofcourses}}</p>
+              <p>Number of Courses created : {{instructor.numberofcourses}}</p> -->
             </div>
+            <h1 id="name">Courses created by the instructor</h1>
+            <ng-container *ngFor="let course of instructor.instructor_courses">
+              <div class="card2 card">
+              <h3>{{course.name}}</h3>
+
+            <p><strong>Duration : </strong>{{ course.duration}}</p>
+            <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
+              <p><strong>Instructor : </strong>{{course.author  | titlecase}}</p>
+            </a>
+            <p>Price: {{course.price}}</p>
+          </div>
+            </ng-container>
       </div>
     </ng-container>
     </ng-container>

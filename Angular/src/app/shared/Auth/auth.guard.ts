@@ -25,7 +25,10 @@ export class AuthGuard implements CanActivate {
         (err:any)=>{
         }
         });
-        this.router.navigateByUrl('/user/login');
+        // setTimeout(() => {
+        //   this.router.navigateByUrl('/user/login');
+        // }, 2000);
+        
         this.userService.deleteToken();
         return false;
       }

@@ -11,6 +11,7 @@ const jwtHelper = require('../Config/jwtHelper');
 var router = express.Router();
 const app = express();
 const loadash = require('lodash');
+const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
@@ -18,8 +19,10 @@ const cookieSession = require('cookie-session');
 require('../Config/OAuth')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 app.use(router);
 app.use(express.json());
+
 
 // var allowCrossDomain = function(req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*');
@@ -41,6 +44,7 @@ app.get('/users', async (req, res) =>
     {
         if (!err)
         {
+            
             res.send(data);
         }
         else { console.log("Error in getting data : " + err); }
@@ -149,7 +153,7 @@ app.put('/usercourse/:userid/:courseid/:price', (req, res) =>
 });
 
 //Authenticating the user upon login and generating refresh and access token
-app.post('/authenticate', (req, res, next) =>
+app.post('/authenticate', async (req, res, next) =>
 {
     passport.authenticate('local', (err, user, info) =>
     {
@@ -160,11 +164,13 @@ app.post('/authenticate', (req, res, next) =>
                 refreshtoken: user.generateRefreshToken()
 
             };
-
+            
 
             User.findOneAndUpdate({ email: req.body.email }, { refreshtoken: user.generateRefreshToken() }, (err, doc) =>
             {
-                if (!err) { return res.status(200).json({ "token": user.generateJwt(), }); }
+                if (!err) { 
+                    
+                    return res.status(200).json({ "token": user.generateJwt(),"refreshtoken": user.generateRefreshToken()},); }
                 else { console.log(`Error in updating user`); }
             });
 
@@ -215,19 +221,19 @@ app.get('/api/auth/google',
 );
 
 //Generating access token if refersh token is valid and access token is expired
-app.post('/token/:userid', async (req, res, next) =>
+app.post('/token/:userid/:refreshtoken', async (req, res, next) =>
 {
-
-    const userfortoken = await User.findOne({ userid: req.params.userid }, 'userid refreshtoken').exec();
-
-    jwt.verify(userfortoken.refreshtoken, process.env.REFRESH_TOKEN_SECRET,
+    // console.log(req.body.refreshtoken);
+    const userfortoken = await User.findOne({ userid: req.params.userid }, 'userid').exec();
+    console.log(req.params.refreshtoken);
+    jwt.verify(req.params.refreshtoken, process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) =>
         {
             if (err)
                 return res.status(500).send({ auth: false, message: 'Token authentication failed.' });
             else
             {
-
+                console.log("tokened");
                 return res.status(200).json({ "token": userfortoken.generateJwt() });
                 next();
             }
@@ -240,7 +246,6 @@ app.post('/deletetoken/:userid', (req, res) =>
     var user = {
         refreshtoken: 'refresh_token',
     };
-    console.log("req.params.userid");
     User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }
@@ -416,7 +421,8 @@ app.post('/course_mail', async (req, res) =>
 //Sending mail upon successful registeration to the application 
 app.post('/user_mail', async (req, res) =>
 {
-
+    
+    //link="http://"
     let transprter = nodemailer.createTransport({
         service: "gmail",
         auth: {

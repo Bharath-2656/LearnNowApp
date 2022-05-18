@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Instructor } from './instructor.model';
+import { globalVars } from "../Url/url.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,31 +12,33 @@ export class InstructorService
   instructors!: Instructor[];
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
   readonly baseURL = 'http://localhost:9000/instructor/';
+  url: string = `${globalVars.backendAPI}/instructor/`;
 
   constructor(private http: HttpClient) { }
 
   getInstructor()
   {
-    return this.http.get(this.baseURL + 'instructors');
+    return this.http.get(this.url + 'instructors');
   }
+
   postInstructor(instructor: Instructor)
   {
-    return this.http.post(this.baseURL + 'instructors', instructor);
+    return this.http.post(this.url + 'instructors', instructor);
   }
 
   putinstructor(instructor: Instructor)
   {
-    return this.http.put(this.baseURL + 'instructors' + `/${instructor.instructorid}`, instructor);
+    return this.http.put(this.url + 'instructors' + `/${instructor.instructorid}`, instructor);
   }
 
   deleteInstructor(instructor: Instructor)
   {
-    return this.http.delete(this.baseURL + 'instructors' + `/${instructor.instructorid}`);
+    return this.http.delete(this.url + 'instructors' + `/${instructor.instructorid}`);
   }
 
   login(authCredentials: any)
   {
-    return this.http.post(this.baseURL + 'authenticate', authCredentials, this.noAuthHeader);
+    return this.http.post(this.url + 'authenticate', authCredentials, this.noAuthHeader);
   }
   setToken(token: string)
   {
@@ -52,12 +55,12 @@ export class InstructorService
       instructorid = this.getInstructorfromPayload();
     }, 500);
      localStorage.removeItem('token');
-    return this.http.post(this.baseURL + 'deletetoken' + `/${instructorid}`,instructorid);
+    return this.http.post(this.url + 'deletetoken' + `/${instructorid}`,instructorid);
   }
 
   postRefreshtokencheck(instructorid: Number)
   {
-    return this.http.post(this.baseURL + 'token' + `/${instructorid}`,this.noAuthHeader);
+    return this.http.post(this.url + 'token' + `/${instructorid}`,this.noAuthHeader);
   }
 
   getInstructorfromPayload()
@@ -66,7 +69,7 @@ export class InstructorService
   }
   postintructorid(instructorid: Number)
   {
-    return this.http.post(this.baseURL + 'getinstructorid', instructorid);
+    return this.http.post(this.url + 'getinstructorid', instructorid);
   }
   getInstructorPayload()
   {
@@ -93,11 +96,11 @@ export class InstructorService
   }
   postInstructorCourse(instructor: Instructor)
   {
-    return this.http.put(this.baseURL + 'instructorcourse' + `/${instructor.instructorid}`, instructor);
+    return this.http.put(this.url + 'instructorcourse' + `/${instructor.instructorid}`, instructor);
   }
   getInstructorCourse()
   {
-    return this.http.get(this.baseURL + 'instructorcourse');
+    return this.http.get(this.url + 'instructorcourse');
   }
 
 }

@@ -21,7 +21,7 @@ export class InstructorProfileComponent implements OnInit {
     this.id=this.route.snapshot.paramMap.get('id');
     console.log(this.id);
     
-    this.instructorService.getInstructor().subscribe((res:any) => {
+    this.instructorService.getInstructorCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
        this.instructors[index]=res[index];       
       }
