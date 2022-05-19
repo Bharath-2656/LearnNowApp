@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
 
 @Component({
@@ -9,13 +10,15 @@ import { InstructorService } from 'src/app/shared/services/Instructor/instructor
 })
 export class InstructorNavbarComponent implements OnInit {
   id!: Number;
-  constructor(private instructorService : InstructorService, private router: Router) { }
+  constructor(private instructorService : InstructorService, private cookieService :CookieService, private router: Router) { }
 
   ngOnInit(): void {
-    //this.id=this.instructorService.getInstructorfromPayload();
   }
   onLogout(){
-    this.instructorService.deleteToken();
+    this.instructorService.deleteToken().subscribe((res:any) => {
+
+    });
+    this.cookieService.deleteAll();
     this.router.navigate(['instructors/login']);
   }
 

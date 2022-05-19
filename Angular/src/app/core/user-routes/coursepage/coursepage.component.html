@@ -24,7 +24,7 @@
         <div class="grid">
           <div class="card">
             <div id="one">
-              <h3>{{ course.name}}</h3>
+              <h3 class="pink">{{ course.name}}</h3>
               <p class="textcolor line">{{ course.description }}</p>
              <strong><p class="purple" id="p">Duration : {{ course.duration}}</p></strong>
              <strong> <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">
@@ -52,7 +52,7 @@
               <ng-container *ngFor="let include of courseincludes">
                 <li id="list" class="textcolor line">{{include}}</li><br> 
               </ng-container>
-              <h3 >Course requirements : </h3>
+              <h3 >Course requirements</h3>
               <ng-container *ngFor="let requirements of courserequirements">
                 <li id="list" class="textcolor">{{requirements}}</li>
               </ng-container>

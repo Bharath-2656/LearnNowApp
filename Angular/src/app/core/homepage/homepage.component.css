@@ -203,6 +203,7 @@ html{
     border-radius: 12%;
     float: right;
     margin-top: -4%;
+    font-family: 'Montserrat';
 }
 
 #slideRight {
@@ -216,6 +217,7 @@ html{
     border-radius: 12%;
     float: right;
     margin-top: -4%;
+    font-family: 'Montserrat';
 }
 
 .heading {
@@ -338,7 +340,13 @@ html{
     position: absolute;
     left: 47%;
 }
-
+.vertical2{
+    left: 50%;
+    border-left: 3px solid rgb(255, 255, 255);
+    height: 25vw;
+    margin-top: -10%;
+    position: absolute;
+}
 #fifthleft {
     margin-left: 20%;
     line-height: 6vw;
@@ -349,6 +357,28 @@ html{
     color: white;
     word-wrap: normal;
     width: 80vw;
+}
+#studentlogintext{
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: 600;
+    font-size: 2vw;
+    margin-top: 2vw;
+    margin-left: 10%;
+    margin-right: 54%;
+    line-height: 3vw;
+    text-align: right;
+}
+#instructorlogintext{
+    font-family: 'Montserrat';
+    color: white;
+    font-size: 2vw;
+    margin-top: -8vw;
+    font-weight: 600;
+    margin-left: 52%;
+    margin-right:10%;
+    line-height: 3vw;
+    text-align: left;
 }
 .navbar .nav-btn label:hover, .navbar #nav-check:checked ~ .nav-btn label {
     background-color:#ffffff ;

@@ -15,7 +15,8 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
       
       if (!this.userService.isLoggedIn()) {
-        const userid = this.userService.getuserfromPayload();
+       
+       const userid = Number(this.cookieService.get('userid'));
         this.userService.postRefreshtokencheck(userid).subscribe((res : any)=>{
         {
           this.userService.setToken(res['token']);
@@ -28,6 +29,7 @@ export class AuthGuard implements CanActivate {
         // setTimeout(() => {
         //   this.router.navigateByUrl('/user/login');
         // }, 2000);
+        console.log("Not allowed");
         
         this.userService.deleteToken();
         return false;

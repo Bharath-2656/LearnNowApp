@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Instructor } from './instructor.model';
 import { globalVars } from "../Url/url.model";
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class InstructorService
   readonly baseURL = 'http://localhost:9000/instructor/';
   url: string = `${globalVars.backendAPI}/instructor/`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   getInstructor()
   {
@@ -44,6 +45,10 @@ export class InstructorService
   {
     localStorage.setItem('token', token);
   }
+  setRefreshToken(refreshtoken: string)
+  {
+    this.cookieService.set('refreshtoken', refreshtoken);
+  }
   getToken()
   {
     return localStorage.getItem('token');
@@ -60,7 +65,8 @@ export class InstructorService
 
   postRefreshtokencheck(instructorid: Number)
   {
-    return this.http.post(this.url + 'token' + `/${instructorid}`,this.noAuthHeader);
+    const refreshtoken = this.cookieService.get('refreshtoken');
+    return this.http.post(this.url + 'token' + `/${instructorid}` + `/${refreshtoken}`,this.noAuthHeader);
   }
 
   getInstructorfromPayload()

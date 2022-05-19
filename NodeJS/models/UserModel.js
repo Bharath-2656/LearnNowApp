@@ -44,10 +44,7 @@ const UserSchema = new mongoose.Schema({
       type: String,
       default: 'user',
     },
-    refreshtoken:{
-      type: String,
-      default: 'refresh_token'
-    },
+    
     areaofintrest: {
       type: [],
     },

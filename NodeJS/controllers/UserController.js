@@ -16,9 +16,11 @@ const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const cookieSession = require('cookie-session');
-require('../Config/OAuth')
+require('../Config/OAuth');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(cors());
 app.use(router);
 app.use(express.json());
@@ -28,7 +30,7 @@ app.use(express.json());
 //     res.header('Access-Control-Allow-Origin', '*');
 //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 //     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-      
+
 //     if ('OPTIONS' == req.method) {
 //     	res.send(200);
 //     }
@@ -44,7 +46,7 @@ app.get('/users', async (req, res) =>
     {
         if (!err)
         {
-            
+
             res.send(data);
         }
         else { console.log("Error in getting data : " + err); }
@@ -141,10 +143,9 @@ app.put('/usercourse/:userid/:courseid/:price', (req, res) =>
     console.log(req.params.price);
     User.findOneAndUpdate({ userid: req.params.userid }, { $push: user }, { new: true }, (err, doc) =>
     {
-        // if (!err) { res.send(doc); }
-        // else { console.log(`Error in updating user`); }
+        
     });
-    User.findOneAndUpdate({ userid: req.params.userid }, { $inc: {totalamount: req.params.price} }, { new: true }, (err, doc) =>
+    User.findOneAndUpdate({ userid: req.params.userid }, { $inc: { totalamount: req.params.price } }, { new: true }, (err, doc) =>
     {
         if (!err) { res.send(doc); }
         else { console.log(`Error in updating user`); }
@@ -155,66 +156,54 @@ app.put('/usercourse/:userid/:courseid/:price', (req, res) =>
 //Authenticating the user upon login and generating refresh and access token
 app.post('/authenticate', async (req, res, next) =>
 {
-    passport.authenticate('local', (err, user, info) =>
-    {
-        if (err) return res.status(400).json(err);
-        else if (user)
-        {
-            var user1 = {
-                refreshtoken: user.generateRefreshToken()
-
-            };
-            
-
-            User.findOneAndUpdate({ email: req.body.email }, { refreshtoken: user.generateRefreshToken() }, (err, doc) =>
-            {
-                if (!err) { 
-                    
-                    return res.status(200).json({ "token": user.generateJwt(),"refreshtoken": user.generateRefreshToken()},); }
-                else { console.log(`Error in updating user`); }
-            });
-
-
-        }
-        else return res.status(404).json(info);
-    })(req, res);
+    const password = req.body.password;
+        User.findOne({ email: req.body.email },
+            (err, user) => {
+                if (err)
+                    return (err); 
+                else if (!user)
+                    return res.status(404).json( { message: 'Email is not registered' });
+                else if (!user.verifyPassword(password))
+                    return res.status(404).json({ message: 'Wrong password.' });
+                else
+                    {
+                 return res.status(200).json({ "token": user.generateJwt(), "refreshtoken": user.generateRefreshToken() })
+                
+            }
+        });
 });
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin","*")
-    res.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,PATCH,DELETE")
-    res.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization")
-    next()
-  })
-
 
 app.use(cookieSession({
     name: 'google-auth-session',
     keys: ['key1', 'key2']
-  }))
+}))
 
 app.get('/api/auth/google',
- passport.authenticate('google', {
-     
-            scope:
-                ['email', 'profile']
-        }
-           ),(req,res) =>
-           {
-               res.setHeader("Access-Control-Allow-Origin","*")
-           });
+    passport.authenticate('google', {
 
-    app.get("/failed", (req, res) => {
-        res.send("Failed")
-    })
-    app.get("/success", (req, res) => {
-        res.send(`Welcome ${req.user.email}`)
-    })
+        scope:
+            ['email', 'profile']
+    }
+    ), (req, res) =>
+{
+    res.setHeader("Access-Control-Allow-Origin", "*")
+});
 
-    app.get('/google/callback',
+app.get("/failed", (req, res) =>
+{
+    res.send("Failed")
+})
+app.get("/success", (req, res) =>
+{
+    res.send(`Welcome ${req.user.email}`)
+})
+
+app.get('/google/callback',
     passport.authenticate('google', {
         failureRedirect: '/failed',
     }),
-    function (req, res) {
+    function (req, res)
+    {
         res.redirect('/success')
 
     }
@@ -223,9 +212,7 @@ app.get('/api/auth/google',
 //Generating access token if refersh token is valid and access token is expired
 app.post('/token/:userid/:refreshtoken', async (req, res, next) =>
 {
-    // console.log(req.body.refreshtoken);
     const userfortoken = await User.findOne({ userid: req.params.userid }, 'userid').exec();
-    console.log(req.params.refreshtoken);
     jwt.verify(req.params.refreshtoken, process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) =>
         {
@@ -233,7 +220,6 @@ app.post('/token/:userid/:refreshtoken', async (req, res, next) =>
                 return res.status(500).send({ auth: false, message: 'Token authentication failed.' });
             else
             {
-                console.log("tokened");
                 return res.status(200).json({ "token": userfortoken.generateJwt() });
                 next();
             }
@@ -421,7 +407,7 @@ app.post('/course_mail', async (req, res) =>
 //Sending mail upon successful registeration to the application 
 app.post('/user_mail', async (req, res) =>
 {
-    
+
     //link="http://"
     let transprter = nodemailer.createTransport({
         service: "gmail",

@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
         this.toastr.success('Login Successfully','Success');
        
         this.userService.setToken(res['token']);
-        console.log(res['refreshtoken']);
         
         this.userService.setRefreshToken(res['refreshtoken']);
         this.cookieService.set('userid',this.userService.getuserfromPayload())

@@ -23,6 +23,7 @@ export class PaymentComponent implements OnInit {
   serverErrorMessages!: string;
   courseid!: Number;
   id!: Number;
+  totalamount!: Number;
   constructor(private userService: UserService, private cookieService:CookieService, private router: Router,  private courseService: CourseService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -54,11 +55,22 @@ export class PaymentComponent implements OnInit {
       this.userService.payment(stripeToken, Number(this.price)).subscribe((data: any) => {
         console.log(data);
         if (data.data === "success") {
-              this.courseService.courseEnrollCount(this.courselink).subscribe((res) => {
+              //this.courseService.courseEnrollCount(this.courselink).subscribe((res) => {
             
+          //})
+         // this.courseService.sendConfirmationMail(this.courselink);
+          this.userService.getUserProfile().subscribe((res:any) => {
+              for (let index = 0; index < res.length; index++) {
+                if(res[index].userid == this.id)  
+                {
+                  this.totalamount = res[index].totalamount;
+                  console.log(res[index].totalamount);
+                  
+                }              
+              }
           })
-          this.courseService.sendConfirmationMail(this.courselink);
-      
+         
+          
            this.userService.postUserCourse(this.courselink, this.id).subscribe((res) => {
             this.toastr.success('Enrollment successful','Success');
           setTimeout(() => {

@@ -3,6 +3,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from 'src/app/shared/Auth/auth.guard';
 import { InstructorProfileComponent } from '../instructor/instructor-profile/instructor-profile.component';
+import { NotfoundComponent } from '../notfound/notfound.component';
 
 import { AreaofinterestComponent } from './areaofinterest/areaofinterest.component';
 import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollment.component';
@@ -25,10 +26,10 @@ const routes: Routes = [
   {path: "user/confirmenrollment", component: ConfirmenrollmentComponent,canActivate:[AuthGuard],data: {
     role: 'user',
   }},
-  {path: "user/dashboard", component: UserDashboardComponent,canActivate:[AuthGuard],data: {
-    role: 'user',}},
+  {path: "user/dashboard", component: UserDashboardComponent},
     {path: "course/:id/user/payment", component: PaymentComponent,canActivate:[AuthGuard],data: {
-      role: 'user',}}
+      role: 'user',}},
+      {path: "user/**", component: NotfoundComponent}
   
   // {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard]}
   

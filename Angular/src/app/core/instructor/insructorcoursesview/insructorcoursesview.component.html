@@ -39,7 +39,7 @@
     <ng-container *ngFor="let course of instructor.instructor_courses">
     
           <div><br><br>
-            <h3>{{course.name | json}}</h3>
+            <h3>{{course.name}}</h3>
 
             <p><strong>Duration : </strong>{{ course.duration}}</p>
             <a id="b" [routerLink]="['/instructor', course.author]" routerLinkActive="active">

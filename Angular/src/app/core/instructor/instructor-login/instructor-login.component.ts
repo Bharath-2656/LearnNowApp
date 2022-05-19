@@ -25,6 +25,7 @@ export class InstructorLoginComponent implements OnInit {
        
         this.toastr.success('Login Successfully','Success');
         this.instructorService.setToken(res['token']);
+        this.instructorService.setRefreshToken(res['refreshtoken']);
         this.cookieService.set('instructorid',this.instructorService.getInstructorfromPayload());
         this.instructorService.postintructorid(this.instructorService.getInstructorfromPayload());
         setTimeout(() =>{
