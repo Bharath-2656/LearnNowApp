@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 
 
+
 @Component({
   selector: 'app-coursepage',
   templateUrl: './coursepage.component.html',
@@ -26,7 +27,9 @@ export class CoursepageComponent implements OnInit {
   courserequirements!: string;
   reviews!: String;
   price!: number;
-
+  courselink!: String;
+  totalamount!: Number;
+  couponcode: String = '';
   constructor(private courseService: CourseService, private toastr: ToastrService, 
      private userService: UserService, private router: Router, private cookiesService: CookieService,
       private route: ActivatedRoute) { }
@@ -34,7 +37,10 @@ export class CoursepageComponent implements OnInit {
   ngOnInit() {
     
     this.id=this.route.snapshot.paramMap.get('id');
-    
+    this.courselink =  localStorage.getItem('course')!;
+    this.userid= this.userService.getuserfromPayload();
+    this.totalamount = Number(this.cookiesService.get('totalamount'));
+
     this.courseService.getCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
         this.courses[index]=res[index];
@@ -49,6 +55,14 @@ export class CoursepageComponent implements OnInit {
          this.price = this.courses[index].price;
          
         this.cookiesService.set('price',(this.courses[index].price + "00") )
+
+        this.userService.getUserProfile().subscribe((res:any) => {
+          for (let index = 0; index < res.length; index++) {
+            if(res[index].userid == this.userid)
+            this.totalamount = res[index].totalamount;
+            
+          }
+        })
        }     
        
       }
@@ -58,9 +72,24 @@ export class CoursepageComponent implements OnInit {
     (err:any) => {
       console.log(err);
       });
+      
+      
+      
 
   };
   
+  applyCouponCode(couponform: NgForm)
+  {
+    console.log(JSON.stringify(couponform.value.couponcodebutton).replace(/\"/g, ""));
+    
+    if(this.totalamount>1000 && (JSON.stringify(couponform.value.couponcodebutton).replace(/\"/g, "") == "FLAT10"))
+    {
+      this.price= Math.floor((this.price) - (this.price/10));
+      console.log(this.price);
+     this.cookiesService.set('price',String(this.price +"00"))
+    }
+  }
+
   onSubmit(formOne : NgForm){
     formOne.value.courseid=this.id;
     formOne.value.userid = this.userService.getUserPayload().userid;
@@ -76,31 +105,38 @@ export class CoursepageComponent implements OnInit {
     
        if (result.value) {
         localStorage.setItem('course', this.id);
-        this.router.navigate(['course/' + this.id + '/user/payment']);
-      //     console.log("Result: " + result.value);
-
-      //     this.courseService.courseEnrollCount(this.id).subscribe((res) => {
-            
-      //     })
-      //     this.courseService.sendConfirmationMail(formOne.value).subscribe((res) => {
         
-      //     });
+        if(this.price==0)
+        {
+          console.log("Result: " + result.value);
+
+          this.courseService.courseEnrollCount(this.id).subscribe((res) => {
+            
+          })
+          this.courseService.sendConfirmationMail(formOne.value).subscribe((res) => {
+        
+          });
       
-      //     this.userService.postUserCourse(formOne.value).subscribe((res) => {
-      //       this.toastr.success('Enrollment successful','Success');
-      //     setTimeout(() => {
-      //       this.router.navigate(['user/dashboard']);
-      //     }, 3000);
+          this.userService.postUserCourse(this.courselink, this.userid).subscribe((res) => {
+            this.toastr.success('Enrollment successful','Success');
+          setTimeout(() => {
+            this.router.navigate(['user/dashboard']);
+          }, 3000);
           
-      //   },
-      //   err => {
-      //     if (err.status === 422) {
-      //       this.serverErrorMessages = err.error.join('<br/>');
-      //     }
-      //     else
-      //       this.serverErrorMessages = 'Something went wrong. Please contact admin.';
-      //   }
-      // );
+        },
+        err => {
+          if (err.status === 422) {
+            this.serverErrorMessages = err.error.join('<br/>');
+          }
+          else
+            this.serverErrorMessages = 'Something went wrong. Please contact admin.';
+        }
+      );
+        }
+        else
+        {
+          this.router.navigate(['course/' + this.id + '/user/payment']);
+        }
       }
   });
 

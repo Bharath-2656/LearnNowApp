@@ -113,10 +113,16 @@ export class UserService {
   }
   sendConfirmationMail(user: User)
   {  
-    return this.http.post('http://localhost:9000/admin/user_mail', user);
+    return this.http.post( this.url + 'user_mail', user);
   }
   googlelogin()
   {
     return this.http.get(this.url + 'api/auth/google');
+  }
+  getgoogleauthtoken(userid:Number)
+  {
+    console.log(userid);
+    
+    return this.http.get(this.url + 'googleauthentication'  +`/${userid}`);
   }
 }

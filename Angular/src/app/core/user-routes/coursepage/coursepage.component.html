@@ -45,8 +45,14 @@
 
           <div class="card">
             <div id="two">
-              <p id="price" class="bold pink">Price Rs. {{course.price}}</p><br>  
-              <!-- <button id="addtocart">Add to Cart</button><br> -->
+              <p id="price" class="bold pink">Price Rs. {{course.price}}</p><br>
+              <form #couponform="ngForm"(ngSubmit)="applyCouponCode(couponform)">
+              <input type=" text" id="couponcodebutton" placeholder="Coupon Code" #coupouncodebutton="ngModel" name="couponcodebutton" [(ngModel)]="couponcode">
+
+              
+              <input type="submit" id="couponcode" name ="couponcode" value="Apply Coupon Code" ><br> 
+              </form>
+
               <input type="submit" id="enroll" value="Enroll"><br><br>
               <h3 >The course includes </h3>
               <ng-container *ngFor="let include of courseincludes">
@@ -54,7 +60,7 @@
               </ng-container>
               <h3 >Course requirements</h3>
               <ng-container *ngFor="let requirements of courserequirements">
-                <li id="list" class="textcolor">{{requirements}}</li>
+                <li id="list" class="textcolor">{{requirements}}</li><br>
               </ng-container>
             </div>
           </div><br><br><br>

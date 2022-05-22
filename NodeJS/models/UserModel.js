@@ -33,10 +33,7 @@ const UserSchema = new mongoose.Schema({
         //required:'Password cannot be empty',
         minlength: [4, 'Password must be atleast 4 character long'],
     },
-    confirm_password: {
-        type: String,
-        //required: 'Confirm password cannot be empty',
-    },
+    
     courseid: {
       type: [],
     },

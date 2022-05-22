@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -55,10 +56,10 @@ export class PaymentComponent implements OnInit {
       this.userService.payment(stripeToken, Number(this.price)).subscribe((data: any) => {
         console.log(data);
         if (data.data === "success") {
-              //this.courseService.courseEnrollCount(this.courselink).subscribe((res) => {
+              this.courseService.courseEnrollCount(this.courselink).subscribe((res) => {
             
-          //})
-         // this.courseService.sendConfirmationMail(this.courselink);
+          })
+         //this.courseService.sendConfirmationMail(this.courselink);
           this.userService.getUserProfile().subscribe((res:any) => {
               for (let index = 0; index < res.length; index++) {
                 if(res[index].userid == this.id)  
@@ -70,14 +71,36 @@ export class PaymentComponent implements OnInit {
               }
           })
          
+         
           
-           this.userService.postUserCourse(this.courselink, this.id).subscribe((res) => {
+           this.userService.postUserCourse(this.courselink, this.id).subscribe((res:any) => {
+              
             this.toastr.success('Enrollment successful','Success');
+      this.userService.getUserProfile().subscribe((res:any) => {
+        for (let index = 0; index < res.length; index++) {
+          if(res[index].userid == this.id)  
+          {
+            this.cookieService.set( 'totalamount' , res[index].totalamount);
+            if(res[index].totalamount>1000){
+              Swal.fire({
+                title: "Congratulations ",
+                 text: "You have unlocked a gift coupon. Enter coupon code FLAT10 to get instant 10% discounts",
+                // input: 'text',
+                //html: '<input id="one >' + '<input id="two">',
+                
+                showCancelButton: false,
+            }).then((result) => {
+            })
+            };
+            
+          }              
+        }
+    })
           setTimeout(() => {
             this.router.navigate(['user/dashboard']);
           }, 3000);
           
-        },
+       },
         err => {
           if (err.status === 422) {
             this.serverErrorMessages = err.error.join('<br/>');
@@ -95,9 +118,9 @@ export class PaymentComponent implements OnInit {
  
     paymentHandler.open({
       name: 'LearnNow!',
-      description: "Payment for course enrollmen",
+      description: "Payment for course enrollment",
       currency: "inr",
-      paymentMethods: ['card'],
+      // paymentMethods: ['card'],
       amount: Number(this.price) ,
     });
   }

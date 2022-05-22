@@ -18,6 +18,7 @@ export class UserDashboardComponent implements OnInit {
   courseservices: any[] = [];
   name!: String;
   mycourse: any[] =[];
+  ucourse: any[] = [];
   constructor(private userService:UserService, private courseService:CourseService ) { }
   
   ngOnInit(): void {
@@ -26,6 +27,15 @@ export class UserDashboardComponent implements OnInit {
     for (let index = 0; index < res.length; index++) {
       this.usercourses[index] = res[index];
     }
+      
+       
+        
+        // if(this.id==this.ucourse[index2].userid)
+        // {
+        //   console.log(this.id);
+          
+        // }
+        
     
 
     

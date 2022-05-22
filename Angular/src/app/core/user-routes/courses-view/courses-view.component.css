@@ -30,32 +30,15 @@
     padding: 20px;
     margin: 20px;
 }
-/* .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
-    /* width: 404px; *//*   
-    text-align: center;
-} */
+
 .img:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
 }
-/* .container {
-    padding: 2px 16px; 
-    margin-top: -45%;
-    margin-left:15% ;
-    color: #ffc107;
-    font-size: 17px;
-    text-align: center;
-    white-space: nowrap;
-/* }
-    .column {
-        float: left;
-        /* width: 25%; 
-        padding: 0 auto;
-    }  */
+
 
     .row {
         margin: 0 -5px;
-    } */
+    } 
 
 .row:after {
     content: "";
@@ -69,17 +52,11 @@
 #price{
     text-align: right;
 }
-/* .column
-{
-    align-items:  center;
-    /* width: 20%; 
-} */
+
 .label{
     margin-left: 15%;
 }
-/* .sidebar{
-    /* height: 100%; 
-} */
+
 
 .grid {
     display: grid;
@@ -105,12 +82,9 @@
     grid-row: 1/2;
     margin-right:0vw ;
     padding: 20px;
-    
     text-align: justify;
     width: 75vw;
-    /* margin-right: 10px;
-    height: 120%;
-    width: auto; */
+    
   }
 
   input, select{
@@ -144,7 +118,6 @@
     background-color: #CCD0D5;
     font-size: 19px;
     color: #050505;
-    /* margin-right: 0px; */
     text-align: center;
     font-weight: 500;
     margin: 5px;

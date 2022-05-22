@@ -16,8 +16,10 @@ const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const cookieSession = require('cookie-session');
+var { token } = require('morgan');
 require('../Config/OAuth');
-
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -61,7 +63,7 @@ app.post('/users', (req, res) =>
         age: req.body.age,
         email: req.body.email,
         password: req.body.password,
-        confirm_password: req.body.confirm_password,
+        //confirm_password: req.body.confirm_password,
         courseid: req.body.courseid,
     });
     user.save((err, doc) =>
@@ -98,7 +100,7 @@ app.put('/users/:userid', (req, res) =>
         name: req.body.name,
         age: req.body.age,
         password: req.body.password,
-        confirm_password: req.body.confirm_password,
+        //confirm_password: req.body.confirm_password,
         courseid: req.body.courseid,
     };
     User.findOneAndUpdate({ userid: req.params.userid }, { $set: user }, { new: true }, (err, doc) =>
@@ -141,7 +143,7 @@ app.put('/usercourse/:userid/:courseid/:price', (req, res) =>
         courseid: req.params.courseid,
     };
     console.log(req.params.price);
-    User.findOneAndUpdate({ userid: req.params.userid }, { $push: user }, { new: true }, (err, doc) =>
+    User.findOneAndUpdate({ userid: req.params.userid }, { $addToSet: user }, { new: true }, (err, doc) =>
     {
         
     });
@@ -180,14 +182,11 @@ app.use(cookieSession({
 
 app.get('/api/auth/google',
     passport.authenticate('google', {
-
+        
         scope:
             ['email', 'profile']
     }
-    ), (req, res) =>
-{
-    res.setHeader("Access-Control-Allow-Origin", "*")
-});
+    ));
 
 app.get("/failed", (req, res) =>
 {
@@ -201,13 +200,38 @@ app.get("/success", (req, res) =>
 app.get('/google/callback',
     passport.authenticate('google', {
         failureRedirect: '/failed',
+        
     }),
-    function (req, res)
-    {
-        res.redirect('/success')
+    // function (req, res)
+    // {
+    //     User.findOne({'email' : req.user.email},(err, user) => {
+      
+    //     return res.status(200).json({ "token": user.generateJwt(), "refreshtoken": user.generateRefreshToken() })
+    // })
+    // }
 
+    function(req, res) {
+        var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'; 
+        
+        responseHTML = responseHTML.replace('%value%', JSON.stringify({
+        userid: req.user.userid,
+        email: req.user.email,
+        }));    
+
+        res.status(200).send(responseHTML);
+    
+    
     }
 );
+
+app.get('/googleauthentication/:userid', async(req, res, next) =>
+{
+    console.log(req.params.userid);
+    User.findOne({userid : req.params.userid},(err, user) => {
+    
+    return res.status(200).json({ "token": user.generateJwt(), "refreshtoken": user.generateRefreshToken() })
+    })
+})
 
 //Generating access token if refersh token is valid and access token is expired
 app.post('/token/:userid/:refreshtoken', async (req, res, next) =>
@@ -298,21 +322,21 @@ app.post('/payment/:price', async (req, res) =>
         //console.log(req.body.token);
         token = req.body.token;
         price = req.body.price;
-
         const customer = stripe.customers
             .create({
                 email: "bharathstarck@gmail.com",
-                source: token.id
+                source: token.id,
+                
             })
             .then((customer) =>
             {
-                //console.log(customer);
+                console.log(customer);
                 //return stripe.charges.create({
                 return stripe.paymentIntents.create({
                     amount: req.params.price,
                     description: "Payment for course enrollment",
                     currency: "inr",
-
+            
                     customer: customer.id,
                 });
             })
@@ -325,8 +349,8 @@ app.post('/payment/:price', async (req, res) =>
             })
             .catch((err) =>
             {
-                //console.log(err);
-                //console.log("statusCode: ", err.statusCode);
+                console.log(err);
+                console.log("statusCode: ", err.statusCode);
                 res.json({
                     data: "failure",
                 });
@@ -334,6 +358,7 @@ app.post('/payment/:price', async (req, res) =>
         return true;
     } catch (error)
     {
+        console.log(error);
         return false;
     }
 })

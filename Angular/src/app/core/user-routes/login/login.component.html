@@ -1,6 +1,6 @@
 <!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%> -->
-  <app-user-navbar></app-user-navbar>
+   <app-user-navbar></app-user-navbar> 
     <!DOCTYPE html>
     <html>
     <head>
@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="login.component.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <script src="login.js"></script> -->
+
+
     </head>
     <body>
         <!-- <nav>
@@ -36,12 +38,14 @@
                 
                 <input type="submit" id="button" value="Submit"><br>
                 <p class="horizontal-line-text">
-                    <span>OR</span>
+                    <span style="background-color:#F7F8FA;">OR</span>
                   </p>
+                  
                 <!-- <button id="googlelogin" type="button" (click)="signInWithGoogle()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button> -->
                 <button id="googlelogin" type="button" (click)="googlelogin()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button>
-
+                  <div class="g-signin2" data-onsuccess="onSignIn" data-longtitle="true"></div>
                 <br>
+                <a id="registerlink" href="user/register">New User? Register with us</a>
             </form>
 
             <div align="left">
