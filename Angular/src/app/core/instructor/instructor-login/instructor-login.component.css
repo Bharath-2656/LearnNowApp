@@ -183,9 +183,20 @@ body{
     margin: 0;
     /* margin-top: -595px; */
 }
-@media screen and (max-width:750px) {
+@media screen and (max-width:950px) {
 #image
     {
-        margin-top: 2%;
+        display: none;
+    }
+    .formOne{
+        width: 70vw;
+        margin-left: 30svw;
+        /* margin-right: 15vw; */
+    }
+}
+@media screen and (max-width:450px) {
+    .formOne{
+        margin-left: 25px;
+        margin-right: 25px;
     }
 }

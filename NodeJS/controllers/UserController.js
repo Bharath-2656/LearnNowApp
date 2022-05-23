@@ -13,6 +13,7 @@ const app = express();
 const loadash = require('lodash');
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const dotenv = require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const cookieSession = require('cookie-session');
@@ -202,14 +203,6 @@ app.get('/google/callback',
         failureRedirect: '/failed',
         
     }),
-    // function (req, res)
-    // {
-    //     User.findOne({'email' : req.user.email},(err, user) => {
-      
-    //     return res.status(200).json({ "token": user.generateJwt(), "refreshtoken": user.generateRefreshToken() })
-    // })
-    // }
-
     function(req, res) {
         var responseHTML = '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>'; 
         
@@ -319,9 +312,10 @@ app.post('/payment/:price', async (req, res) =>
 {
     try
     {
-        //console.log(req.body.token);
+        console.log(req.body.token);
         token = req.body.token;
         price = req.body.price;
+      
         const customer = stripe.customers
             .create({
                 email: "bharathstarck@gmail.com",
@@ -330,14 +324,15 @@ app.post('/payment/:price', async (req, res) =>
             })
             .then((customer) =>
             {
-                console.log(customer);
+                //console.log(customer);
                 //return stripe.charges.create({
+                    
                 return stripe.paymentIntents.create({
                     amount: req.params.price,
                     description: "Payment for course enrollment",
                     currency: "inr",
-            
                     customer: customer.id,
+                    confirm: true,
                 });
             })
             .then((charge) =>
@@ -349,8 +344,8 @@ app.post('/payment/:price', async (req, res) =>
             })
             .catch((err) =>
             {
-                console.log(err);
-                console.log("statusCode: ", err.statusCode);
+                //console.log(err);
+                //console.log("statusCode: ", err.statusCode);
                 res.json({
                     data: "failure",
                 });
@@ -432,7 +427,7 @@ app.post('/course_mail', async (req, res) =>
 //Sending mail upon successful registeration to the application 
 app.post('/user_mail', async (req, res) =>
 {
-
+    
     //link="http://"
     let transprter = nodemailer.createTransport({
         service: "gmail",
@@ -466,6 +461,48 @@ app.post('/user_mail', async (req, res) =>
     res.send("Email sent")
 });
 
+app.post('/forgotpassword_mail', async (req, res) =>
+{
+   var otp = Math.floor(100000 + Math.random() * 900000);
+   
+    //link="http://"
+    let transprter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "bharathstarck@gmail.com",
+            pass: process.env.pass,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    });
+
+    let mailOptions = {
+        from: "bharathstarck@gmail.com",
+        to: "bharath2000madhu@gmail.com",//to be changed
+        subject: "Confirmation of Registration",
+        // html:{path: `http://localhost:4200/user/confirmenrollment`}
+        text: "You have requested for reseting password please verify the following OTP and continue to rest the password \n OTP: " + otp
+    }
+    transprter.sendMail(mailOptions, function (err, success)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else 
+        {
+            console.log("Email has been sent sucessfully");
+        }
+    });
+    res.send("Email sent")
+});
+
+app.get('/verifyotp/:otp',  (req, res) =>
+{
+    console.log(req.params.otp);
+    
+});
 
 
 module.exports = app;

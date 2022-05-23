@@ -1,5 +1,7 @@
 import { RESTORED_VIEW_CONTEXT_NAME } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
 import Swal from 'sweetalert2';
@@ -19,7 +21,7 @@ export class UserDashboardComponent implements OnInit {
   name!: String;
   mycourse: any[] =[];
   ucourse: any[] = [];
-  constructor(private userService:UserService, private courseService:CourseService ) { }
+  constructor(private userService:UserService, private courseService:CourseService, private router: Router, private cookieService: CookieService ) { }
   
   ngOnInit(): void {
    
@@ -91,6 +93,12 @@ review(routerlink: String)
     }
 );
   
+}
+onLogout(){
+  this.userService.deleteToken().subscribe((res:any) => { 
+  });
+  this.cookieService.deleteAll();
+  this.router.navigate(['user/login']);
 }
 
 }

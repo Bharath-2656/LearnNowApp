@@ -57,7 +57,7 @@ export class InstructorService
   deleteToken()
   { var instructorid;
     setTimeout(() => {
-      instructorid = this.getInstructorfromPayload();
+      instructorid = this.cookieService.get('instructorid');
     }, 500);
      localStorage.removeItem('token');
     return this.http.post(this.url + 'deletetoken' + `/${instructorid}`,instructorid);
@@ -66,6 +66,8 @@ export class InstructorService
   postRefreshtokencheck(instructorid: Number)
   {
     const refreshtoken = this.cookieService.get('refreshtoken');
+    console.log(refreshtoken);
+    
     return this.http.post(this.url + 'token' + `/${instructorid}` + `/${refreshtoken}`,this.noAuthHeader);
   }
 
@@ -108,5 +110,5 @@ export class InstructorService
   {
     return this.http.get(this.url + 'instructorcourse');
   }
-
+ 
 }

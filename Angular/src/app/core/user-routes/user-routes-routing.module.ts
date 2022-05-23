@@ -9,6 +9,7 @@ import { AreaofinterestComponent } from './areaofinterest/areaofinterest.compone
 import { ConfirmenrollmentComponent } from './confirmenrollment/confirmenrollment.component';
 import { CoursepageComponent } from './coursepage/coursepage.component';
 import { CoursesViewComponent } from './courses-view/courses-view.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { LoginComponent } from './login/login.component';
 import { PaymentComponent } from './payment/payment.component';
 import { RegisterComponent } from './register/register.component';
@@ -18,6 +19,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 const routes: Routes = [
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
+  {path: "forgotpassword", component: ForgotpasswordComponent},
   {path: "areaofinterest", component: AreaofinterestComponent,canActivate:[AuthGuard],data: {role: 'user'}},
   {path: "category/:id", component: CoursesViewComponent,canActivate:[AuthGuard],data: {role: 'user'}},
  {path: "course/:id", component: CoursepageComponent,canActivate:[AuthGuard],data: {role: 'user'}},
@@ -26,7 +28,7 @@ const routes: Routes = [
   {path: "user/confirmenrollment", component: ConfirmenrollmentComponent,canActivate:[AuthGuard],data: {
     role: 'user',
   }},
-  {path: "user/dashboard", component: UserDashboardComponent},
+  {path: "user/dashboard", component: UserDashboardComponent,canActivate:[AuthGuard],data: {role: 'user'}},
     {path: "course/:id/user/payment", component: PaymentComponent,canActivate:[AuthGuard],data: {
       role: 'user',}},
       {path: "user/**", component: NotfoundComponent}

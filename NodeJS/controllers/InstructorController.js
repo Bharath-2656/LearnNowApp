@@ -6,7 +6,11 @@ var router = express.Router();
 const app = express();
 const jwt = require('jsonwebtoken');
 const { Course} = require("../models/CourseModel");
-
+const cookieSession = require('cookie-session');
+var { token } = require('morgan');
+require('../Config/OAuth');
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(router);
@@ -131,7 +135,7 @@ app.post('/authenticate', (req, res, next) =>
             else if (!instructor.verifyPassword(password))
                 return res.status(404).json({ message: 'Wrong password.' });
             else
-                return res.status(200).json( { "token": instructor.generateJwt(), });
+                return res.status(200).json( { "token": instructor.generateJwt(),"refreshtoken": instructor.generateRefreshToken() });
         });
 });
 

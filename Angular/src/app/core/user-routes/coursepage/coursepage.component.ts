@@ -31,7 +31,7 @@ export class CoursepageComponent implements OnInit {
   totalamount!: Number;
   couponcode: String = '';
   constructor(private courseService: CourseService, private toastr: ToastrService, 
-     private userService: UserService, private router: Router, private cookiesService: CookieService,
+     private userService: UserService, private router: Router, private cookieService: CookieService,
       private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class CoursepageComponent implements OnInit {
     this.id=this.route.snapshot.paramMap.get('id');
     this.courselink =  localStorage.getItem('course')!;
     this.userid= this.userService.getuserfromPayload();
-    this.totalamount = Number(this.cookiesService.get('totalamount'));
+    this.totalamount = Number(this.cookieService.get('totalamount'));
 
     this.courseService.getCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
@@ -54,7 +54,7 @@ export class CoursepageComponent implements OnInit {
             
          this.price = this.courses[index].price;
          
-        this.cookiesService.set('price',(this.courses[index].price + "00") )
+        this.cookieService.set('price',(this.courses[index].price + "00") )
 
         this.userService.getUserProfile().subscribe((res:any) => {
           for (let index = 0; index < res.length; index++) {
@@ -86,7 +86,7 @@ export class CoursepageComponent implements OnInit {
     {
       this.price= Math.floor((this.price) - (this.price/10));
       console.log(this.price);
-     this.cookiesService.set('price',String(this.price +"00"))
+     this.cookieService.set('price',String(this.price +"00"))
     }
   }
 
@@ -142,7 +142,12 @@ export class CoursepageComponent implements OnInit {
 
     
   }
-
+  onLogout(){
+    this.userService.deleteToken().subscribe((res:any) => { 
+    });
+    this.cookieService.deleteAll();
+    this.router.navigate(['user/login']);
+  }
   
 
 }

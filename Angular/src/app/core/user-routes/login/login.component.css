@@ -3,44 +3,19 @@
 
 }
 
-.nav-right {
-     
-    align-items: center;
-    margin-left: 900px;
-    position:fixed; 
-    z-index: 100;
-}
-
-
-
-.nav-right ul a {
-    list-style: none;
+.navbar .nav-header .nav-logo{
     display: inline-block;
-    margin: 0px;
-    margin-top: -19px;
-}
+    margin-top: 30px;
+  }
 
-.nav-right a:hover{
-   
-    background-color: #906387;
-    transition: 0.7s;
-}
-.nav-right a{
-    width: auto;
-    /* margin-right: 10px; */
-    font-size: 20px;
+.nav-links a{
+    
+    font-family: 'Montserrat';
     font-weight: 500;
-    color: #5b446a;
-    background-color: #7dd87d;
-    outline: none;
-    border: #7dd87d;
-    white-space: normal;
-    text-decoration: none;
-    padding: 10px;
-    list-style: none;
-    display: inline-block;
 }   
-
+.navbar span {
+    background-color: #7f67c0;
+}
 .formOne{
     font-weight: 500;
     font-size: 19px;
@@ -236,6 +211,12 @@ body{
     text-decoration: none;
     text-align: center;
     margin-right: 27%;
+    margin-top: 5%;
+}
+#forgotpassword{
+    text-decoration: none;
+    text-align: center;
+    margin-right: 35%;
 }
 /* @media screen and (max-width:750px) {
 #image
@@ -253,3 +234,17 @@ body{
             margin-left: 10%;
         }
     } 
+
+    @media screen and (max-width:475px) {
+        #image
+            {
+                display: none;
+            }
+            .formOne{
+                width: 80%;
+                /* margin-left: 10%; */
+            }
+            .formOne label{
+                margin-left: -10%;
+            }
+        } 

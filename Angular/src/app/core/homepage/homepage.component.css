@@ -9,7 +9,7 @@ html{
     display: inline-block;
 }
 
-#logo {
+#logo{
     margin-left: 15%;
     margin-top: 20%;
     font-size: 5vw;
@@ -17,7 +17,24 @@ html{
     font-weight: 900;
     color: black;
 }
-
+#logobanner {
+    margin-left: 15%;
+    margin-top: 20%;
+    font-size: 5vw;
+    font-family: 'Montserrat';
+    font-weight: 900;
+    color: black;
+    animation-name: logoanimation;
+    animation-duration: 3s;
+    position: relative;
+}
+/* @keyframes logoanimation {
+    0%   { left:-100px; top:0px;}
+    /* 25%  { left:60px; top:0px;}
+    50%  { left:00px; top:00px;}
+    75%  { left:10px; top:0px;} 
+    100% { left:-0px; top:0px;}
+  } */
 #sidetext {
     text-align: right;
     margin-top: -14%;

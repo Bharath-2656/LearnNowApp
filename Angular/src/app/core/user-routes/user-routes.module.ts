@@ -14,6 +14,7 @@ import { CoreModule } from '../core.module';
 import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 import { PaymentComponent } from './payment/payment.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 
 
@@ -29,7 +30,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     UserDashboardComponent,
     UserNavbarComponent,
     PaymentComponent,
-    UserprofileComponent,  
+    UserprofileComponent,
+    ForgotpasswordComponent,  
   ],
   imports: [
     CommonModule,

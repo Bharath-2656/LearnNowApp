@@ -1,7 +1,20 @@
 *{
     list-style: none;
 }
+/* .navbar{
+    width: 100vw;
+    height: 40px;
+} */
+.navbar .nav-header .nav-logo{
+  display: inline-block;
+  margin-top: 30px;
+}
 
+.nav-links a{
+  
+  font-family: 'Montserrat';
+  font-weight: 500;
+} 
 .sidebar{
     text-decoration: none;
     list-style: none;
@@ -77,7 +90,8 @@ ul li:hover a{
 }
 h2{
     font-family: 'Montserrat';
-    margin-left: 245px;
+    margin-left: 45%;
+    margin-right: 35%;
     font-size: 25px;
     color: var(--purple-color);
     font-weight: 500;
@@ -95,7 +109,7 @@ h3{
 #review{
     
     background-color: #CCD0D5;
-    font-size: 19px;
+    font-size: 18px;
     color: #050505;
     /* margin-right: 0px; */
     text-align: center;
@@ -104,15 +118,15 @@ h3{
     margin: 5px;
     margin-top: -50px;
     padding: 1%;
-    width: 15%;
+    width: 15vw;
     height: auto;
     border: #CCD0D5;
     border-radius: 6%;
     box-shadow: inset;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     background-color:#f2497b;
+    cursor: pointer;
 }
-
 #instructor{
     text-decoration: none;
 }

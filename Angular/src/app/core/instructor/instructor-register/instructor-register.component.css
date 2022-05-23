@@ -83,7 +83,7 @@ button {
 .main h2{
     color:#7f67c0;
      text-align: left; 
-    margin-left: 300px;
+    margin-left: 27%;
     font-weight: bold;
     font-size: 23px;
     font-family:'Montserrat';
@@ -91,7 +91,7 @@ button {
 .main h1{
     margin-top:3%;
     text-align: left;
-    margin-left: 250px;
+    margin-left: 25%;
     color:#7f67c0;
     font-family:'Montserrat';
 }
@@ -317,3 +317,19 @@ button {
         margin: 0;
     }
 } 
+@media screen and (max-width:450px) {
+    .formOne{
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+    h1{
+        margin-left: 20px;
+    }
+    .formOne label{
+        margin-right: 80%;
+        
+    }
+    .main{
+        width: 100vw;
+    }
+}

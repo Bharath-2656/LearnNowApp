@@ -1,6 +1,36 @@
 <!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%> -->
-   <app-user-navbar></app-user-navbar> 
+    <div class="navbar">
+   
+        <!-- Navbar logo -->
+        <div class="nav-header">
+          <div class="nav-logo">
+            <a href="#">
+              <img id="logo" src="https://i.ibb.co/Ph9cJSC/logo-purple.png" width="100px" alt="logo">
+            </a>
+          </div>
+        </div>
+         
+        <!-- responsive navbar toggle button -->
+        <input type="checkbox" id="nav-check">
+        <div class="nav-btn" >
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+       
+        <!-- Navbar items -->
+        <div class="nav-links">
+          <a routerLink="/user/register" routerLinkActive="active">Register</a>
+          <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
+          <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
+          
+          <!-- <button class="loginBtn">Login</button> -->
+        </div>
+       
+      </div>    
     <!DOCTYPE html>
     <html>
     <head>
@@ -14,16 +44,7 @@
 
     </head>
     <body>
-        <!-- <nav>
-            
-            <div class="nav-right">
-                <ul>
-                    <a routerLink="user/login" routerLinkActive="active">Login</a>
-                    <a routerLink="user/register" routerLinkActive="active">Register</a>
-                    <a routerLink="user/areaofinterest" routerLinkActive="active">Area of Interest</a>
-                </ul>
-            </div> 
-        </nav> -->
+      
         <div align="right" class="main">
             <h1>Login Page</h1>
             <h2>Enter Login Details</h2>
@@ -45,6 +66,7 @@
                 <button id="googlelogin" type="button" (click)="googlelogin()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button>
                   <div class="g-signin2" data-onsuccess="onSignIn" data-longtitle="true"></div>
                 <br>
+                <a id="forgotpassword" href="user/forgotpassword">Forgot Password?</a><br><br>
                 <a id="registerlink" href="user/register">New User? Register with us</a>
             </form>
 

@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { UserService } from '../services/User/user.service';
 import {Location} from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate { 
-  constructor( private userService:UserService, private router:Router, private location: Location, private cookieService: CookieService){}
+  constructor( private userService:UserService, private router:Router, private toastr: ToastrService, private location: Location, private cookieService: CookieService){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
@@ -31,9 +32,13 @@ export class AuthGuard implements CanActivate {
         // }, 2000);
         
         
-        this.userService.deleteToken();
-        return false;
+        
       }
+      // else{
+      //   this.userService.deleteToken();
+      //   this.router.navigateByUrl('/user/login');
+      //   return false;
+      // }
     return this.userService.getRole().includes(route.data['role']);;
   }
   

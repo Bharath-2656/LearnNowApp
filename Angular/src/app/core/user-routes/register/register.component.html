@@ -1,4 +1,4 @@
-<app-user-navbar></app-user-navbar>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +11,37 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 </head>
 
-
-<!-- <script src="homepage.js"></script> -->
+<div class="navbar">
+   
+    <!-- Navbar logo -->
+    <div class="nav-header">
+      <div class="nav-logo">
+        <a href="#">
+          <img id="logo" src="https://i.ibb.co/Ph9cJSC/logo-purple.png" width="100px" alt="logo">
+        </a>
+      </div>
+    </div>
+     
+    <!-- responsive navbar toggle button -->
+    <input type="checkbox" id="nav-check">
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+   
+    <!-- Navbar items -->
+    <div class="nav-links">
+      <a routerLink="/user/login" routerLinkActive="active">Login</a>
+      <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
+      
+      <!-- <button class="loginBtn">Login</button> -->
+    </div>
+   
+  </div> 
 
 
 <body>
@@ -25,7 +54,7 @@
 
             <div><img id="pagelogo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUsers.userid">
-            <label>NAME</label><input id="name" type="text" name="name" autocapitalize="sentences" pattern="^[a-zA-Z]+$" required #name="ngModel" [(ngModel)]="userService.selectedUsers.name" [ngClass]="!name.valid && name.touched? 'invalid-textbox':'name'"><br>
+            <label>NAME</label><input id="name" type="text" name="name" autocapitalize="sentences" pattern="^([a-zA-Z\s]){2,}" required #name="ngModel" [(ngModel)]="userService.selectedUsers.name" [ngClass]="!name.valid && name.touched? 'invalid-textbox':'name'"><br>
             <div> <span *ngIf="name.invalid && name.touched" style="color: red;" class="error">Invalid Name</span></div>
             <label>AGE</label> <input id="age" type="text" name="age" placeholder="" required pattern="^[0-9]{2}$" [ngClass]="!age.valid && age.touched? 'invalid-textbox':'age'" #age="ngModel" [(ngModel)]="userService.selectedUsers.age"><br>
             <div> <span *ngIf="age.invalid && age.touched" style="color: red;" class="error">Invalid Age</span></div>

@@ -121,8 +121,12 @@ export class UserService {
   }
   getgoogleauthtoken(userid:Number)
   {
-    console.log(userid);
-    
     return this.http.get(this.url + 'googleauthentication'  +`/${userid}`);
+  }
+  verifyotp(otp:Number)
+  {
+    console.log(otp);
+    
+    return this.http.get(this.url + 'verifyotp' + `/${otp}`);
   }
 }

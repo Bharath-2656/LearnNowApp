@@ -25,11 +25,13 @@ export class PaymentComponent implements OnInit {
   courseid!: Number;
   id!: Number;
   totalamount!: Number;
+  displayprice!: Number;
   constructor(private userService: UserService, private cookieService:CookieService, private router: Router,  private courseService: CourseService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.invokeStripe();
     this.price = this.cookieService.get('price');
+    this.displayprice = Number(this.price)/100;
   this.courselink =  localStorage.getItem('course')!;
  this.id= this.userService.getuserfromPayload();
   this.courseService.getCourse().subscribe((res:any) => {

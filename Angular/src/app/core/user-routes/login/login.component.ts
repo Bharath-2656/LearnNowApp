@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { globalVars } from 'src/app/shared/services/Url/url.model';
 
 
 @Component({
@@ -13,92 +14,72 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
- 
-
+export class LoginComponent implements OnInit
+{
   constructor(private userService: UserService,
-     private cookieService:CookieService,
-     private router : Router,
-     private toastr: ToastrService,
-     private authService: SocialAuthService,
-      ) { }
+    private cookieService: CookieService,
+    private router: Router,
+    private toastr: ToastrService,
+    private authService: SocialAuthService,
+  ) { }
   serverErrorMessages!: string;
-  auth2:any;
+  auth2: any;
   userid: any;
-  ngOnInit(): void {
-  }
+  url: string = `${globalVars.backendAPI}/admin/`;
+  ngOnInit(): void
+  {}
 
-     googlelogin()
-    {
-      console.log("google");
-      window.open('http://localhost:9000/admin/api/auth/google',
+  googlelogin()
+  {
+    console.log("google");
+    window.open(this.url + 'api/auth/google',
       //"_self",
       "_window",
       "location=1,status=1,scrollbars=1, width=800,height=800");
-      let listener = window.addEventListener('message', (message) =>
+    let listener = window.addEventListener('message', (message) =>
+    {
+      this.userid = message.data.userid;
+    });
+
+    setTimeout(() =>
+    {
+      this.userService.getgoogleauthtoken(this.userid).subscribe((res: any) =>
       {
-        //message will contain facebook user and details
-        
-        this.userid = message.data.userid;
-        //console.log(this.userid);
-      });
-    
-      setTimeout(() => {
-        this.userService.getgoogleauthtoken(this.userid).subscribe((res: any) => {
-            this.userService.setToken(res['token']);
-        
-      this.userService.setRefreshToken(res['refreshtoken']);
-      this.cookieService.set('userid',this.userService.getuserfromPayload())
-      this.userService.getuserfromPayload();
-      setTimeout(() =>{
-        this.router.navigate(['/user/dashboard']);
-      }, 2000); 
-        })
-        
-      }, 4000);
-      
-    //   this.userService.setToken(res['token']);
-        
-    //   this.userService.setRefreshToken(res['refreshtoken']);
-    //   this.cookieService.set('userid',this.userService.getuserfromPayload())
-    //   this.userService.getuserfromPayload();
-    //   setTimeout(() =>{
-    //     this.router.navigate(['/user/dashboard']);
-    //   }, 3000); 
-      
-    //   })
-    // }
-      // this.userService.googlelogin().subscribe((res) =>{
-      
-
-      // });
-    //}
-    // signInWithGoogle(): any {
-    //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-    //}
-   // })
-  }
-    
-    
-    onSubmit(formOne : NgForm){
-      this.userService.login(formOne.value).subscribe((res : any)=>{
-
-        this.toastr.success('Login Successfully','Success');
-       
-        this.userService.setToken(res['token']);
-        
+        this.userService.setToken(res['token'])
         this.userService.setRefreshToken(res['refreshtoken']);
-        this.cookieService.set('userid',this.userService.getuserfromPayload())
-        this.userService.getuserfromPayload();
-        setTimeout(() =>{
+        this.cookieService.set('userid', this.userService.getuserfromPayload())
+
+        setTimeout(() =>
+        {
           this.router.navigate(['/user/dashboard']);
-        }, 3000); 
-        
-      },
-      (err : HttpErrorResponse)=>{
+        }, 2000);
+      })
+
+    }, 4000);
+  }
+
+
+  onSubmit(formOne: NgForm)
+  {
+    this.userService.login(formOne.value).subscribe((res: any) =>
+    {
+
+      this.toastr.success('Login Successfully', 'Success');
+      this.userService.setToken(res['token']);
+      this.userService.setRefreshToken(res['refreshtoken']);
+      this.cookieService.set('userid', this.userService.getuserfromPayload())
+      this.userService.getuserfromPayload();
+      setTimeout(() =>
+      {
+        this.router.navigate(['/user/dashboard']);
+      }, 3000);
+
+    },
+      (err: HttpErrorResponse) =>
+      {
         this.toastr.error(err.error.message, 'Error')
-        
-      }); 
-    }
-    //this.login.getUserDetails(username,password);
+
+      });
+  }
+  //this.login.getUserDetails(username,password);
 }
