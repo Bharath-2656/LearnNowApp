@@ -44,8 +44,7 @@ export class CourseService {
     return this.http.put(this.url + 'coursereview' + `/${routerlink}` + `/${reviews}`+ `/${name}`, reviews);
   }
   sendConfirmationMail(courseid: any)
-  { console.log("Mailed");
-  
+  {   
     return this.http.post('http://localhost:9000/admin/course_mail', courseid);
   }
 }

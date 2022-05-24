@@ -28,19 +28,7 @@ export class UserDashboardComponent implements OnInit {
    this.userService.getUsercourse().subscribe((res : any)=>{
     for (let index = 0; index < res.length; index++) {
       this.usercourses[index] = res[index];
-    }
-      
-       
-        
-        // if(this.id==this.ucourse[index2].userid)
-        // {
-        //   console.log(this.id);
-          
-        // }
-        
-    
-
-    
+    }   
     this.id=this.userService.getuserfromPayload();
     
   });
@@ -75,6 +63,24 @@ export class UserDashboardComponent implements OnInit {
     console.log(err);
     });
 
+    this.userService.getUsercourseonuser().subscribe((res:any) => {
+      for (let index = 0; index < res.length; index++) {
+        this.id=this.userService.getuserfromPayload();
+        if(this.id==res[index].userid)
+        {
+          
+            if(res[index].user_courses.length==0)
+            {
+              
+              
+              (document.getElementById("top"))!.innerHTML = "No courses Enrolled";
+              document.getElementById('nocourse')!.style.display = "block"
+
+            }
+        }
+      }
+    })
+
 }
 review(routerlink: String)
 {
@@ -86,7 +92,7 @@ review(routerlink: String)
     
     showCancelButton: true        
 }).then((result) => {
-      //console.log(JSON.stringify(result.value));
+
       this.courseService.courseReview(routerlink, result.value, this.name).subscribe((res:any) => {
         
        })
@@ -97,7 +103,8 @@ review(routerlink: String)
 onLogout(){
   this.userService.deleteToken().subscribe((res:any) => { 
   });
-  this.cookieService.deleteAll();
+  this.cookieService.delete('refreshtoken');  
+  this.cookieService.deleteAll('/');
   this.router.navigate(['user/login']);
 }
 

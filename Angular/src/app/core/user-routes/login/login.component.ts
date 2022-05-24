@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit
 
   googlelogin()
   {
-    console.log("google");
+
     window.open(this.url + 'api/auth/google',
       //"_self",
       "_window",

@@ -18,7 +18,6 @@ export class ConfirmenrollmentComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserProfile().subscribe((res:any) => {
         this.userDetails=res;
-        console.log(this.userDetails);
         this.userid=this.userService.getUserPayload().userid;      
         
     },

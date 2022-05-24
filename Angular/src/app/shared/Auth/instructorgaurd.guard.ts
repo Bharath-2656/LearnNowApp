@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { InstructorService } from '../services/Instructor/instructor.service';
 import {Location} from '@angular/common';
 import { UserService } from '../services/User/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstructorgaurdGuard implements CanActivate {
-  constructor(private instructorService: InstructorService, private router:Router, private location: Location, private userService: UserService){}
+  constructor(private instructorService: InstructorService, private router:Router, private toastr: ToastrService, private location: Location, private userService: UserService){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
@@ -24,9 +25,8 @@ export class InstructorgaurdGuard implements CanActivate {
         (err:any)=>{
         }
         });
-        this.router.navigateByUrl('/instructors/login');
-        this.instructorService.deleteToken();
-        return false;
+       
+        this.toastr.error('Not Authorized','Error');
       }      
     return this.userService.getRole().includes(route.data['role']);
     //return true;

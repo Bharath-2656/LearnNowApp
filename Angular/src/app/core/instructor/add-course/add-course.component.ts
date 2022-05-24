@@ -51,9 +51,7 @@ export class AddCourseComponent implements OnInit {
 // addCourse(){
 //     this.courseService.selectedCourses.contents.push(this.newContents);
 // }
-onSubmit(form: NgForm) {
-  console.log(form.value.name);
-  
+onSubmit(form: NgForm) { 
   if(form.value.name == "" || form.value.author == ""  ||  form.value.category == "")
   {
     this.toastr.error('Please add Course details','Error');
@@ -85,7 +83,8 @@ err => {
   this.instructorService.deleteToken().subscribe((res:any) => {
 
   });
-  this.cookieService.deleteAll();
+  this.cookieService.delete('refreshtoken');  
+  this.cookieService.deleteAll('/');
   this.router.navigate(['instructors/login']);
 }
 }

@@ -18,7 +18,8 @@ export class UserNavbarComponent implements OnInit {
   onLogout(){
     this.userService.deleteToken().subscribe((res:any) => { 
     });
-    this.cookieService.deleteAll();
+    this.cookieService.delete('refreshtoken');  
+    this.cookieService.deleteAll('/');
     this.router.navigate(['user/login']);
   }
 }

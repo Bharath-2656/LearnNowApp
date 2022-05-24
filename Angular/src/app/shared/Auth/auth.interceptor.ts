@@ -4,11 +4,12 @@ import { tap } from 'rxjs/operators';
 import { Router } from "@angular/router";
 
 import { UserService } from 'src/app/shared/services/User/user.service'
+import { Toast, ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private userService : UserService,private router : Router){}
+    constructor(private userService : UserService,private router : Router, private toastr: ToastrService){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
 
@@ -23,7 +24,9 @@ export class AuthInterceptor implements HttpInterceptor {
                     event => { },
                     err => {
                         if (err.error.auth == false) {
+                            this.toastr.error('Not Authorized','Error'); 
                             this.router.navigateByUrl('user/login');
+                             
                         }
                     })
             );

@@ -29,8 +29,7 @@
  
   <!-- Navbar items -->
   <div class="nav-links">
-    <a routerLink="/user/login" routerLinkActive="active">Login</a>
-    <a routerLink="/user/register" routerLinkActive="active">Register</a>
+ 
     <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
     <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
    
@@ -43,6 +42,7 @@
   <h1 id="heading">Instructor Profile</h1>
   <div class="row">
     <ng-container *ngFor="let instructor of instructors">
+      
       <ng-container *ngIf="instructor.routerlink===id">
         
       <div class="column">

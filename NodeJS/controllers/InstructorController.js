@@ -160,11 +160,11 @@ app.post('/deletetoken/:instructorid', (req,res) => {
     var instructor = {
         refreshtoken: 'refresh_token',
     };
-    console.log("hi");
+
     Instructor.findOneAndUpdate({ instructorid: req.params.instructorid }, { $set: instructor }, { new: true }, (err, doc) =>
     {
         if (!err) { 
-            console.log("hello");
+
             res.send(doc); }
         else { console.log(`Error in updating user`); }
     });

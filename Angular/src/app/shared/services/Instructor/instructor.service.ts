@@ -66,8 +66,6 @@ export class InstructorService
   postRefreshtokencheck(instructorid: Number)
   {
     const refreshtoken = this.cookieService.get('refreshtoken');
-    console.log(refreshtoken);
-    
     return this.http.post(this.url + 'token' + `/${instructorid}` + `/${refreshtoken}`,this.noAuthHeader);
   }
 

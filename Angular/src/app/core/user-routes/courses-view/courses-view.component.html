@@ -1,4 +1,34 @@
-<app-user-navbar></app-user-navbar>
+<div class="navbar">
+   
+  <!-- Navbar logo -->
+  <div class="nav-header">
+    <div class="nav-logo">
+      <a href="#">
+        <img id="logo" src="https://i.ibb.co/Ph9cJSC/logo-purple.png" width="100px" alt="logo">
+      </a>
+    </div>
+  </div>
+   
+  <!-- responsive navbar toggle button -->
+  <input type="checkbox" id="nav-check">
+  <div class="nav-btn" >
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+ 
+  <!-- Navbar items -->
+  <div class="nav-links">
+
+    <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
+    <a (click)="onLogout()">Logout</a>
+    <!-- <button class="loginBtn">Login</button> -->
+  </div>
+ 
+</div>    
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +45,7 @@
   <h1 id="heading">Courses based on your choice</h1>
   <div class="grid">
     <div id="one">
-      <div class="card">
+      <div class="card filter">
       <label class="label">Filter Course: &nbsp; </label>
       <input [(ngModel)]='Course'>
       <select id="params" [(ngModel)]="Parameter" name="select">
@@ -29,10 +59,10 @@
     </div>
       <br><br>
       </div>
-      <div class="card">
+      <div class="card sort">
       <label>Sort by </label>
       <select id="sort" [(ngModel)]='SortbyParam'>
-        <option value="course">Course</option>
+        <!-- <option value="course">Course</option> -->
         <option value="author">Instructor</option>
         <option value="price">Price</option>
       </select>

@@ -61,13 +61,12 @@ export class PaymentComponent implements OnInit {
               this.courseService.courseEnrollCount(this.courselink).subscribe((res) => {
             
           })
-         //this.courseService.sendConfirmationMail(this.courselink);
+         this.courseService.sendConfirmationMail(this.courselink);
           this.userService.getUserProfile().subscribe((res:any) => {
               for (let index = 0; index < res.length; index++) {
                 if(res[index].userid == this.id)  
                 {
                   this.totalamount = res[index].totalamount;
-                  console.log(res[index].totalamount);
                   
                 }              
               }
@@ -92,15 +91,18 @@ export class PaymentComponent implements OnInit {
                 
                 showCancelButton: false,
             }).then((result) => {
+
+                this.router.navigate(['user/dashboard']);
+
             })
             };
             
           }              
         }
     })
-          setTimeout(() => {
-            this.router.navigate(['user/dashboard']);
-          }, 3000);
+          // setTimeout(() => {
+          //   this.router.navigate(['user/dashboard']);
+          // }, 3000);
           
        },
         err => {
@@ -149,7 +151,8 @@ export class PaymentComponent implements OnInit {
   onLogout(){
     this.userService.deleteToken().subscribe((res:any) => { 
     });
-    this.cookieService.deleteAll();
+    this.cookieService.delete('refreshtoken');  
+    this.cookieService.deleteAll('/');
     this.router.navigate(['user/login']);
   }
 }

@@ -102,6 +102,10 @@ export class UserService {
     return this.http.put(this.url + 'usercourse' + `/${userid}` + `/${courseid}` + `/${price}`,courseid);
   }
  
+  getUsercourseonuser()
+  {
+    return this.http.get(this.url + 'usercourseonuser');
+  }
   getUsercourse()
   {
     return this.http.get(this.url + 'usercourse');
@@ -128,7 +132,6 @@ export class UserService {
   }
   verifyotp(otp:Number)
   {
-    console.log(otp);
     return this.http.get(this.url + 'verifyotp' + `/${otp}`);
   }
   postnewpassword(email: String, password: String)

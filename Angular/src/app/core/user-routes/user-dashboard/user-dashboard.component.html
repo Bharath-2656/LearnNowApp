@@ -52,6 +52,8 @@
     </div>
     <h1 id="heading">Welcome back</h1>
     <h2><strong>Enrolled courses</strong></h2>
+    <div id="nocourse" style="display:none ;" class="card"><h3 id="top"></h3></div>
+    
     <ng-container *ngFor="let usercourse of usercourses">
       
       
@@ -68,6 +70,7 @@
             
             <div class="card">
               <div>
+                
                   <h3>
                       <a style="font-size: 23px;" id="b" [routerLink]="['/course', usercourse .routerlink]" routerLinkActive="active"><b>{{
                           usercourse.name}}</b></a>

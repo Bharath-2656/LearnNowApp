@@ -35,8 +35,7 @@ export class InsructorcoursesviewComponent implements OnInit {
         }
         
        }
-       console.log(this.author);
-      //console.log(this.instructorCourses);
+  
       
     });
     
@@ -48,9 +47,6 @@ export class InsructorcoursesviewComponent implements OnInit {
       }
     });
     
-
-     
-    console.log(this.instructorid);
     
      this.userService.getUsercourse().subscribe((res : any)=>{
       this.usercourses = res;
@@ -59,7 +55,7 @@ export class InsructorcoursesviewComponent implements OnInit {
   }
   delete(name: any, id: any)
   {
-    //console.log(id);
+
     
     Swal.fire({
       title: "Are you sure you want to delete this course "+ name,
@@ -78,7 +74,8 @@ export class InsructorcoursesviewComponent implements OnInit {
     this.instructorService.deleteToken().subscribe((res:any) => {
 
     });
-    this.cookieService.deleteAll();
+    this.cookieService.delete('refreshtoken');  
+    this.cookieService.deleteAll('/');
     this.router.navigate(['instructors/login']);
   }
   

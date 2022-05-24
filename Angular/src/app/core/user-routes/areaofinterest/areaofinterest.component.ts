@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { AreaofinterestService } from 'src/app/shared/services/AreaOfIntrest/areaofinterest.service';
 import { UserService } from 'src/app/shared/services/User/user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/shared/services/User/user.service';
 export class AreaofinterestComponent implements OnInit {
 
   areaOfInterests: any[] = [];
-  constructor(private areaOfInterestService: AreaofinterestService, private router: Router) { }
+  constructor(private areaOfInterestService: AreaofinterestService, private userService: UserService, private cookieService: CookieService, private router: Router) { }
   ngOnInit() {
     this.areaOfInterestService.getAreaOfInterest().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
@@ -23,5 +24,14 @@ export class AreaofinterestComponent implements OnInit {
       });
 
     };
+    onLogout()
+    {
+      this.userService.deleteToken().subscribe((res: any) =>
+      {
+      });
+      this.cookieService.delete('refreshtoken');  
+      this.cookieService.deleteAll('/');
+      this.router.navigate(['user/login']);
+    }
     
   }
