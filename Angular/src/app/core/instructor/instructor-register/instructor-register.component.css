@@ -2,7 +2,23 @@
     font-family:'Montserrat';
     
 }
-
+.navbar{
+    background-color:#3E497A;
+    height: 45px;
+    left: 0;
+    width: 96%;
+}
+#navlogo{
+    margin-top: 30px;
+    width: 230px;
+    height: 45px;
+  }
+  .navbar .nav-links{
+    background-color: #3E497A;
+  }
+  .navbar .nav-links a{
+      color: #f4f81c;
+  }
 label {
     display: inline-block;
     width: 200px;
@@ -60,19 +76,7 @@ button {
     margin-top: -5%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-/* .formOne input{
-    margin: 10px;
-    background-color: rgba(67, 177, 100,0.4s);
-    width: 250px;
-    height: 30px;
-    border-radius: 12px;
-    border-color: #2c2b2b57;
-    box-shadow: inset;
-    color: rgb(63, 58, 58);
-    font-size: 19px;
-    font-weight: 500;
-    text-align: left ;
-} */
+
 .formOne label{
     color:#5b446a;
     display: inline-block;

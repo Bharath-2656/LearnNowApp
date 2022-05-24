@@ -1,0 +1,8 @@
+.navbar{
+    width: 96vw;
+    height: 40px;
+}
+.navbar .nav-header .nav-logo{
+  display: inline-block;
+  margin-top: 30px;
+}

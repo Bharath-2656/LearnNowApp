@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { Course } from 'src/app/shared/services/Course/course.model';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
@@ -20,7 +21,7 @@ export class AddCourseComponent implements OnInit {
   name = 'Dynamic Add Fields';
   values: any[5] = [];
   course: Course = new Course;
-  constructor(public courseService: CourseService, private toastr: ToastrService, private router: Router, private instructorService: InstructorService) { }
+  constructor(public courseService: CourseService, private cookieService: CookieService, private toastr: ToastrService, private router: Router, private instructorService: InstructorService) { }
   
   ngOnInit(): void {
     this.resetForm(); 
@@ -80,5 +81,12 @@ err => {
 
   }
  }
+ onLogout(){
+  this.instructorService.deleteToken().subscribe((res:any) => {
+
+  });
+  this.cookieService.deleteAll();
+  this.router.navigate(['instructors/login']);
+}
 }
  

@@ -146,4 +146,10 @@ export class PaymentComponent implements OnInit {
       window.document.body.appendChild(script);
     }
   }
+  onLogout(){
+    this.userService.deleteToken().subscribe((res:any) => { 
+    });
+    this.cookieService.deleteAll();
+    this.router.navigate(['user/login']);
+  }
 }

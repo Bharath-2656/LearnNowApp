@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { Instructor } from 'src/app/shared/services/Instructor/instructor.model';
 import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
@@ -18,7 +19,7 @@ export class InsructorcoursesviewComponent implements OnInit {
   usercourses: any[] =[];
   instructorcourses: any[] = [];
   author!: String;
-  constructor(private instructorService: InstructorService, private courseService: CourseService, public router: Router,private userService:UserService) { }
+  constructor(private instructorService: InstructorService, private cookieService: CookieService, private courseService: CourseService, public router: Router,private userService:UserService) { }
 
   ngOnInit(): void {
 
@@ -73,6 +74,12 @@ export class InsructorcoursesviewComponent implements OnInit {
       }
   });
   }
+  onLogout(){
+    this.instructorService.deleteToken().subscribe((res:any) => {
 
+    });
+    this.cookieService.deleteAll();
+    this.router.navigate(['instructors/login']);
+  }
   
 }

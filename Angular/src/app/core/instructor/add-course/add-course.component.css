@@ -2,6 +2,23 @@
 * {
     box-sizing: border-box;
   }
+  .navbar{
+    background-color:#3E497A;
+    height: 70px;
+    left: 0;
+    width: 100vw;
+}
+#navlogo{
+    margin-top: 30px;
+    width: 230px;
+    height: 45px;
+  }
+  .navbar .nav-links{
+    background-color: #3E497A;
+  }
+  .navbar .nav-links a{
+      color: #f4f81c;
+  }
   body{
       /* margin-top: 100px; */
       /* font-family: 'Roboto', sans-serif; */

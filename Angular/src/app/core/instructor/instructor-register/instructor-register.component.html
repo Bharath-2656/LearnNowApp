@@ -1,4 +1,35 @@
-<app-instructor-navbar></app-instructor-navbar> 
+<div class="navbar">
+   
+    <!-- Navbar logo -->
+    <div class="nav-header">
+      <div class="nav-logo">
+        <a href="#">
+          <img id="navlogo" src="https://i.ibb.co/72jqJf7/Screenshot-2022-05-09-213341.png" width="100px" alt="logo">
+        </a>
+      </div>
+    </div>
+     
+    <!-- responsive navbar toggle button -->
+    <input type="checkbox" id="nav-check">
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+   
+    <!-- Navbar items -->
+    <div class="nav-links">
+
+      <a routerLink="/instructors/login" routerLinkActive="active">Login</a>
+      <a routerLink="/instructors/instructorCourse" routerLinkActive="active">Dashboard</a>
+      <!-- <a routerLink="instructors/areaofinterest" routerLinkActive="active">Courses</a> -->
+      
+      <!-- <button class="loginBtn">Login</button> -->
+    </div>
+   
+  </div>
  <!DOCTYPE html>
 <html lang="en">
 

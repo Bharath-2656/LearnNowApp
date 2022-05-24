@@ -20,6 +20,7 @@ const cookieSession = require('cookie-session');
 var { token } = require('morgan');
 require('../Config/OAuth');
 var cookieParser = require('cookie-parser');
+const { has } = require('lodash');
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -259,7 +260,7 @@ app.post('/deletetoken/:userid', (req, res) =>
 //getting all userprofiles Admin access
 app.get('/userprofile', (req, res, next) =>
 {
-    User.findOne({ userid: req.userid },
+    User.findOne({ userid: req.body.userid },
         (err, user) =>
         {
             if (!user)
@@ -461,7 +462,7 @@ app.post('/user_mail', async (req, res) =>
     res.send("Email sent")
 });
 
-app.post('/forgotpassword_mail', async (req, res) =>
+app.get('/forgotpassword_mail/:email', async (req, res) =>
 {
    var otp = Math.floor(100000 + Math.random() * 900000);
    
@@ -479,7 +480,7 @@ app.post('/forgotpassword_mail', async (req, res) =>
 
     let mailOptions = {
         from: "bharathstarck@gmail.com",
-        to: "bharath2000madhu@gmail.com",//to be changed
+        to:  req.params.email,  //"bharath2000madhu@gmail.com",//to be changed
         subject: "Confirmation of Registration",
         // html:{path: `http://localhost:4200/user/confirmenrollment`}
         text: "You have requested for reseting password please verify the following OTP and continue to rest the password \n OTP: " + otp
@@ -495,7 +496,9 @@ app.post('/forgotpassword_mail', async (req, res) =>
             console.log("Email has been sent sucessfully");
         }
     });
-    res.send("Email sent")
+    res.json({
+        data: otp,
+    });
 });
 
 app.get('/verifyotp/:otp',  (req, res) =>
@@ -504,5 +507,19 @@ app.get('/verifyotp/:otp',  (req, res) =>
     
 });
 
+app.post('/resetpassword/:email/:password', async (req, res) =>
+{
+    var user = new User({
+        password: req.params.password,
+    })
+ 
+    var password = await bcrypt.hash(req.params.password, 10);
+    console.log(password);
+    User.findOneAndUpdate({ email: req.params.email }, { $set: {password: await bcrypt.hash(req.params.password, 10)} },{ new: true }, (err, doc) =>
+    {
+        if (!err) { res.send(doc); }
+        else { console.log(`Error in updating user`); }
+    });
+});
 
 module.exports = app;

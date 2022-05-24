@@ -123,10 +123,17 @@ export class UserService {
   {
     return this.http.get(this.url + 'googleauthentication'  +`/${userid}`);
   }
+  forgotpasswordmail(email: String){
+    return this.http.get(this.url+ 'forgotpassword_mail' + `/${email}`)
+  }
   verifyotp(otp:Number)
   {
     console.log(otp);
-    
     return this.http.get(this.url + 'verifyotp' + `/${otp}`);
   }
+  postnewpassword(email: String, password: String)
+  {
+    return this.http.post(this.url + 'resetpassword'+ `/${email}`+ `/${password}`, password)
+  }
+
 }

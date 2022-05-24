@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { CourseService } from 'src/app/shared/services/Course/course.service';
 import { InstructorService } from 'src/app/shared/services/Instructor/instructor.service';
@@ -12,7 +13,7 @@ import { InstructorService } from 'src/app/shared/services/Instructor/instructor
 })
 export class UpdateCourseComponent implements OnInit {
 
-  constructor(public courseService: CourseService, private toastr: ToastrService, private router: Router, private instructorService: InstructorService, private route: ActivatedRoute) { }
+  constructor(public courseService: CourseService, private cookieService:CookieService, private toastr: ToastrService, private router: Router, private instructorService: InstructorService, private route: ActivatedRoute) { }
   courses: any[] = [];
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
@@ -79,5 +80,12 @@ export class UpdateCourseComponent implements OnInit {
       }, 3000)
     });
   
+  }
+  onLogout(){
+    this.instructorService.deleteToken().subscribe((res:any) => {
+  
+    });
+    this.cookieService.deleteAll();
+    this.router.navigate(['instructors/login']);
   }
 }
