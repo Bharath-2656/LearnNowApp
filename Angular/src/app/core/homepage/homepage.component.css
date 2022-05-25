@@ -262,6 +262,8 @@ html{
     font-family: 'Montserrat';
     font-weight: 900;
     background-color: #41d454;
+    cursor: pointer;
+
 
 }
 
@@ -284,6 +286,7 @@ html{
     font-weight: 900;
     background-color: #41d454;
     border-color: #41d454;
+    cursor: pointer;
 }
 
 .buttonalign {

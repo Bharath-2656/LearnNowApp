@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit
   serverErrorMessages!: string;
   auth2: any;
   userid: any;
+  show = false;
   url: string = `${globalVars.backendAPI}/admin/`;
   ngOnInit(): void
   {}
@@ -82,4 +83,5 @@ export class LoginComponent implements OnInit
       });
   }
   //this.login.getUserDetails(username,password);
+  
 }

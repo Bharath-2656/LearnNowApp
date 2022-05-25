@@ -26,7 +26,7 @@ export class InstructorgaurdGuard implements CanActivate {
         }
         });
        
-        this.toastr.error('Not Authorized','Error');
+        // this.toastr.error('Not Authorized','Error');
       }      
     return this.userService.getRole().includes(route.data['role']);
     //return true;

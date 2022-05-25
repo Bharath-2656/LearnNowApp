@@ -61,7 +61,10 @@ export class PaymentComponent implements OnInit {
               this.courseService.courseEnrollCount(this.courselink).subscribe((res) => {
             
           })
-         this.courseService.sendConfirmationMail(this.courselink);
+          this.toastr.success('Enrollment successful','Success');
+         this.courseService.sendConfirmationMail(this.courselink).subscribe((res) => {
+            
+        });
           this.userService.getUserProfile().subscribe((res:any) => {
               for (let index = 0; index < res.length; index++) {
                 if(res[index].userid == this.id)  
@@ -76,7 +79,7 @@ export class PaymentComponent implements OnInit {
           
            this.userService.postUserCourse(this.courselink, this.id).subscribe((res:any) => {
               
-            this.toastr.success('Enrollment successful','Success');
+            
       this.userService.getUserProfile().subscribe((res:any) => {
         for (let index = 0; index < res.length; index++) {
           if(res[index].userid == this.id)  
@@ -95,14 +98,17 @@ export class PaymentComponent implements OnInit {
                 this.router.navigate(['user/dashboard']);
 
             })
+            }
+            else{
+              setTimeout(() => {
+                this.router.navigate(['user/dashboard']);
+              }, 3000);
             };
             
           }              
         }
     })
-          // setTimeout(() => {
-          //   this.router.navigate(['user/dashboard']);
-          // }, 3000);
+          
           
        },
         err => {

@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
         //   this.router.navigateByUrl('/user/login');
         // }, 2000);
         
-        this.toastr.error('Not Authorized','Error'); 
+        //this.toastr.error('Not Authorized','Error'); 
         
       }
       // else{

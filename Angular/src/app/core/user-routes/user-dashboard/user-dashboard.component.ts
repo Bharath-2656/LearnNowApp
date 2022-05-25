@@ -30,7 +30,6 @@ export class UserDashboardComponent implements OnInit {
       this.usercourses[index] = res[index];
     }   
     this.id=this.userService.getuserfromPayload();
-    
   });
 
   this.courseService.getCourse().subscribe((res:any) => {
@@ -40,13 +39,14 @@ export class UserDashboardComponent implements OnInit {
 
   this.userService.getUserProfile().subscribe((res:any) => {
     this.users = res;  
+    this.id=this.userService.getuserfromPayload();
    for (let index = 0; index < res.length; index++) {
      this.uc = this.users[index].courseid;   
+     
      
      if(this.id==this.users[index].userid)
      {
       this.name = this.users[index].name;
-     
      }
    }
    

@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     event => { },
                     err => {
                         if (err.error.auth == false) {
-                            this.toastr.error('Not Authorized','Error'); 
+                            // this.toastr.error('Not Authorized','Error'); 
                             this.router.navigateByUrl('user/login');
                              
                         }

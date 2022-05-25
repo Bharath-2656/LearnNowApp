@@ -60,6 +60,8 @@ export class UpdateCourseComponent implements OnInit {
     }
     
     onSubmit(form: NgForm) {
+      console.log(form.value);
+      
       this.courseService.putCourse(form.value).subscribe((res) => {
        
       
@@ -74,7 +76,7 @@ export class UpdateCourseComponent implements OnInit {
     }
     );
      this.instructorService.postInstructorCourse(form.value).subscribe((res) => {
-      this.toastr.success('Course Registered successful','Success');
+      this.toastr.success('Course Updated successfull','Success');
       setTimeout(() => {
         this.router.navigate(['instructors/instructorCourse']);
       }, 3000)

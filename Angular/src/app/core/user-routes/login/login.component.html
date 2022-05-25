@@ -1,81 +1,94 @@
 <!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%> -->
-    <div class="navbar">
-   
-        <!-- Navbar logo -->
-        <div class="nav-header">
-          <div class="nav-logo">
-            <a href="#">
-              <img id="logo" src="https://i.ibb.co/Ph9cJSC/logo-purple.png" width="100px" alt="logo">
-            </a>
-          </div>
-        </div>
-         
-        <!-- responsive navbar toggle button -->
-        <input type="checkbox" id="nav-check">
-        <div class="nav-btn" >
-          <label for="nav-check">
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
-        </div>
-       
-        <!-- Navbar items -->
-        <div class="nav-links">
-          <a routerLink="/user/register" routerLinkActive="active">Register</a>
-          <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
-          <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
-          
-          <!-- <button class="loginBtn">Login</button> -->
-        </div>
-       
-      </div>    
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
-    
-    <link rel="stylesheet" href="login.component.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <script src="login.js"></script> -->
+<div class="navbar">
+
+  <!-- Navbar logo -->
+  <div class="nav-header">
+    <div class="nav-logo">
+      <a href="#">
+        <img id="logo" src="https://i.ibb.co/Ph9cJSC/logo-purple.png" width="100px" alt="logo">
+      </a>
+    </div>
+  </div>
+
+  <!-- responsive navbar toggle button -->
+  <input type="checkbox" id="nav-check">
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+
+  <!-- Navbar items -->
+  <div class="nav-links">
+    <a routerLink="/user/register" routerLinkActive="active">Register</a>
+    <a routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/user/areaofinterest" routerLinkActive="active">Courses</a>
+
+    <!-- <button class="loginBtn">Login</button> -->
+  </div>
+
+</div>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+
+  <link rel="stylesheet" href="login.component.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <script src="login.js"></script> -->
 
 
-    </head>
-    <body>
-      
-        <div align="right" class="main">
-            <h1>Login Page</h1>
-            <h2>Enter Login Details</h2>
-            <form class="formOne" #showForm="ngForm" (ngSubmit)="onSubmit(showForm)" novalidate >
-                <!-- <form class="formOne"> -->
-                 <div><img id="pagelogo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
-                 
-                 <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false" [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" ngModel><br>
-                <div> <span *ngIf="email.invalid && email.touched" style="color: red;" class="error">Invalid email</span></div>
-                <label>PASSWORD</label> <input id="password" type="password" name="password" [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel" ngModel><br>
-                <div> <span *ngIf="password.invalid && password.touched" style="color: red;" class="error">Invalid Password</span></div>
-                
-                <input type="submit" id="button" value="Submit"><br>
-                <p class="horizontal-line-text">
-                    <span style="background-color:#F7F8FA;">OR</span>
-                  </p>
-                  
-                <!-- <button id="googlelogin" type="button" (click)="signInWithGoogle()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button> -->
-                <button id="googlelogin" type="button" (click)="googlelogin()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button>
-                  <div class="g-signin2" data-onsuccess="onSignIn" data-longtitle="true"></div>
-                <br>
-                <a id="forgotpassword" href="user/forgotpassword">Forgot Password?</a><br><br>
-                <a id="registerlink" href="user/register">New User? Register with us</a>
-            </form>
+</head>
 
-            <div align="left">
-                <img id="image" alt="course image" src="https://i.ibb.co/P9V6YH9/Course-App-removebg-preview.jpg" >
-            </div>
-        </div>
-        <div class="servererror" *ngIf="serverErrorMessages">
-            {{serverErrorMessages}}</div>
-    
-    </body>
-    </html>
+<body>
+
+  <div align="right" class="main">
+    <h1>Login Page</h1>
+    <h2>Enter Login Details</h2>
+    <form class="formOne" #showForm="ngForm" (ngSubmit)="onSubmit(showForm)" novalidate>
+      <!-- <form class="formOne"> -->
+      <div><img id="pagelogo" src="https://i.ibb.co/P67QgJ4/Screenshot-756.png"></div>
+
+      <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false"
+        [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" ngModel><br>
+
+      <div> <span *ngIf="email.invalid && email.touched" style="color: red;" class="error">Invalid email</span></div>
+
+      <label>PASSWORD</label> <input id="password" type="password" name="password"
+        [ngClass]="!password.valid && password.touched? 'invalid-textbox':'password'"
+        pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required #password="ngModel"
+        ngModel><br>
+
+      <div> <span *ngIf="password.invalid && password.touched" style="color: red;" class="error">Invalid Password</span>
+      </div>
+
+      <input type="submit" id="button" value="Submit"><br>
+      <p class="horizontal-line-text">
+        <span style="background-color:#F7F8FA;">OR</span>
+      </p>
+
+      <!-- <button id="googlelogin" type="button" (click)="signInWithGoogle()" value="Sign with Google"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button> -->
+      <button id="googlelogin" type="button" (click)="googlelogin()" value="Sign with Google"><i class="fa fa-google"
+          aria-hidden="true"></i> Sign in with Google</button>
+      <div class="g-signin2" data-onsuccess="onSignIn" data-longtitle="true"></div>
+      <br>
+      <a id="forgotpassword" href="user/forgotpassword">Forgot Password?</a><br><br>
+      <a id="registerlink" href="user/register">New User? Register with us</a>
+    </form>
+
+    <div align="left">
+      <img id="image" alt="course image" src="https://i.ibb.co/P9V6YH9/Course-App-removebg-preview.jpg">
+    </div>
+  </div>
+  <div class="servererror" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}</div>
+
+</body>
+
+</html>
