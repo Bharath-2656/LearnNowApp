@@ -56,7 +56,7 @@
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUsers.userid">
             <label>NAME</label><input id="name" type="text" name="name" spellcheck="false" autocapitalize="sentences" pattern="^([a-zA-Z\s]){2,}" required #name="ngModel" [(ngModel)]="userService.selectedUsers.name" [ngClass]="!name.valid && name.touched? 'invalid-textbox':'name'"><br>
             <div> <span *ngIf="name.invalid && name.touched" style="color: red;" class="error">Invalid Name</span></div>
-            <label>AGE</label> <input id="age" type="text" name="age" placeholder="" required pattern="^[0-9]{2}$" [ngClass]="!age.valid && age.touched? 'invalid-textbox':'age'" #age="ngModel" [(ngModel)]="userService.selectedUsers.age"><br>
+            <label>AGE</label> <input id="age" type="text" name="age" value=" " required pattern="^[0-9]{2}$" [ngClass]="!age.valid && age.touched? 'invalid-textbox':'age'" #age="ngModel" [(ngModel)]="userService.selectedUsers.age"><br>
             <div> <span *ngIf="age.invalid && age.touched" style="color: red;" class="error">Invalid Age</span></div>
             <label>EMAIL</label> <input id="email" type="text" name="email" spellcheck="false" [ngClass]="!email.valid && email.touched? 'invalid-textbox':'email'" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]="userService.selectedUsers.email"><br>
             <div> <span *ngIf="email.invalid && email.touched" style="color: red;" class="error">Invalid email</span></div>

@@ -115,7 +115,7 @@ label {
 #submit{
     align-items: center;
     background-color: #41d454;
-    font-size: 23px;
+    font-size: 100%;
     color: #050505;
     margin-left: 30%;
     text-align: center;
@@ -132,6 +132,9 @@ label {
 }
 
 @media screen and (max-width:750px ) {
+    #submit{
+        font-size: 80%;
+    }
 
 }
 

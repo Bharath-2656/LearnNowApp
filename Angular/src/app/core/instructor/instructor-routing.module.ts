@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/Auth/auth.guard';
 import { InstructorgaurdGuard } from 'src/app/shared/Auth/instructorgaurd.guard';
+import { CoursepageComponent } from '../user-routes/coursepage/coursepage.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { InsructorcoursesviewComponent } from './insructorcoursesview/insructorcoursesview.component';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: "addcourse", component: AddCourseComponent,canActivate:[InstructorgaurdGuard],data: {role: 'instructor'}},
   {path: "instructorCourse", component: InsructorcoursesviewComponent , canActivate: [InstructorgaurdGuard], data: {role: 'instructor'}},
   {path: "updateCourse/:id", component: UpdateCourseComponent , canActivate: [InstructorgaurdGuard], data: {role: 'instructor'}},
+  {path: "course/:id", component: CoursepageComponent}
 ]
 
 @NgModule({

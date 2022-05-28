@@ -21,24 +21,16 @@ export class AuthGuard implements CanActivate {
         this.userService.postRefreshtokencheck(userid).subscribe((res : any)=>{
         {
           this.userService.setToken(res['token']);
-          this.location.back();
+          this.location.forward();
 
         }
         (err:any)=>{
+          //this.router.navigateByUrl('user/login');
+          
         }
-        });
-        // setTimeout(() => {
-        //   this.router.navigateByUrl('/user/login');
-        // }, 2000);
-        
-        //this.toastr.error('Not Authorized','Error'); 
-        
+        });  
       }
-      // else{
-      //   this.userService.deleteToken();
-      //   this.router.navigateByUrl('/user/login');
-      //   return false;
-      // }
+
     return this.userService.getRole().includes(route.data['role']);;
   }
   

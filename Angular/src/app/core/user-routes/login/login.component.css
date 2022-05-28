@@ -90,6 +90,7 @@
     box-shadow: inset;
     outline: none;
     overflow: hidden;
+    cursor: pointer;
 }
 #image{
      width: 45%;
@@ -201,6 +202,7 @@
     box-shadow: inset;
     /* background-color:rgb(66, 133, 244); */
     background-color: var(--purple-color);
+    cursor: pointer;
 }
 body{
     margin: 0;

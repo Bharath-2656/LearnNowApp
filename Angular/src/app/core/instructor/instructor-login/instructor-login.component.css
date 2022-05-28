@@ -94,6 +94,7 @@
     box-shadow: inset;
     outline: none;
     overflow: hidden;
+    cursor: pointer;
 }
 #image{
     /* width: 400px;

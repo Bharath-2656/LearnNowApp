@@ -21,6 +21,7 @@ export class UserDashboardComponent implements OnInit {
   name!: String;
   mycourse: any[] =[];
   ucourse: any[] = [];
+  totalamount!: Number;
   constructor(private userService:UserService, private courseService:CourseService, private router: Router, private cookieService: CookieService ) { }
   
   ngOnInit(): void {
@@ -47,6 +48,7 @@ export class UserDashboardComponent implements OnInit {
      if(this.id==this.users[index].userid)
      {
       this.name = this.users[index].name;
+      this.totalamount = this.users[index].totalamount;
      }
    }
    
@@ -73,7 +75,7 @@ export class UserDashboardComponent implements OnInit {
             {
               
               
-              (document.getElementById("top"))!.innerHTML = "No courses Enrolled";
+              (document.getElementById("top"))!.innerHTML = "No courses Enrolled, Please go to Enroll Courses ";
               document.getElementById('nocourse')!.style.display = "block"
 
             }

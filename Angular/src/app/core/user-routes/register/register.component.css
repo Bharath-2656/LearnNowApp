@@ -57,6 +57,7 @@ button {
     box-shadow: inset;
     outline: none;
     overflow: hidden;
+    cursor: pointer;
 }
 .formOne{
     font-weight: 500;
@@ -243,7 +244,7 @@ button {
     box-shadow: inset;
     outline: none;
     overflow: hidden;
-
+    cursor: pointer;
 }
 .success{
     align-items: center; 

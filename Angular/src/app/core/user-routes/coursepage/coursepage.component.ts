@@ -32,6 +32,7 @@ export class CoursepageComponent implements OnInit
   totalamount!: Number;
   couponcode: String = '';
   uc: any[] = [];
+  enrollstatus = 'true';
   constructor(private courseService: CourseService, private toastr: ToastrService,
     private userService: UserService, private router: Router, private cookieService: CookieService,
     private route: ActivatedRoute) { }
@@ -80,7 +81,25 @@ export class CoursepageComponent implements OnInit
         console.log(err);
       });
 
+    this.userService.getUsercourseonuser().subscribe((res: any) =>
+    {
+      this.userid = this.userService.getuserfromPayload();
+      for (let index = 0; index < res.length; index++)
+      {
+        if (res[index].userid == this.userid)
+        {
+          for (let index2 = 0; index2 < res[index].courseid.length; index2++)
+          {
+            console.log("n");
 
+            if (res[index].courseid[index2] === this.id)
+            {
+              this.enrollstatus = 'false';
+            }
+          }
+        }
+      }
+    })
   };
 
   applyCouponCode(couponform: NgForm)
@@ -88,8 +107,13 @@ export class CoursepageComponent implements OnInit
 
     if (this.totalamount > 1000 && (JSON.stringify(couponform.value.couponcodebutton).replace(/\"/g, "") == "FLAT10"))
     {
+      this.toastr.success('Coupon code addded successfully', 'Success')
       this.price = Math.floor((this.price) - (this.price / 10));
       this.cookieService.set('price', String(this.price + "00"))
+    }
+    else
+    {
+      this.toastr.error('You do not have any coupon code', 'Error');
     }
   }
 
@@ -157,7 +181,7 @@ export class CoursepageComponent implements OnInit
     this.userService.deleteToken().subscribe((res: any) =>
     {
     });
-    this.cookieService.delete('refreshtoken');  
+    this.cookieService.delete('refreshtoken');
     this.cookieService.deleteAll('/');
     this.router.navigate(['user/login']);
   }

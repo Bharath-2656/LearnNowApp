@@ -82,12 +82,18 @@
               
               <input type="submit" id="couponcode" name ="couponcode" value="Apply Coupon Code" ><br> 
               </form>
-
-              <input type="submit" id="enroll" value="Enroll"><br><br>
+              <ng-container *ngIf="enrollstatus=='false'">
+                <input type="button" id="enroll" value="Enrolled" style="background-color: rgba(245, 166, 39, 0.87);"><br><br>
+              </ng-container>
+              <ng-container *ngIf="enrollstatus=='true'">
+                <input type="submit" id="enroll" value="Enroll"><br><br>
+              </ng-container>
+             
               <h3 >The course includes </h3>
               <ng-container *ngFor="let include of courseincludes">
                 <li id="list" class="textcolor line">{{include}}</li><br> 
               </ng-container>
+              
               <h3 >Course requirements</h3>
               <ng-container *ngFor="let requirements of courserequirements">
                 <li id="list" class="textcolor">{{requirements}}</li><br>

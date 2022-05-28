@@ -52,6 +52,7 @@
     </div>
     <h1 id="heading">Welcome back {{name}}</h1>
     <h2><strong>Enrolled courses</strong></h2>
+
     <div id="nocourse" style="display:none ;" class="card"><h3 id="top"></h3></div>
     
     <ng-container *ngFor="let usercourse of usercourses">
@@ -89,50 +90,9 @@
         </ng-container>
        
     </ng-container>
-
-    <!-- <ng-container *ngFor="let usercourse of usercourses">
-      
-      
-      <ng-container *ngFor="let ucourse of usercourse.user_courses"> 
-        
-        <ng-container *ngIf="id==ucourse.userid && usercourse.user_courses.length>0"> 
-       
-        
-         <div class="card">
-           <p>No Courses</p>
-         </div>
- 
-        </ng-container>
-      </ng-container>
-    </ng-container> -->
-
-      <!-- <h2>Recommended courses for you</h2>  -->
-     <!-- <ng-container *ngFor="let courseservice of courseservices">
-        
-        <ng-container
-          *ngFor="let areaofinterest_course of courseservice.areaofinterest_courses">
-          <ng-container
-          *ngFor="let ucs of uc">
-        <div class="card">{{ucs}}</div></ng-container>
-        <ng-container *ngIf="uc!=areaofinterest_course.routerlink">
-         
-            <div class="card">
-                
-              <h3>
-                <a style="font-size: 23px;" id="b" [routerLink]="['/course', areaofinterest_course.routerlink]" routerLinkActive="active"><b>{{
-                    areaofinterest_course.name}}</b></a>
-              </h3>
-              <p>{{ areaofinterest_course.description}}</p>
-              <p>Duration : {{ areaofinterest_course.duration}}</p>
-              <a id="b" [routerLink]="['/instructor', areaofinterest_course.author]" routerLinkActive="active">
-                <p>Instructor : {{areaofinterest_course.author}}</p>
-              </a>
-              <p id="price">Price : {{areaofinterest_course.price}}</p>
-            </div>
-        </ng-container>
-        </ng-container>
-
-      </ng-container> -->
+<div class="card">
+  <h3>Total amount spent on the app : {{totalamount}}</h3>
+</div>
     
 </body>
 

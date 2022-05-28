@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   showSuccessMessage!: boolean;
   serverErrorMessages!: string;
+
   constructor(public userService: UserService,private router: Router , private courseService: CourseService, private toastr: ToastrService) { }
 
   ngOnInit(): void {

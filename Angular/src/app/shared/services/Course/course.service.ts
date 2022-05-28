@@ -13,6 +13,7 @@ export class CourseService {
   courses!: Course[];
   readonly baseURL = 'http://localhost:9000/course/';
   url: string = `${globalVars.backendAPI}/course/`;
+  normurl: string = `${globalVars.backendAPI}`;
   constructor(private http: HttpClient) { }
 
   getAreaOfInterestCourse() {
@@ -45,6 +46,6 @@ export class CourseService {
   }
   sendConfirmationMail(courseid: any)
   {   
-    return this.http.post('http://localhost:9000/admin/course_mail', courseid);
+    return this.http.post(this.normurl + '/admin/course_mail', courseid);
   }
 }

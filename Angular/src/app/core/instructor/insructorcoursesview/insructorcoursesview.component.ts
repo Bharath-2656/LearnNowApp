@@ -32,13 +32,10 @@ export class InsructorcoursesviewComponent implements OnInit {
         {
         this.instructorCourses[index]=res[index].instructor_courses;
         this.author= res[index].routerlink;
-        }
-        
+        }       
        }
-  
-      
+
     });
-    
     
     this.courseService.getCourse().subscribe((res:any) => {
       for (let index = 0; index < res.length; index++) {
@@ -46,7 +43,6 @@ export class InsructorcoursesviewComponent implements OnInit {
        
       }
     });
-    
     
      this.userService.getUsercourse().subscribe((res : any)=>{
       this.usercourses = res;
@@ -56,16 +52,15 @@ export class InsructorcoursesviewComponent implements OnInit {
   delete(name: any, id: any)
   {
 
-    
     Swal.fire({
       title: "Are you sure you want to delete this course "+ name,
       // text: "Write something interesting:",
       // input: 'text',
       showCancelButton: true        
   }).then((result) => {
-    this.courseService.deleteCourse(id).subscribe((res:any) => {});
-      if (result.value) {
-          console.log("Result: " + result.value);
+    if (result.value) {
+        this.courseService.deleteCourse(id).subscribe((res:any) => {});
+        console.log("Result: " + result.value);
           window.location.reload();
       }
   });
